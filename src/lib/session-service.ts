@@ -126,7 +126,15 @@ export async function finishSession(sessionId: string): Promise<{ session: Study
           memorizedOnly = avgScore < LearningConfig.exam.memorizedOnlyThreshold;
         }
       }
-      return { questionId: qid, score: att?.score ?? 0, memorizedOnly };
+      return {
+        questionId: qid,
+        score: att?.score ?? 0,
+        memorizedOnly,
+        correct: att?.correct ?? false,
+        rubricMisses: att?.rubricMisses ?? [],
+        answer: att?.answer ?? '',
+        questionType: q?.type,
+      };
     });
     const totalScore = perQuestion.length > 0 ? perQuestion.reduce((s, p) => s + p.score, 0) / perQuestion.length : 0;
     const byDifficulty: Record<string, number> = {};

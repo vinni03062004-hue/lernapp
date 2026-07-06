@@ -63,7 +63,6 @@ export function computeProgress(questions: Question[], state: UserState): Progre
 }
 
 export function computeReadiness(questions: Question[], chapters: Chapter[], state: UserState): ReadinessBreakdown {
-  const w = LearningConfig.readinessWeights;
   const attempts = state.attempts;
   const explanation: string[] = [];
 
@@ -88,32 +87,27 @@ export function computeReadiness(questions: Question[], chapters: Chapter[], sta
   const resolved = everWrong.filter((m) => m.errorResolved);
   const errorRecovery = everWrong.length > 0 ? resolved.length / everWrong.length : attempts.length > 0 ? 1 : 0;
 
-  // 5) Kapitelabdeckung
+  // 5) Kapitel-Beherrschung (wie im Kapitel-Menü "beherrscht %"): mittlere
+  //    Beherrschung je Kapitel – NICHT bloßes Auftauchen. Ein Kapitel, das nur
+  //    einmal in einer Prüfung vorkam, zählt also nicht als "abgedeckt".
   const activeChapters = chapters.filter((c) =>
     questions.some((q) => q.chapterId === c.id && (state.mastery[q.id]?.attempts ?? 0) > 0)
   );
-  const chapterCoverage = chapters.length > 0 ? activeChapters.length / chapters.length : 0;
+  const chapterMasteries = chapters.map((c) => {
+    const qs = questions.filter((q) => q.chapterId === c.id);
+    return qs.length > 0 ? avg(qs.map((q) => state.mastery[q.id]?.mastery ?? 0)) : 0;
+  });
+  const chapterCoverage = chapterMasteries.length > 0 ? avg(chapterMasteries) : 0;
 
-  // Qualität auf dem bereits BEARBEITETEN Stoff (0..1): wie gut sind die
-  // bearbeiteten Fragen beherrscht? (Teilkomponenten ohne Kapitelabdeckung,
-  // Gewichte renormalisiert.)
-  const qWeight = w.recentAccuracy + w.stability + w.hardQuestions + w.errorRecovery;
-  const quality =
-    (w.recentAccuracy * recentAccuracy +
-      w.stability * stability +
-      w.hardQuestions * hardQuestions +
-      w.errorRecovery * errorRecovery) / (qWeight || 1);
-
-  // Stoffabdeckung als echte OBERGRENZE: noch nicht bearbeitete Fragen zählen
-  // als "nicht prüfungsbereit". Die Bereitschaft kann die Abdeckung damit nicht
-  // übersteigen – hohe Bereitschaft ist erst bei breit UND sicher beherrschtem
-  // Stoff möglich (kein 36 % bei 13 % Abdeckung mehr).
+  // Prüfungsbereitschaft = mittlere BEHERRSCHUNG über den GESAMTEN Fragenkatalog
+  // (unbearbeitete Fragen = 0). Das entspricht dem "beherrscht %" im Kapitel-Menü
+  // und lässt sich nicht durch einmaliges Auftauchen einer Frage in einer Prüfung
+  // aufblähen: Nur breit UND sicher Gelerntes hebt den Wert. Bearbeitung ohne
+  // echtes Können (z. B. eine falsch beantwortete Prüfungsfrage) hebt ihn kaum.
   const totalQ = questions.length || 1;
-  const attemptedIds = new Set(attempts.map((a) => a.questionId));
-  const attemptedQ = questions.filter((q) => attemptedIds.has(q.id)).length;
-  const questionCoverage = attemptedQ / totalQ;
+  const avgMasteryAll = questions.reduce((sum, q) => sum + (state.mastery[q.id]?.mastery ?? 0), 0) / totalQ;
 
-  let readiness = 100 * questionCoverage * quality;
+  let readiness = 100 * avgMasteryAll;
 
   // MC-vs-Freitext-Dämpfung
   const mcAtt = attempts.filter((a) => ['single_choice', 'multiple_choice', 'true_false', 'image_choice'].includes(a.questionType));

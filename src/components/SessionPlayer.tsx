@@ -43,7 +43,15 @@ interface AttemptFeedback {
 
 interface ExamResult {
   totalScore: number;
-  perQuestion: { questionId: string; score: number; memorizedOnly: boolean }[];
+  perQuestion: {
+    questionId: string;
+    score: number;
+    memorizedOnly: boolean;
+    correct?: boolean;
+    rubricMisses?: string[];
+    answer?: string;
+    questionType?: string;
+  }[];
   byDifficulty: Record<string, number>;
   recommendations: string[];
 }
@@ -61,6 +69,57 @@ const TYPE_LABELS: Record<string, string> = {
   cloze: 'Lückentext', open: 'Offene Frage', transfer: 'Transferfrage', assignment: 'Zuordnung',
   image_open: 'Bildfrage (offen)', image_choice: 'Bildfrage (Auswahl)', image_assignment: 'Bild-Zuordnung',
 };
+
+// Serialisierte Antwort -> lesbarer Text (für die Durchsicht am Prüfungsende).
+function describeAnswer(q: ClientQuestion, raw: string): string {
+  if (!raw) return '(keine Antwort)';
+  try {
+    switch (q.type) {
+      case 'single_choice':
+      case 'image_choice': {
+        const i = parseInt(raw, 10);
+        return q.options?.[i] ?? raw;
+      }
+      case 'multiple_choice':
+        return raw.split(',').map((x) => q.options?.[parseInt(x, 10)] ?? x).join(', ');
+      case 'true_false':
+        return raw === 'true' ? 'Wahr' : 'Falsch';
+      case 'cloze':
+        return (JSON.parse(raw) as string[]).join(' · ');
+      case 'assignment':
+      case 'image_assignment': {
+        const arr = JSON.parse(raw) as number[];
+        return (q.assignmentLeft ?? [])
+          .map((l, i) => l + ' → ' + (q.assignmentRight?.find((r) => r.origIndex === arr[i])?.text ?? '—'))
+          .join('; ');
+      }
+      default:
+        return raw;
+    }
+  } catch {
+    return raw;
+  }
+}
+
+// Richtige Lösung für die Durchsicht.
+function describeCorrect(q: ClientQuestion, sol: any): string {
+  if (!sol) return '';
+  switch (q.type) {
+    case 'single_choice':
+    case 'image_choice':
+    case 'multiple_choice':
+      return (sol.correctOptions ?? []).map((i: number) => q.options?.[i] ?? i).join(', ');
+    case 'true_false':
+      return sol.correctBool ? 'Wahr' : 'Falsch';
+    case 'cloze':
+      return (sol.clozeAnswers ?? []).map((a: string[]) => a.join(' / ')).join(' · ');
+    case 'assignment':
+    case 'image_assignment':
+      return (sol.pairs ?? []).map((pr: any) => pr.left + ' → ' + pr.right).join('; ');
+    default:
+      return sol.modelAnswer ?? '';
+  }
+}
 
 export function SessionPlayer(props: {
   mode: Mode;
@@ -91,6 +150,7 @@ export function SessionPlayer(props: {
   const [finished, setFinished] = useState(false);
   const [examResult, setExamResult] = useState<ExamResult | null>(null);
   const [reviewSolutions, setReviewSolutions] = useState<Record<string, any>>({});
+  const [openReview, setOpenReview] = useState<string | null>(null);
   const [flagged, setFlagged] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState<number | null>(null);
   const startRef = useRef<number>(Date.now());
@@ -293,20 +353,48 @@ export function SessionPlayer(props: {
         {examResult && (
           <div className="card">
             <h3>Durchsicht der Aufgaben</h3>
+            <p className="small dim" style={{ marginTop: -4 }}>Tippe eine Aufgabe an, um Frage, deine Antwort und die Bewertung zu sehen.</p>
             {examResult.perQuestion.map((p, i) => {
+              const q = queue.find((x) => x.id === p.questionId);
               const sol = reviewSolutions[p.questionId];
+              const isOpenRow = openReview === p.questionId;
+              const verdict = p.correct ? '✓ Richtig' : p.score > 0.3 ? '◐ Teilweise richtig' : '✗ Nicht richtig';
+              const correctText = q ? describeCorrect(q, sol) : '';
               return (
-                <div key={p.questionId} style={{ borderTop: i > 0 ? '1px solid var(--border)' : 'none', padding: '12px 0' }}>
-                  <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+                <div key={p.questionId} style={{ borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
+                  <button
+                    onClick={() => setOpenReview(isOpenRow ? null : p.questionId)}
+                    style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', padding: '12px 0', textAlign: 'left', color: 'inherit' }}
+                  >
                     <span className={`badge ${p.score >= 0.65 ? 'success' : p.score > 0 ? 'warn' : 'danger'}`}>{Math.round(p.score * 100)} %</span>
                     {p.memorizedOnly && <span className="badge warn">vermutlich nur auswendig</span>}
-                    <span className="small dim">Frage {i + 1}</span>
-                  </div>
-                  {sol && (
-                    <div className="small" style={{ marginTop: 6 }}>
-                      <div>{sol.explanation}</div>
-                      {sol.modelAnswer && <div className="dim" style={{ marginTop: 4 }}><strong>Musterantwort:</strong> {sol.modelAnswer}</div>}
-                      <div className="source-ref">⌘ Quelle: {sol.source}</div>
+                    <span className="small" style={{ flex: 1, minWidth: 120 }}>Frage {i + 1}{q ? ': ' + q.prompt.slice(0, 70) + (q.prompt.length > 70 ? '…' : '') : ''}</span>
+                    <span aria-hidden>{isOpenRow ? '▲' : '▼'}</span>
+                  </button>
+                  {isOpenRow && q && (
+                    <div style={{ padding: '0 0 14px' }}>
+                      {q.figure && (
+                        <div className="small dim" style={{ marginBottom: 6 }}>Abbildung: <strong style={{ color: 'var(--text)' }}>{q.figure.title}</strong></div>
+                      )}
+                      <div style={{ fontWeight: 600, marginBottom: 8 }}>{q.prompt}</div>
+                      <div className="small dim">Deine Antwort (bereits abgegeben)</div>
+                      <div style={{ background: 'var(--bg-subtle)', borderRadius: 8, padding: '8px 10px', margin: '4px 0 12px', whiteSpace: 'pre-wrap', color: 'var(--text)', opacity: 0.85 }}>
+                        {describeAnswer(q, p.answer ?? '')}
+                      </div>
+                      <div className={`feedback-box ${p.correct ? 'ok' : p.score > 0.3 ? 'partial' : 'bad'}`}>
+                        <strong>{verdict} ({Math.round(p.score * 100)} %)</strong>
+                        {p.rubricMisses && p.rubricMisses.length > 0 && (
+                          <div className="small" style={{ marginTop: 6 }}>
+                            <strong>Fehlende Kernpunkte:</strong>
+                            <ul style={{ margin: '4px 0 0' }}>{p.rubricMisses.map((m, j) => <li key={j}>{m}</li>)}</ul>
+                          </div>
+                        )}
+                        {correctText && (
+                          <div className="small" style={{ marginTop: 6 }}><strong>{q.isOpen ? 'Musterlösung:' : 'Richtige Antwort:'}</strong> {correctText}</div>
+                        )}
+                        {sol?.explanation && <div className="small" style={{ marginTop: 8 }}>{sol.explanation}</div>}
+                        {sol?.source && <div className="source-ref">⌘ Quelle: {sol.source}</div>}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -344,14 +432,22 @@ export function SessionPlayer(props: {
 
       <div className="card">
         {question.figure && (
-          <div className="figure-frame">
-            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
-              <strong style={{ color: '#16181d' }}>{question.figure.title}</strong>
-              <span className="small" style={{ color: '#5b6270' }}>{question.figure.chapterTitle} · PDF S. {question.figure.pdfPage}</span>
+          deferFeedback ? (
+            // Prüfmodus: KEIN Bild – nur der fett gedruckte Name des Modells/der Abbildung.
+            <div className="card" style={{ background: 'var(--bg-subtle)', marginBottom: 12 }}>
+              <div className="small dim">Abbildung</div>
+              <strong style={{ fontSize: 18 }}>{question.figure.title}</strong>
             </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/images/kv/${question.figure.file}`} alt={question.figure.caption} />
-          </div>
+          ) : (
+            <div className="figure-frame">
+              <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
+                <strong style={{ color: '#16181d' }}>{question.figure.title}</strong>
+                <span className="small" style={{ color: '#5b6270' }}>{question.figure.chapterTitle} · PDF S. {question.figure.pdfPage}</span>
+              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/images/kv/${question.figure.file}`} alt={question.figure.caption} />
+            </div>
+          )
         )}
         <h2 style={{ fontSize: 18, lineHeight: 1.45 }}>{question.prompt}</h2>
 

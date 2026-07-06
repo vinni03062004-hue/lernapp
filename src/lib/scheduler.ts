@@ -165,8 +165,15 @@ export function selectQuestions(
 function selectExam(pool: Question[], state: UserState, opts: SelectionOptions, now: number): Question[] {
   const openShare = opts.openShare ?? LearningConfig.exam.defaultOpenShare;
   const isOpen = (q: Question) => ['open', 'transfer', 'image_open'].includes(q.type);
-  const openQs = shuffle(pool.filter(isOpen));
-  const closedQs = shuffle(pool.filter((q) => !isOpen(q)));
+  // Rotation: zuerst zufällig mischen, dann nach "zuletzt gesehen" sortieren –
+  // noch nie gestellte (lastAttemptAt 0) und am längsten zurückliegende Fragen
+  // zuerst. So wiederholt sich eine Frage erst, wenn der Katalog durch ist.
+  const freshest = (qs: Question[]) =>
+    shuffle(qs).sort(
+      (a, b) => (state.mastery[a.id]?.lastAttemptAt ?? 0) - (state.mastery[b.id]?.lastAttemptAt ?? 0)
+    );
+  const openQs = freshest(pool.filter(isOpen));
+  const closedQs = freshest(pool.filter((q) => !isOpen(q)));
   const nOpen = Math.round(opts.count * openShare);
   const picked = [...openQs.slice(0, nOpen), ...closedQs.slice(0, opts.count - Math.min(nOpen, openQs.length))];
   // Schwierigkeitsmix: leichte zuerst, schwere später – aber durchmischt nach Kapitel

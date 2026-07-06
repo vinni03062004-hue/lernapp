@@ -193,7 +193,16 @@ export interface StudySession {
 
 export interface ExamResult {
   totalScore: number;      // 0..1
-  perQuestion: { questionId: string; score: number; memorizedOnly: boolean }[];
+  perQuestion: {
+    questionId: string;
+    score: number;
+    memorizedOnly: boolean;
+    /** Review-Daten für die antippbare Durchsicht */
+    correct?: boolean;
+    rubricMisses?: string[];
+    answer?: string;
+    questionType?: string;
+  }[];
   byDifficulty: Record<string, number>;
   recommendations: string[];
 }
