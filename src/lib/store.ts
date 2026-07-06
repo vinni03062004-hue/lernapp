@@ -34,6 +34,7 @@ export function defaultState(): UserState {
     readinessHistory: [],
     techniqueStats: { byType: {} },
     chatHistory: [],
+    podcastScripts: {},
     flaggedQuestions: [],
     settings: {
       theme: 'dark',

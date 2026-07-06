@@ -94,13 +94,26 @@ export function computeReadiness(questions: Question[], chapters: Chapter[], sta
   );
   const chapterCoverage = chapters.length > 0 ? activeChapters.length / chapters.length : 0;
 
-  let readiness =
-    100 *
+  // Qualität auf dem bereits BEARBEITETEN Stoff (0..1): wie gut sind die
+  // bearbeiteten Fragen beherrscht? (Teilkomponenten ohne Kapitelabdeckung,
+  // Gewichte renormalisiert.)
+  const qWeight = w.recentAccuracy + w.stability + w.hardQuestions + w.errorRecovery;
+  const quality =
     (w.recentAccuracy * recentAccuracy +
       w.stability * stability +
       w.hardQuestions * hardQuestions +
-      w.errorRecovery * errorRecovery +
-      w.chapterCoverage * chapterCoverage);
+      w.errorRecovery * errorRecovery) / (qWeight || 1);
+
+  // Stoffabdeckung als echte OBERGRENZE: noch nicht bearbeitete Fragen zählen
+  // als "nicht prüfungsbereit". Die Bereitschaft kann die Abdeckung damit nicht
+  // übersteigen – hohe Bereitschaft ist erst bei breit UND sicher beherrschtem
+  // Stoff möglich (kein 36 % bei 13 % Abdeckung mehr).
+  const totalQ = questions.length || 1;
+  const attemptedIds = new Set(attempts.map((a) => a.questionId));
+  const attemptedQ = questions.filter((q) => attemptedIds.has(q.id)).length;
+  const questionCoverage = attemptedQ / totalQ;
+
+  let readiness = 100 * questionCoverage * quality;
 
   // MC-vs-Freitext-Dämpfung
   const mcAtt = attempts.filter((a) => ['single_choice', 'multiple_choice', 'true_false', 'image_choice'].includes(a.questionType));

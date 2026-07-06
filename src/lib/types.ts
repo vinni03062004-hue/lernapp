@@ -267,6 +267,8 @@ export interface UserState {
   readinessHistory: ExamReadinessSnapshot[];
   techniqueStats: TechniqueStats;
   chatHistory: ChatMessage[];
+  /** zwischengespeicherte Podcast-Skripte je Kapitel (Cache) */
+  podcastScripts?: Record<string, { title: string; script: string; generatedAt: number }>;
   /** gemeldete Fragen (Nutzer-Feedback "Frage problematisch") */
   flaggedQuestions: { questionId: string; reason: string; at: number }[];
   settings: {

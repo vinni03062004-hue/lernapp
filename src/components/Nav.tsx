@@ -14,6 +14,7 @@ const links: { href: string; label: string; icon: string; section?: string }[] =
   { href: '/pruefung', label: 'Prüfungsmodus', icon: '✎', section: 'Prüfen' },
   { href: '/pruefung?bilder=1', label: 'Bild-Prüfmodus', icon: '▣' },
   { href: '/erklaeren', label: 'Erklärmodus & Chat', icon: '✦', section: 'Verstehen' },
+  { href: '/podcast', label: 'Podcast-Modus', icon: '⏵' },
   { href: '/analyse', label: 'Analyse', icon: '∿', section: 'Auswertung' },
   { href: '/einstellungen', label: 'Einstellungen', icon: '⚙' },
 ];

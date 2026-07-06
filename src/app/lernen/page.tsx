@@ -24,6 +24,14 @@ function LernenInner() {
     fetch('/api/content').then((r) => r.json()).then((d) => setChapters(d.chapters ?? [])).catch(() => {});
   }, []);
 
+  // Bei Wechsel über die Navigation (nur Query ändert sich, z. B. /lernen ->
+  // /lernen?mode=mixed) baut Next.js die Seite nicht neu auf. Darum setzen wir
+  // den Zustand hier passend zum aktuellen Modus/Kapitel zurück.
+  useEffect(() => {
+    setSelected(chapter ? [chapter] : []);
+    setStarted(!!chapter || mode !== 'learn');
+  }, [mode, chapter]);
+
   const titles: Record<string, string> = {
     learn: 'Lernmodus', mixed: 'Mischmodus (Interleaving)', error_focus: 'Fehlerfokus',
   };
@@ -38,7 +46,7 @@ function LernenInner() {
       <div>
         <h1>{titles[mode]}</h1>
         <p className="page-sub">{subs[mode]}</p>
-        <SessionPlayer mode={mode as any} chapterIds={mode === 'learn' ? selected : []} count={count} />
+        <SessionPlayer key={`${mode}-${selected.join(',')}-${count}`} mode={mode as any} chapterIds={mode === 'learn' ? selected : []} count={count} />
       </div>
     );
   }

@@ -46,11 +46,12 @@ export async function submitAttempt(input: SubmitAttemptInput): Promise<SubmitAt
 
   // Bewertung: zuerst regelbasiert per Rubrik.
   let result = scoreAnswer(question, input.answer);
-  // KI-Bewertung nur bei Bedarf: Wenn die Rubrik die offene Antwort schon klar
-  // als richtig erkennt, sparen wir den API-Aufruf. Nur wenn sie als falsch/
-  // teilweise gilt (Risiko: korrekte, aber anders formulierte Antwort wird zu
-  // Unrecht abgewertet), prüft Gemini semantisch gegen.
-  if (['open', 'transfer', 'image_open'].includes(question.type) && !result.correct) {
+  // Freitext wird immer semantisch von Gemini bewertet (sofern verfügbar):
+  // Nur so bezieht sich das Feedback auf die tatsächliche Antwort des
+  // Studierenden – inkl. eigener, korrekter Beispiele – statt auf die starren
+  // PDF-Stichwörter. Fällt Gemini aus (kein Key/Fehler), bleibt die
+  // regelbasierte Rubrik als Fallback.
+  if (['open', 'transfer', 'image_open'].includes(question.type)) {
     const aiResult = await aiGradeFreetext(question, input.answer);
     if (aiResult) result = aiResult;
   }

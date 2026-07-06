@@ -466,7 +466,7 @@ export function SessionPlayer(props: {
             <div className={`feedback-box ${fbClass}`}>
               <strong>
                 {feedback.correct ? '✓ Richtig' : feedback.score > 0.3 ? '◐ Teilweise richtig' : '✗ Nicht richtig'}
-                {feedback.score > 0 && feedback.score < 1 && ` (${Math.round(feedback.score * 100)} %)`}
+                {(question.isOpen || (feedback.score > 0 && feedback.score < 1)) && ` (${Math.round(feedback.score * 100)} %)`}
               </strong>
               {feedback.errorLabel && <span className="badge" style={{ marginLeft: 8 }}>{ERROR_LABELS[feedback.errorLabel] ?? feedback.errorLabel}</span>}
               <div style={{ marginTop: 6 }}>{feedback.feedback}</div>
@@ -478,11 +478,11 @@ export function SessionPlayer(props: {
               )}
               <div style={{ marginTop: 8 }}>{feedback.explanation}</div>
               {feedback.modelAnswer && question.isOpen && (
-                <div className="small" style={{ marginTop: 8 }}><strong>Musterantwort:</strong> {feedback.modelAnswer}</div>
+                <div className="small" style={{ marginTop: 8 }}><strong>Beispiel-Musterlösung (eine von mehreren möglichen):</strong> {feedback.modelAnswer}</div>
               )}
               <div className="source-ref">⌘ Quelle: {feedback.source}</div>
               <div className="small dim" style={{ marginTop: 6 }}>
-                Beherrschung: {Math.round(feedback.mastery * 100)} % · nächste Wiederholung in ~{feedback.nextDueInH < 1 ? 'dieser Session' : `${Math.round(feedback.nextDueInH)} h`}
+                Langzeit-Beherrschung dieser Frage (Lernstand, nicht die Note dieser Antwort): {Math.round(feedback.mastery * 100)} % · nächste Wiederholung in ~{feedback.nextDueInH < 1 ? 'dieser Session' : `${Math.round(feedback.nextDueInH)} h`}
               </div>
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
