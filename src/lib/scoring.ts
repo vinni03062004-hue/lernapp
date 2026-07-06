@@ -11,7 +11,7 @@
 
 import { LearningConfig } from '@/config/learning';
 import { Question } from './types';
-import { containsKeyword, fuzzyEquals } from './normalize';
+import { containsKeyword, fuzzyEquals, stems } from './normalize';
 
 export interface ScoreResult {
   /** 0..1 */
@@ -175,7 +175,25 @@ export function scoreFreetext(q: Question, answer: string): ScoreResult {
       misses.push(r.point);
     }
   }
-  const score = totalWeight > 0 ? gained / totalWeight : 0;
+  let score = totalWeight > 0 ? gained / totalWeight : 0;
+
+  // Paraphrasen-Fallback: Wer die Musterantwort inhaltlich trifft, aber
+  // andere Formulierungen als die Rubrik-Stichwörter nutzt, bekommt über
+  // die Ähnlichkeit zur Musterantwort trotzdem Punkte (Wortstamm-Overlap).
+  if (q.modelAnswer) {
+    const modelStems = new Set(stems(q.modelAnswer));
+    if (modelStems.size >= 4) {
+      const answerStems = new Set(stems(text));
+      let hitCount = 0;
+      modelStems.forEach((s) => {
+        if (answerStems.has(s)) hitCount++;
+      });
+      const overlap = hitCount / modelStems.size;
+      const overlapScore = overlap * LearningConfig.freetext.modelAnswerWeight;
+      if (overlapScore > score) score = overlapScore;
+    }
+  }
+
   const { correctThreshold, partialThreshold } = LearningConfig.freetext;
   const correct = score >= correctThreshold;
   let feedback: string;

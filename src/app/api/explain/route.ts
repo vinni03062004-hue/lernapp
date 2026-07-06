@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getModule } from '@/content';
+import { aiExplain } from '@/lib/ai-explain';
 import { answerFromKnowledge, buildKnowledgeBase } from '@/lib/retrieval';
 import { loadState, saveState } from '@/lib/store';
 
@@ -24,7 +25,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Bitte eine Frage eingeben.' }, { status: 400 });
     }
     const mod = getModule();
-    const answer = answerFromKnowledge(mod, getKb(), query.trim());
+    // KI-Antwort (Claude API, quellengebunden), Fallback: Offline-Retrieval
+    const answer = (await aiExplain(query.trim(), getKb())) ?? answerFromKnowledge(mod, getKb(), query.trim());
 
     if (chat) {
       const state = await loadState();

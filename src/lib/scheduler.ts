@@ -156,7 +156,10 @@ export function selectQuestions(
       if (!picked.includes(q)) picked.push(q);
     }
   }
-  return interleave(picked.slice(0, opts.count), cfg.maxSameChapterRun);
+  // Endauswahl nochmals mischen: Auch innerhalb eines Kapitels erscheinen die
+  // Fragen jede Session in neuer Reihenfolge (kein vorhersagbares Muster aus
+  // "fällig → Fehler → neu"); Interleaving verhindert Kapitel-Blöcke im Mischmodus.
+  return interleave(shuffle(picked.slice(0, opts.count)), cfg.maxSameChapterRun);
 }
 
 function selectExam(pool: Question[], state: UserState, opts: SelectionOptions, now: number): Question[] {

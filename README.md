@@ -93,6 +93,25 @@ lernapp/
 - **Offline-KI:** Erklärmodus/Chatbot arbeiten über ein TF-IDF-ähnliches Retrieval auf dem strukturierten Wissensmodell (Konzepte, Kapitel-Kernaussagen, Bildbeschreibungen). Dadurch garantiert quellentreu, ohne API-Kosten. Eine spätere Anbindung der Claude-API kann in `src/app/api/explain/route.ts` ergänzt werden.
 - **Vierstufige Bildprüfkette:** Jede Abbildung durchlief (1) technische Erfassung, (2) semantische Beschreibung (Elemente, Kernaussage), (3) didaktische Integration (Fragen + Erklärungen) und (4) Validierung. Der Status ist im Debug-Bereich einsehbar; die Inhaltsvalidierung läuft zusätzlich als Unit-Test.
 
+## KI-Bewertung & KI-Tutor (empfohlen)
+
+Mit einem Anthropic-API-Key werden Freitextantworten und der Erklärmodus/Chatbot von einer echten KI (Claude) übernommen:
+
+- **Freitextbewertung:** Die KI bewertet fachlich-semantisch. Auch korrekte Antworten, die anders formuliert sind oder nicht wörtlich im PDF stehen, werden als richtig gewertet – mit Teilpunkten und konkretem Feedback, was fehlt oder falsch ist.
+- **Erklärmodus/Chatbot:** Antworten werden von Claude formuliert, gestützt auf die passenden Skript-Auszüge (RAG); ergänzendes Wissen wird als „Zusatzwissen" gekennzeichnet.
+- **Ohne Key** fällt die App automatisch auf die regelbasierte Bewertung (Rubrik + Musterantwort-Ähnlichkeit) und das Offline-Retrieval zurück – sie funktioniert also immer.
+
+**Einrichtung:**
+
+1. API-Key erstellen auf [console.anthropic.com](https://console.anthropic.com) (Account → API Keys). Das Standard-Modell (Claude Haiku) ist sehr günstig – eine Freitextbewertung kostet deutlich unter einem Cent.
+2. **Lokal:** Datei `.env.local` im Projektordner anlegen mit dem Inhalt:
+   ```
+   ANTHROPIC_API_KEY=sk-ant-...
+   ```
+3. **Vercel:** Projekt → Settings → Environment Variables → Key `ANTHROPIC_API_KEY`, Value = dein Key → Save → danach einmal Redeploy.
+
+Optional lässt sich das Modell per `AI_GRADING_MODEL` ändern (Standard: `claude-haiku-4-5-20251001`, konfiguriert in `src/config/learning.ts`).
+
 ## Hosting auf Vercel (Nutzung am Handy als App)
 
 Die App unterstützt zwei Speicher-Backends: lokal eine JSON-Datei, in der Cloud eine Postgres-Datenbank (nötig, weil das Dateisystem bei Vercel flüchtig ist). Die Umschaltung passiert automatisch über die Umgebungsvariable `DATABASE_URL`.

@@ -6,6 +6,7 @@
  */
 
 import { randomUUID } from 'crypto';
+import { aiGradeFreetext } from './ai-grading';
 import { classifyAttempt } from './errors';
 import { getModule } from '@/content';
 import { computeProgress, computeReadiness } from './progress';
@@ -43,7 +44,13 @@ export async function submitAttempt(input: SubmitAttemptInput): Promise<SubmitAt
   const state = await loadState();
   const now = Date.now();
 
-  const result = scoreAnswer(question, input.answer);
+  // Bewertung: offene Fragen bevorzugt per KI (semantisch, akzeptiert auch
+  // korrekte Antworten außerhalb des PDF-Wortlauts); Fallback: Rubrik.
+  let result = scoreAnswer(question, input.answer);
+  if (['open', 'transfer', 'image_open'].includes(question.type)) {
+    const aiResult = await aiGradeFreetext(question, input.answer);
+    if (aiResult) result = aiResult;
+  }
 
   // gewählte Option (für Verwechslungserkennung)
   let chosenOptionText: string | undefined;

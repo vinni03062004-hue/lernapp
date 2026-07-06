@@ -66,6 +66,20 @@ describe('Bewertungsengine', () => {
     expect(tooShort.score).toBe(0);
   });
 
+  it('gibt Paraphrasen ohne Rubrik-Treffer über Musterantwort-Ähnlichkeit Punkte', () => {
+    const q: Question = {
+      ...base, id: 'op3', type: 'open', prompt: '',
+      rubric: [{ point: 'Fachbegriff', keywords: ['xyzzy-begriff'] }], // Stichwort, das kaum jemand wörtlich trifft
+      modelAnswer: 'Die Aktivierung ist die Grunddimension aller Antriebsprozesse und macht Menschen leistungsbereit und leistungsfähig.',
+    };
+    // Antwort paraphrasiert die Musterantwort, trifft aber kein Rubrik-Stichwort
+    const r = scoreAnswer(q, 'Aktivierung bildet die Grunddimension der Antriebsprozesse; sie macht den Menschen leistungsbereit und leistungsfähig.');
+    expect(r.score).toBeGreaterThan(0.5);
+    // Themenfremde Antwort bekommt weiterhin keine Punkte
+    const wrong = scoreAnswer(q, 'Das Wetter beeinflusst den Einkauf im Supermarkt am Wochenende stark.');
+    expect(wrong.score).toBeLessThan(0.35);
+  });
+
   it('erkennt Synonyme über Wortstämme', () => {
     const q: Question = {
       ...base, id: 'op2', type: 'open', prompt: '',

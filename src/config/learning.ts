@@ -100,6 +100,24 @@ export const LearningConfig = {
     partialThreshold: 0.35,
     /** Mindestlänge (Zeichen), sonst Hinweis auf zu knappe Antwort */
     minLength: 12,
+    /**
+     * Offline-Fallback: Ähnlichkeit zur Musterantwort zählt zusätzlich zur
+     * Rubrik (Paraphrasen ohne exakte Stichwort-Treffer). Der Overlap-Score
+     * wird mit diesem Faktor gedämpft, damit reines Abschreiben der
+     * Musterantwort-Struktur nicht automatisch 100 % ergibt.
+     */
+    modelAnswerWeight: 0.9,
+  },
+
+  /**
+   * KI-Bewertung (Claude API) für Freitextantworten.
+   * Aktiv, sobald ANTHROPIC_API_KEY gesetzt ist; sonst regelbasierter Fallback.
+   */
+  ai: {
+    /** Standard-Modell für die Bewertung (per Env AI_GRADING_MODEL überschreibbar) */
+    model: 'claude-haiku-4-5-20251001',
+    /** Timeout, danach Fallback auf Rubrik-Bewertung */
+    timeoutMs: 15000,
   },
 
   /** Fehlerklassifikation. */
