@@ -102,6 +102,14 @@ export interface SelectionOptions {
  * - neue (unbearbeitete) Fragen,
  * - Interleaving: Kapitel- und Fragetyp-Durchmischung im Mischmodus.
  */
+/** Rotation: zuletzt NICHT gesehene Fragen zuerst (Zufall bei Gleichstand),
+ *  damit sich Fragen erst wiederholen, wenn der Katalog durch ist. */
+function freshestOrder(qs: Question[], state: UserState): Question[] {
+  return shuffle(qs).sort(
+    (a, b) => (state.mastery[a.id]?.lastAttemptAt ?? 0) - (state.mastery[b.id]?.lastAttemptAt ?? 0)
+  );
+}
+
 export function selectQuestions(
   all: Question[],
   state: UserState,
@@ -126,14 +134,21 @@ export function selectQuestions(
     return selectExam(inScope, state, opts, now);
   }
 
+  if (opts.mode === 'mixed') {
+    // Breite Rotation über den GESAMTEN Katalog (zuletzt nicht gesehene zuerst),
+    // damit man viele verschiedene Fragen bekommt statt immer die "fälligen".
+    return interleave(freshestOrder(inScope, state).slice(0, opts.count), cfg.maxSameChapterRun);
+  }
+
   if (opts.mode === 'error_focus') {
-    const errorQs = inScope
-      .filter((q) => state.mastery[q.id]?.openError)
-      .sort((a, b) => (state.mastery[a.id]?.mastery ?? 0) - (state.mastery[b.id]?.mastery ?? 0));
-    const unstable = inScope
-      .filter((q) => !state.mastery[q.id]?.openError && (state.mastery[q.id]?.attempts ?? 0) > 0 && (state.mastery[q.id]?.mastery ?? 0) < LearningConfig.masteryMinLevel)
-      .sort((a, b) => (state.mastery[a.id]?.mastery ?? 0) - (state.mastery[b.id]?.mastery ?? 0));
-    return interleave([...errorQs, ...unstable].slice(0, opts.count), cfg.maxSameChapterRun);
+    // Alle offenen Fehler + instabilen Fragen, aber rotierend (zuletzt nicht
+    // gesehene zuerst), damit nicht immer dieselben in gleicher Reihenfolge kommen.
+    const errorQs = inScope.filter((q) => state.mastery[q.id]?.openError);
+    const unstable = inScope.filter(
+      (q) => !state.mastery[q.id]?.openError && (state.mastery[q.id]?.attempts ?? 0) > 0 && (state.mastery[q.id]?.mastery ?? 0) < LearningConfig.masteryMinLevel
+    );
+    const pool = freshestOrder([...errorQs, ...unstable], state);
+    return interleave(pool.slice(0, opts.count), cfg.maxSameChapterRun);
   }
 
   // Lern-/Misch-/Bild-Lernmodus
