@@ -1,23 +1,28 @@
 /**
- * KI-Bewertung für Freitextantworten über die Anthropic Claude API.
+ * KI-Bewertung für Freitextantworten über die Gemini-API (Google).
  *
- * Aktiv, sobald die Umgebungsvariable ANTHROPIC_API_KEY gesetzt ist
+ * Aktiv, sobald die Umgebungsvariable GEMINI_API_KEY gesetzt ist
  * (lokal in .env.local, auf Vercel unter Settings → Environment Variables).
  *
  * Die KI bewertet die Antwort fachlich-semantisch: Auch korrekte Antworten,
  * die anders formuliert sind oder über den PDF-Wortlaut hinausgehen, werden
  * als richtig gewertet, solange sie die Frage fachlich korrekt beantworten.
  *
+ * Aufruf-Politik: Diese Funktion wird bewusst nur dann genutzt, wenn die
+ * regelbasierte Rubrik (scoring.ts) eine offene Antwort NICHT bereits als
+ * richtig erkennt (siehe attempt-service.ts) – so werden API-Aufrufe gespart.
+ *
  * Robustheit: Timeout + jeder Fehler führt zum Fallback auf die
- * regelbasierte Rubrik-Bewertung (scoring.ts) – die App bleibt immer nutzbar.
+ * regelbasierte Rubrik-Bewertung – die App bleibt immer nutzbar.
  */
 
 import { LearningConfig } from '@/config/learning';
+import { geminiAvailable, geminiGenerate } from './gemini';
 import { ScoreResult } from './scoring';
 import { Question } from './types';
 
 export function aiGradingAvailable(): boolean {
-  return Boolean(process.env.ANTHROPIC_API_KEY);
+  return geminiAvailable();
 }
 
 const SYSTEM_PROMPT = `Du bist ein fairer, fachkundiger Prüfer für das Hochschulmodul "Konsumentenverhalten" (Online-Marketing).
@@ -66,62 +71,40 @@ function toStringArray(v: unknown): string[] {
 }
 
 /**
- * Bewertet eine Freitextantwort per Claude API.
+ * Bewertet eine Freitextantwort per Gemini-API.
  * Gibt null zurück, wenn kein API-Key gesetzt ist oder ein Fehler auftritt
  * (dann greift die regelbasierte Bewertung).
  */
 export async function aiGradeFreetext(question: Question, answer: string): Promise<ScoreResult | null> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) return null;
+  if (!geminiAvailable()) return null;
   if (answer.trim().length < LearningConfig.freetext.minLength) return null; // zu kurz → regelbasiert
 
-  try {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), LearningConfig.ai.timeoutMs);
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: process.env.AI_GRADING_MODEL ?? LearningConfig.ai.model,
-        max_tokens: 600,
-        system: SYSTEM_PROMPT,
-        messages: [{ role: 'user', content: buildUserPrompt(question, answer) }],
-      }),
-      signal: controller.signal,
-    });
-    clearTimeout(timer);
+  const text = await geminiGenerate({
+    system: SYSTEM_PROMPT,
+    turns: [{ role: 'user', text: buildUserPrompt(question, answer) }],
+    json: true,
+    maxTokens: 600,
+    temperature: 0.1,
+  });
+  if (!text) return null;
 
-    if (!res.ok) {
-      console.error('[ai-grading] API-Fehler HTTP', res.status, await res.text().catch(() => ''));
-      return null;
-    }
-    const data = await res.json();
-    const text: string = data?.content?.[0]?.text ?? '';
-    const json = extractJson(text);
-    if (!json || typeof json.score === 'undefined') {
-      console.error('[ai-grading] Unerwartetes Antwortformat:', text.slice(0, 200));
-      return null;
-    }
-
-    const score = clamp01(Number(json.score));
-    const correct = score >= LearningConfig.freetext.correctThreshold;
-    let feedback = String(json.feedback ?? '').trim();
-    if (!feedback) {
-      feedback = correct ? 'Fachlich richtig.' : score > 0.3 ? 'Teilweise richtig.' : 'Die zentralen Punkte wurden nicht getroffen.';
-    }
-    return {
-      score,
-      correct,
-      rubricHits: toStringArray(json.erfuellte_punkte),
-      rubricMisses: toStringArray(json.fehlende_punkte),
-      feedback: `${feedback} (KI-bewertet)`,
-    };
-  } catch (err) {
-    console.error('[ai-grading] Fehler, nutze Rubrik-Fallback:', err);
+  const json = extractJson(text);
+  if (!json || typeof json.score === 'undefined') {
+    console.error('[ai-grading] Unerwartetes Antwortformat:', text.slice(0, 200));
     return null;
   }
+
+  const score = clamp01(Number(json.score));
+  const correct = score >= LearningConfig.freetext.correctThreshold;
+  let feedback = String(json.feedback ?? '').trim();
+  if (!feedback) {
+    feedback = correct ? 'Fachlich richtig.' : score > 0.3 ? 'Teilweise richtig.' : 'Die zentralen Punkte wurden nicht getroffen.';
+  }
+  return {
+    score,
+    correct,
+    rubricHits: toStringArray(json.erfuellte_punkte),
+    rubricMisses: toStringArray(json.fehlende_punkte),
+    feedback: `${feedback} (KI-bewertet)`,
+  };
 }

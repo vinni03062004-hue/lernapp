@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getModule } from '@/content';
-import { aiExplain } from '@/lib/ai-explain';
+import { aiExplain, ChatTurn } from '@/lib/ai-explain';
 import { answerFromKnowledge, buildKnowledgeBase } from '@/lib/retrieval';
 import { loadState, saveState } from '@/lib/store';
 
@@ -14,8 +14,9 @@ function getKb() {
 }
 
 /**
- * Erklärmodus & Fach-Chatbot (offline, wissensbasiert).
+ * Erklärmodus & Fach-Chatbot.
  * Body: { query, chat?: boolean }
+ * Primär KI-Antwort (Gemini) mit Gesprächsverlauf; Fallback: Offline-Retrieval.
  * Antworten sind quellengebunden; schwache Evidenz wird als "unsicher" markiert.
  */
 export async function POST(req: NextRequest) {
@@ -25,13 +26,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Bitte eine Frage eingeben.' }, { status: 400 });
     }
     const mod = getModule();
-    // KI-Antwort (Claude API, quellengebunden), Fallback: Offline-Retrieval
-    const answer = (await aiExplain(query.trim(), getKb())) ?? answerFromKnowledge(mod, getKb(), query.trim());
+    const q = query.trim();
 
-    if (chat) {
-      const state = await loadState();
+    // Im Chat-Modus: Zustand + bisherigen Verlauf laden, damit die KI auf
+    // Nachfragen eingehen kann.
+    const state = chat ? await loadState() : null;
+    const history: ChatTurn[] = state
+      ? state.chatHistory.map((m) => ({ role: m.role, content: m.content }))
+      : [];
+
+    // KI-Antwort (Gemini, mit Verlauf), Fallback: Offline-Retrieval
+    const answer = (await aiExplain(q, getKb(), history)) ?? answerFromKnowledge(mod, getKb(), q);
+
+    if (chat && state) {
       const now = Date.now();
-      state.chatHistory.push({ role: 'user', content: query.trim(), timestamp: now });
+      state.chatHistory.push({ role: 'user', content: q, timestamp: now });
       const parts = [answer.core];
       if (answer.simple && !answer.core.includes(answer.simple) && !answer.simple.includes(answer.core)) parts.push(answer.simple);
       state.chatHistory.push({

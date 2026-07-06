@@ -44,10 +44,13 @@ export async function submitAttempt(input: SubmitAttemptInput): Promise<SubmitAt
   const state = await loadState();
   const now = Date.now();
 
-  // Bewertung: offene Fragen bevorzugt per KI (semantisch, akzeptiert auch
-  // korrekte Antworten außerhalb des PDF-Wortlauts); Fallback: Rubrik.
+  // Bewertung: zuerst regelbasiert per Rubrik.
   let result = scoreAnswer(question, input.answer);
-  if (['open', 'transfer', 'image_open'].includes(question.type)) {
+  // KI-Bewertung nur bei Bedarf: Wenn die Rubrik die offene Antwort schon klar
+  // als richtig erkennt, sparen wir den API-Aufruf. Nur wenn sie als falsch/
+  // teilweise gilt (Risiko: korrekte, aber anders formulierte Antwort wird zu
+  // Unrecht abgewertet), prüft Gemini semantisch gegen.
+  if (['open', 'transfer', 'image_open'].includes(question.type) && !result.correct) {
     const aiResult = await aiGradeFreetext(question, input.answer);
     if (aiResult) result = aiResult;
   }

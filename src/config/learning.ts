@@ -110,13 +110,14 @@ export const LearningConfig = {
   },
 
   /**
-   * KI-Bewertung (Claude API) für Freitextantworten.
-   * Aktiv, sobald ANTHROPIC_API_KEY gesetzt ist; sonst regelbasierter Fallback.
+   * KI (Gemini) für Freitext-Bewertung und Fach-Chatbot.
+   * Aktiv, sobald GEMINI_API_KEY gesetzt ist; sonst regelbasierter/Offline-Fallback.
+   * Die Bewertung ruft die KI nur bei Bedarf (siehe attempt-service.ts).
    */
   ai: {
-    /** Standard-Modell für die Bewertung (per Env AI_GRADING_MODEL überschreibbar) */
-    model: 'claude-haiku-4-5-20251001',
-    /** Timeout, danach Fallback auf Rubrik-Bewertung */
+    /** Standard-Gemini-Modell (per Env GEMINI_MODEL überschreibbar) */
+    model: 'gemini-2.0-flash',
+    /** Timeout, danach Fallback auf Rubrik-/Offline-Bewertung */
     timeoutMs: 15000,
   },
 
