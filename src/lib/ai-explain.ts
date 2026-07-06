@@ -61,8 +61,9 @@ export async function aiExplain(
   const text = await geminiGenerate({
     system: SYSTEM_PROMPT,
     turns,
-    maxTokens: 700,
+    maxTokens: 1400,
     temperature: 0.4,
+    thinkingBudget: 0, // 2.5-Flash: Thinking aus -> vollständige Antwort, kein Abschneiden
   });
   if (!text) return null;
 
