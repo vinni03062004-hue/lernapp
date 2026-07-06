@@ -432,8 +432,8 @@ export function SessionPlayer(props: {
 
       <div className="card">
         {question.figure && (
-          deferFeedback ? (
-            // Prüfmodus: KEIN Bild – nur der fett gedruckte Name des Modells/der Abbildung.
+          props.mode === 'exam' ? (
+            // NUR normaler Prüfmodus: kein Bild – nur der fett gedruckte Name des Modells.
             <div className="card" style={{ background: 'var(--bg-subtle)', marginBottom: 12 }}>
               <div className="small dim">Abbildung</div>
               <strong style={{ fontSize: 18 }}>{question.figure.title}</strong>

@@ -29,12 +29,18 @@ function PruefungInner() {
     }).catch(() => {});
   }, []);
 
+  // Wechsel Prüfungsmodus <-> Bild-Prüfmodus (nur Query ändert sich): Seite
+  // reagiert nicht automatisch – daher Auswahl zurücksetzen.
+  useEffect(() => {
+    setStarted(false);
+  }, [imageMode]);
+
   if (started) {
     return (
       <div>
         <h1>{imageMode ? 'Bild-Prüfmodus' : 'Prüfungsmodus'}</h1>
         <p className="page-sub">Kein Feedback während der Beantwortung – die Auswertung folgt am Ende.</p>
-        <SessionPlayer mode={imageMode ? 'image_exam' : 'exam'} chapterIds={selected} count={count} timeLimitMin={timeLimit} />
+        <SessionPlayer key={imageMode ? 'image_exam' : 'exam'} mode={imageMode ? 'image_exam' : 'exam'} chapterIds={selected} count={count} timeLimitMin={timeLimit} />
       </div>
     );
   }

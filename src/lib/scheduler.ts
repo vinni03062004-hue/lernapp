@@ -112,7 +112,12 @@ export function selectQuestions(
   const inScope = all.filter((q) => {
     if (opts.chapterIds.length > 0 && !opts.chapterIds.includes(q.chapterId)) return false;
     const isImage = q.type.startsWith('image_');
-    if (opts.imageOnly) return isImage;
+    if (opts.imageOnly) {
+      // Bild-Prüfmodus: ausschließlich Abbildungen frei erklären (image_open);
+      // Bild-Lernmodus behält alle Bildfragetypen.
+      if (opts.mode === 'image_exam') return q.type === 'image_open';
+      return isImage;
+    }
     // Bildfragen erscheinen auch in normalen Modi, aber nur vereinzelt
     return true;
   });
