@@ -44,11 +44,12 @@ function ErklaerenInner() {
       const data = await res.json();
       if (data.answer) {
         const a = data.answer;
-        const parts = [a.core];
-        if (a.simple && a.simple !== a.core) parts.push(a.simple);
-        if (a.detailed) parts.push(a.detailed);
-        if (a.example) parts.push(`Beispiel: ${a.example}`);
-        if (a.mnemonic) parts.push(`Merksatz: ${a.mnemonic}`);
+        // Bausteine zusammensetzen, Dubletten vermeiden (z. B. Definition doppelt)
+        const parts: string[] = [a.core];
+        const extras = [a.simple, a.detailed, a.example ? `Beispiel: ${a.example}` : '', a.mnemonic ? `Merksatz: ${a.mnemonic}` : ''];
+        for (const extra of extras) {
+          if (extra && !parts.some((p) => p.includes(extra) || extra.includes(p))) parts.push(extra);
+        }
         setMessages((m) => [...m, { role: 'assistant', content: parts.join('\n\n'), sources: a.sources, uncertain: a.uncertain, timestamp: Date.now() }]);
       } else {
         setMessages((m) => [...m, { role: 'assistant', content: data.error ?? 'Fehler bei der Antwort.', uncertain: true, timestamp: Date.now() }]);

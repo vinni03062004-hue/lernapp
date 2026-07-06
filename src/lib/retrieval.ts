@@ -149,7 +149,8 @@ export function answerFromKnowledge(mod: LearningModule, units: KnowledgeUnit[],
     const c = mod.concepts.find((x) => `concept:${x.id}` === best.unit.id)!;
     return {
       core: `${c.term}: ${c.definition}`,
-      simple: c.context ? c.context : c.definition,
+      // Nur echten Zusatzkontext liefern – sonst würde die Definition doppelt erscheinen
+      simple: c.context ?? '',
       detailed: c.examRelevance ? `Prüfungsrelevanz: ${c.examRelevance}` : undefined,
       example: c.example,
       mnemonic: c.mnemonic,

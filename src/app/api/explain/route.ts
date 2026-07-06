@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       const now = Date.now();
       state.chatHistory.push({ role: 'user', content: query.trim(), timestamp: now });
       const parts = [answer.core];
-      if (answer.simple && answer.simple !== answer.core) parts.push(answer.simple);
+      if (answer.simple && !answer.core.includes(answer.simple) && !answer.simple.includes(answer.core)) parts.push(answer.simple);
       state.chatHistory.push({
         role: 'assistant',
         content: parts.join('\n\n'),
