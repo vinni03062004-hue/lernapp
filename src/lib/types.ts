@@ -281,6 +281,10 @@ export interface UserState {
   /** gemeldete Fragen (Nutzer-Feedback "Frage problematisch") */
   flaggedQuestions: { questionId: string; reason: string; at: number }[];
   settings: {
+    /** frei editierbarer Anzeigename des Profils (wem gehört es) */
+    profileName?: string;
+    /** Avatar des Profils: Bild als Data-URL oder ein Emoji */
+    avatar?: string;
     theme: 'light' | 'dark';
     examQuestionCount: number;
     examTimeLimitMin: number | null;
