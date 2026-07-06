@@ -238,3 +238,11 @@ table.data th { color: var(--text-dim); font-size: 12px; text-transform: upperca
 
 .empty-state { text-align: center; padding: 44px 20px; color: var(--text-dim); }
 .toast-saved { font-size: 12px; color: var(--success); }
+
+/* ---------- Profil-Fußbereich: Desktop unten, Mobile dünn inline ---------- */
+.nav-footer { margin-top: auto; padding-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+@media (max-width: 860px) {
+  /* Kinder werden direkte Chips der horizontalen Leiste -> Header bleibt dünn */
+  .nav-footer { display: contents; }
+  .nav-theme { flex-shrink: 0; margin: 0; padding: 7px 11px; font-size: 13px; white-space: nowrap; }
+}

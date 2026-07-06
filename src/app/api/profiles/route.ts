@@ -5,10 +5,10 @@ export const dynamic = 'force-dynamic';
 
 /**
  * Profilverwaltung (getrennte Speicherstände je Profil).
- *  - GET                         → { profiles: [{id,name,updatedAt}], current }
- *  - POST { action: 'create', id, name }  → neues Profil mit Anzeigenamen
- *  - POST { action: 'rename', id, name }  → Anzeigenamen ändern (ID bleibt)
- *  - POST { action: 'delete', id }        → Profil löschen ("default" geschützt)
+ *  - GET                              → { profiles: [{id,name,avatar,updatedAt}], current }
+ *  - POST { action:'create', id, name, avatar? }
+ *  - POST { action:'update', id, name?, avatar? }   (Name/Avatar ändern, ID bleibt)
+ *  - POST { action:'delete', id }                    ("default" geschützt)
  * Das aktive Profil wird über das Cookie "profile" gewählt (Client setzt es).
  */
 export async function GET() {
@@ -21,6 +21,15 @@ export async function GET() {
   }
 }
 
+function cleanName(v: unknown): string {
+  return String(v ?? '').trim().slice(0, 60);
+}
+function cleanAvatar(v: unknown): string | undefined {
+  const s = typeof v === 'string' ? v : '';
+  if (!s || s.length > 2000) return undefined;
+  return s;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -28,37 +37,29 @@ export async function POST(req: NextRequest) {
 
     if (action === 'create') {
       const id = sanitizeProfile(body.id);
-      const name = String(body.name ?? '').trim().slice(0, 60) || id;
+      const name = cleanName(body.name) || id;
       const existing = await listProfiles();
       if (existing.some((p) => p.id === id)) {
         return NextResponse.json({ error: 'Profil-ID existiert bereits.', id }, { status: 409 });
       }
       const st = defaultState();
       st.settings.profileName = name;
+      st.settings.avatar = cleanAvatar(body.avatar);
       await saveStateFor(id, st);
       return NextResponse.json({ ok: true, id, name });
     }
 
-    if (action === 'rename') {
+    if (action === 'update') {
       const id = sanitizeProfile(body.id);
-      const name = String(body.name ?? '').trim().slice(0, 60);
-      if (!name) return NextResponse.json({ error: 'Name darf nicht leer sein.' }, { status: 400 });
       const st = await loadStateFor(id);
-      st.settings.profileName = name;
-      await saveStateFor(id, st);
-      return NextResponse.json({ ok: true, id, name });
-    }
-
-    if (action === 'avatar') {
-      const id = sanitizeProfile(body.id);
-      const avatar = typeof body.avatar === 'string' ? body.avatar : '';
-      if (avatar.length > 200000) {
-        return NextResponse.json({ error: 'Avatar ist zu groß.' }, { status: 413 });
+      if (body.name !== undefined) {
+        const name = cleanName(body.name);
+        if (!name) return NextResponse.json({ error: 'Name darf nicht leer sein.' }, { status: 400 });
+        st.settings.profileName = name;
       }
-      const st = await loadStateFor(id);
-      st.settings.avatar = avatar || undefined;
+      if (body.avatar !== undefined) st.settings.avatar = cleanAvatar(body.avatar);
       await saveStateFor(id, st);
-      return NextResponse.json({ ok: true, id });
+      return NextResponse.json({ ok: true, id, name: st.settings.profileName });
     }
 
     if (action === 'delete') {
