@@ -83,8 +83,9 @@ export async function aiGradeFreetext(question: Question, answer: string): Promi
     system: SYSTEM_PROMPT,
     turns: [{ role: 'user', text: buildUserPrompt(question, answer) }],
     json: true,
-    maxTokens: 600,
+    maxTokens: 1024,
     temperature: 0.1,
+    thinkingBudget: 0, // 2.5-Flash: Thinking aus → vollständiges JSON, kein Abschneiden
   });
   if (!text) return null;
 

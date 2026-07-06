@@ -25,6 +25,8 @@ export interface GeminiRequest {
   json?: boolean;
   maxTokens?: number;
   temperature?: number;
+  /** Denk-Budget (Tokens). 0 = "Thinking" aus (schneller, kein abgeschnittenes JSON). */
+  thinkingBudget?: number;
 }
 
 export function geminiAvailable(): boolean {
@@ -51,6 +53,9 @@ export async function geminiGenerate(reqData: GeminiRequest): Promise<string | n
     temperature: reqData.temperature ?? 0.4,
   };
   if (reqData.json) generationConfig.responseMimeType = 'application/json';
+  if (typeof reqData.thinkingBudget === 'number') {
+    generationConfig.thinkingConfig = { thinkingBudget: reqData.thinkingBudget };
+  }
 
   const body = {
     systemInstruction: { parts: [{ text: reqData.system }] },
