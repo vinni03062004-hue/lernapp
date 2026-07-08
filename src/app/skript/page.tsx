@@ -121,6 +121,7 @@ export default function SkriptPage() {
                               <div style={{ lineHeight: 1.5 }}>
                                 <strong style={{ color: 'var(--accent)' }}>{k.term}</strong> — {k.definition}
                               </div>
+                              {k.context && <div className="small dim" style={{ marginTop: 4 }}>{k.context}</div>}
                               {k.example && <div className="small" style={{ marginTop: 4 }}><em>Beispiel:</em> {k.example}</div>}
                               {k.mnemonic && <div className="small" style={{ marginTop: 4 }}>🧠 <em>Merke:</em> {k.mnemonic}</div>}
                             </div>
@@ -142,6 +143,16 @@ export default function SkriptPage() {
                                 <img src={`/images/kv/${f.file}`} alt={f.caption} />
                               </div>
                               {f.explanationSimple && <div className="small">{f.explanationSimple}</div>}
+                              {f.explanationExpert && f.explanationExpert !== f.explanationSimple && (
+                                <div className="small dim" style={{ marginTop: 4 }}>{f.explanationExpert}</div>
+                              )}
+                              {Array.isArray(f.elements) && f.elements.length > 0 && (
+                                <ul className="small" style={{ margin: '6px 0 0', paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 3 }}>
+                                  {f.elements.map((e: any, i: number) => (
+                                    <li key={i}><strong>{e.label}:</strong> {e.meaning}</li>
+                                  ))}
+                                </ul>
+                              )}
                             </div>
                           ))}
                         </div>
