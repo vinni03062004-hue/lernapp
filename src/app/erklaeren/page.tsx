@@ -152,7 +152,8 @@ function ErklaerenInner() {
           </select>
           <div style={{ maxHeight: 260, overflowY: 'auto', display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {chapterConcepts.map((c: any) => (
-              <button key={c.id} className="btn small" onClick={() => ask(c.term)} title={c.definition}>
+              <button key={c.id} className="btn small" onClick={() => ask(c.term)} title={c.definition}
+                style={{ justifyContent: 'flex-start', textAlign: 'left' }}>
                 {c.term}
               </button>
             ))}
@@ -162,7 +163,8 @@ function ErklaerenInner() {
           <div style={{ maxHeight: 260, overflowY: 'auto', display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {chapterFigures.map((f: any) => (
               <button key={f.id} className="btn small" onClick={() => ask(f.title, { file: f.file, title: f.title })}
-                title="Erklären lassen – danach im Chat antippbar als Bild">
+                title="Erklären lassen – danach im Chat antippbar als Bild"
+                style={{ justifyContent: 'flex-start', textAlign: 'left' }}>
                 <span aria-hidden>▦</span> {f.title}
               </button>
             ))}

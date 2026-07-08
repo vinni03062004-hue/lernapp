@@ -77,9 +77,10 @@ export default function SkriptPage() {
                 <button className="btn small" onClick={() => setAll(false)}>Alle einklappen</button>
               </div>
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 12 }}>
               {chapters.map((c: any) => (
-                <button key={c.id} className="btn small" onClick={() => jump(c.id)}>
+                <button key={c.id} className="btn small" onClick={() => jump(c.id)}
+                  style={{ justifyContent: 'flex-start', textAlign: 'left', width: '100%' }}>
                   <span className="badge">{c.index}</span> {c.title}
                 </button>
               ))}
