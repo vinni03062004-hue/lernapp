@@ -12,6 +12,7 @@ export default function SkriptPage() {
   const [content, setContent] = useState<any>(null);
   const [error, setError] = useState('');
   const [open, setOpen] = useState<Record<string, boolean>>({});
+  const [modalFigure, setModalFigure] = useState<any>(null);
 
   useEffect(() => {
     fetch('/api/content')
@@ -25,6 +26,13 @@ export default function SkriptPage() {
       })
       .catch(() => setError('Inhalte konnten nicht geladen werden.'));
   }, []);
+
+  useEffect(() => {
+    if (!modalFigure) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setModalFigure(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [modalFigure]);
 
   const chapters = content?.chapters ?? [];
   const conceptsByChapter = useMemo(() => {
@@ -138,7 +146,12 @@ export default function SkriptPage() {
                           {figures.map((f: any) => (
                             <div key={f.id}>
                               <div style={{ fontWeight: 600, marginBottom: 6 }}>{f.title}</div>
-                              <div className="figure-frame" style={{ marginBottom: 6 }}>
+                              <div className="figure-frame" style={{ marginBottom: 6, position: 'relative', cursor: 'zoom-in' }} onClick={() => setModalFigure(f)}>
+                                <button aria-label="Vergrößern" title="Vergrößern"
+                                  onClick={(e) => { e.stopPropagation(); setModalFigure(f); }}
+                                  style={{ position: 'absolute', top: 6, right: 6, zIndex: 2, border: 'none', background: 'rgba(0,0,0,0.55)', color: '#fff', borderRadius: 8, width: 30, height: 30, cursor: 'pointer', fontSize: 15, lineHeight: 1 }}>
+                                  ⤢
+                                </button>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src={`/images/kv/${f.file}`} alt={f.caption} />
                               </div>
@@ -164,6 +177,22 @@ export default function SkriptPage() {
             );
           })}
         </>
+      )}
+
+      {modalFigure && (
+        <div onClick={() => setModalFigure(null)}
+          style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: 16 }}>
+          <div onClick={(e) => e.stopPropagation()}
+            style={{ background: '#fff', borderRadius: 12, maxWidth: 'min(1000px, 97vw)', maxHeight: '92vh', overflow: 'auto', padding: 16, position: 'relative' }}>
+            <button onClick={() => setModalFigure(null)} aria-label="Schließen"
+              style={{ position: 'absolute', top: 8, right: 8, border: 'none', background: '#eee', color: '#16181d', borderRadius: '50%', width: 34, height: 34, cursor: 'pointer', fontSize: 18, lineHeight: 1 }}>
+              ×
+            </button>
+            <strong style={{ color: '#16181d', display: 'block', marginBottom: 10, paddingRight: 40 }}>{modalFigure.title}</strong>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`/images/kv/${modalFigure.file}`} alt={modalFigure.title} style={{ maxWidth: '100%', display: 'block' }} />
+          </div>
+        </div>
       )}
     </div>
   );
