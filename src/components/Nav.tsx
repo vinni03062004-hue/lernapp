@@ -8,6 +8,7 @@ import { ComicAvatar, parseAvatar } from './Avatar';
 const links: { href: string; label: string; icon: string; section?: string }[] = [
   { href: '/', label: 'Übersicht', icon: '◈' },
   { href: '/kapitel', label: 'Kapitel', icon: '≣', section: 'Lernen' },
+  { href: '/skript', label: 'Lernskript', icon: '▤' },
   { href: '/lernen', label: 'Lernmodus', icon: '▸' },
   { href: '/lernen?mode=mixed', label: 'Mischmodus', icon: '⤨' },
   { href: '/lernen?mode=error_focus', label: 'Fehlerfokus', icon: '⚑' },
