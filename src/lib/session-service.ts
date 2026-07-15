@@ -8,6 +8,7 @@ import { randomUUID } from 'crypto';
 import { LearningConfig } from '@/config/learning';
 import { getModule } from '@/content';
 import { selectQuestions, shuffle } from './scheduler';
+import { generateExamQuestions } from './ai-exam';
 import { loadState, saveState } from './store';
 import { ExamResult, Question, StudyMode, StudySession } from './types';
 
@@ -74,13 +75,32 @@ export async function createSession(input: CreateSessionInput): Promise<{ sessio
   const count = input.count ?? (input.mode === 'exam' ? state.settings.examQuestionCount : LearningConfig.session.defaultLength);
   const imageOnly = input.mode === 'image_learn' || input.mode === 'image_exam';
 
-  const questions = selectQuestions(mod.questions, state, {
-    mode: input.mode,
-    chapterIds: input.chapterIds,
-    count,
-    openShare: input.openShare ?? state.settings.examOpenShare,
-    imageOnly,
-  });
+  const openShare = input.openShare ?? state.settings.examOpenShare;
+  let generated: import('./types').Question[] = [];
+  let questions;
+
+  if (input.mode === 'exam') {
+    // Prüfmodus: frische, gegen das Skript geprüfte KI-Transferfragen für den
+    // Freitext-Anteil; der Rest kommt geschlossen (MC etc.) aus dem rotierenden
+    // Katalog. Fällt die KI aus, normale Katalog-Auswahl.
+    const nGen = Math.max(1, Math.round(count * openShare));
+    generated = await generateExamQuestions(mod, input.chapterIds, nGen);
+    if (generated.length > 0) {
+      const nClosed = Math.max(0, count - generated.length);
+      const closed = selectQuestions(mod.questions, state, {
+        mode: 'exam', chapterIds: input.chapterIds, count: nClosed, openShare: 0, imageOnly: false,
+      });
+      questions = shuffle([...generated, ...closed]);
+    } else {
+      questions = selectQuestions(mod.questions, state, {
+        mode: input.mode, chapterIds: input.chapterIds, count, openShare, imageOnly,
+      });
+    }
+  } else {
+    questions = selectQuestions(mod.questions, state, {
+      mode: input.mode, chapterIds: input.chapterIds, count, openShare, imageOnly,
+    });
+  }
 
   const session: StudySession = {
     id: randomUUID(),
@@ -89,6 +109,7 @@ export async function createSession(input: CreateSessionInput): Promise<{ sessio
     startedAt: Date.now(),
     questionIds: questions.map((q) => q.id),
     attemptIds: [],
+    generatedQuestions: generated.length ? generated : undefined,
   };
   state.sessions.push(session);
   if (state.sessions.length > 200) state.sessions.shift();

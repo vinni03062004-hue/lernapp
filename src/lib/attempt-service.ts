@@ -38,10 +38,13 @@ export interface SubmitAttemptResult {
 
 export async function submitAttempt(input: SubmitAttemptInput): Promise<SubmitAttemptResult> {
   const mod = getModule();
-  const question = mod.questions.find((q) => q.id === input.questionId);
+  const state = await loadState();
+  const session0 = state.sessions.find((s) => s.id === input.sessionId);
+  const question =
+    mod.questions.find((q) => q.id === input.questionId) ??
+    session0?.generatedQuestions?.find((q) => q.id === input.questionId);
   if (!question) throw new Error(`Frage ${input.questionId} nicht gefunden`);
 
-  const state = await loadState();
   const now = Date.now();
 
   // Bewertung: zuerst regelbasiert per Rubrik.

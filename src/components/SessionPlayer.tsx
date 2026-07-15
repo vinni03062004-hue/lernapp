@@ -204,7 +204,7 @@ export function SessionPlayer(props: {
         await Promise.all(
           data.examResult.perQuestion.map(async (p: any) => {
             try {
-              const r = await fetch(`/api/solution?id=${encodeURIComponent(p.questionId)}`);
+              const r = await fetch(`/api/solution?id=${encodeURIComponent(p.questionId)}&sessionId=${encodeURIComponent(sessionId)}`);
               const d = await r.json();
               sols[p.questionId] = d.solution;
             } catch {}

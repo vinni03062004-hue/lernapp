@@ -189,6 +189,8 @@ export interface StudySession {
   attemptIds: string[];
   /** Prüfungsmodus: Ergebnis erst am Ende */
   examResult?: ExamResult;
+  /** KI-generierte Prüfungsfragen dieser Session (nicht im Katalog) */
+  generatedQuestions?: Question[];
 }
 
 export interface ExamResult {
