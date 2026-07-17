@@ -19,7 +19,7 @@ interface ClientQuestion {
   goal: string;
   difficulty: number;
   prompt: string;
-  options?: string[];
+  options?: { origIndex: number; text: string }[];
   clozeCount?: number;
   assignmentLeft?: string[];
   assignmentRight?: { origIndex: number; text: string }[];
@@ -78,10 +78,10 @@ function describeAnswer(q: ClientQuestion, raw: string): string {
       case 'single_choice':
       case 'image_choice': {
         const i = parseInt(raw, 10);
-        return q.options?.[i] ?? raw;
+        return q.options?.find((o) => o.origIndex === i)?.text ?? raw;
       }
       case 'multiple_choice':
-        return raw.split(',').map((x) => q.options?.[parseInt(x, 10)] ?? x).join(', ');
+        return raw.split(',').map((x) => q.options?.find((o) => o.origIndex === parseInt(x, 10))?.text ?? x).join(', ');
       case 'true_false':
         return raw === 'true' ? 'Wahr' : 'Falsch';
       case 'cloze':
@@ -108,7 +108,7 @@ function describeCorrect(q: ClientQuestion, sol: any): string {
     case 'single_choice':
     case 'image_choice':
     case 'multiple_choice':
-      return (sol.correctOptions ?? []).map((i: number) => q.options?.[i] ?? i).join(', ');
+      return (sol.correctOptions ?? []).map((i: number) => q.options?.find((o) => o.origIndex === i)?.text ?? i).join(', ');
     case 'true_false':
       return sol.correctBool ? 'Wahr' : 'Falsch';
     case 'cloze':
@@ -455,26 +455,26 @@ export function SessionPlayer(props: {
         {(question.type === 'single_choice' || question.type === 'image_choice') && question.options?.map((opt, i) => {
           let cls = 'option-row';
           if (feedback?.solution) {
-            if (feedback.solution.correctOptions?.includes(i)) cls += ' correct';
-            else if (choice === i) cls += ' wrong';
-          } else if (choice === i) cls += ' selected';
+            if (feedback.solution.correctOptions?.includes(opt.origIndex)) cls += ' correct';
+            else if (choice === opt.origIndex) cls += ' wrong';
+          } else if (choice === opt.origIndex) cls += ' selected';
           return (
-            <button key={i} className={cls} disabled={!!feedback} onClick={() => setChoice(i)}>
-              <span className="badge">{String.fromCharCode(65 + i)}</span> {opt}
+            <button key={opt.origIndex} className={cls} disabled={!!feedback} onClick={() => setChoice(opt.origIndex)}>
+              <span className="badge">{String.fromCharCode(65 + i)}</span> {opt.text}
             </button>
           );
         })}
 
-        {question.type === 'multiple_choice' && question.options?.map((opt, i) => {
+        {question.type === 'multiple_choice' && question.options?.map((opt) => {
           let cls = 'option-row';
           if (feedback?.solution) {
-            if (feedback.solution.correctOptions?.includes(i)) cls += ' correct';
-            else if (multi.has(i)) cls += ' wrong';
-          } else if (multi.has(i)) cls += ' selected';
+            if (feedback.solution.correctOptions?.includes(opt.origIndex)) cls += ' correct';
+            else if (multi.has(opt.origIndex)) cls += ' wrong';
+          } else if (multi.has(opt.origIndex)) cls += ' selected';
           return (
-            <button key={i} className={cls} disabled={!!feedback}
-              onClick={() => setMulti((m) => { const n = new Set(m); n.has(i) ? n.delete(i) : n.add(i); return n; })}>
-              <span className="badge">{multi.has(i) ? '☑' : '☐'}</span> {opt}
+            <button key={opt.origIndex} className={cls} disabled={!!feedback}
+              onClick={() => setMulti((m) => { const n = new Set(m); n.has(opt.origIndex) ? n.delete(opt.origIndex) : n.add(opt.origIndex); return n; })}>
+              <span className="badge">{multi.has(opt.origIndex) ? '☑' : '☐'}</span> {opt.text}
             </button>
           );
         })}

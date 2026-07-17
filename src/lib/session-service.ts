@@ -20,7 +20,7 @@ export interface ClientQuestion {
   goal: Question['goal'];
   difficulty: Question['difficulty'];
   prompt: string;
-  options?: string[];
+  options?: { origIndex: number; text: string }[];
   /** Anzahl Lücken bei cloze */
   clozeCount?: number;
   /** Zuordnung: linke Begriffe + gemischte rechte Optionen (origIndex für die Antwort) */
@@ -44,7 +44,9 @@ export function sanitizeQuestion(q: Question): ClientQuestion {
     prompt: q.prompt,
     isOpen: ['open', 'transfer', 'image_open'].includes(q.type),
   };
-  if (q.options) cq.options = q.options;
+  // Auswahloptionen gemischt anzeigen (gegen Positions-Auswendiglernen);
+  // jede Option behält ihren Original-Index -> Bewertung bleibt korrekt.
+  if (q.options) cq.options = shuffle(q.options.map((text, i) => ({ origIndex: i, text })));
   if (q.clozeAnswers) cq.clozeCount = q.clozeAnswers.length;
   if (q.pairs) {
     cq.assignmentLeft = q.pairs.map((p) => p.left);
