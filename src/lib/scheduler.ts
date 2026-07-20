@@ -58,7 +58,8 @@ export function updateMastery(
     const stage = Math.min(nextStage(s.intervalH), cfg.intervalsH.length - 1);
     s.intervalH = cfg.intervalsH[stage];
     s.dueAt = now + s.intervalH * 3600_000;
-    if (s.openError && s.streak >= 2) {
+    // Eine richtige Antwort hebt den "offener Fehler"-Status auf (rehabilitiert).
+    if (s.openError) {
       s.openError = false;
       s.errorResolved = true;
     }

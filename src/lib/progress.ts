@@ -45,7 +45,15 @@ export function computeProgress(questions: Question[], state: UserState): Progre
   const attempted = questions.filter((q) => (state.mastery[q.id]?.attempts ?? 0) > 0);
   const coverage = attempted.length / total;
 
-  const atLevel = attempted.filter((q) => (state.mastery[q.id]?.mastery ?? 0) >= LearningConfig.masteryMinLevel);
+  const atLevel = attempted.filter((q) => {
+    const m = state.mastery[q.id];
+    if (!m) return false;
+    // "beherrscht": stabile Mastery ODER die LETZTE Antwort war korrekt (mit
+    // passablem Score) – so zählt erneutes richtiges Beantworten sofort zum
+    // Lernstand, statt erst nach mehrfach geglätteter Mastery.
+    return (m.mastery ?? 0) >= LearningConfig.masteryMinLevel
+      || (m.lastResult === true && (m.lastScore ?? 0) >= LearningConfig.freetext.correctThreshold);
+  });
   const correctness = attempted.length > 0 ? atLevel.length / attempted.length : 0;
 
   const reviewed = attempted.filter((q) => (state.mastery[q.id]?.attempts ?? 0) >= 2);
