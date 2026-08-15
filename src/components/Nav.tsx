@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ComicAvatar, parseAvatar } from './Avatar';
 
 const links: { href: string; label: string; icon: string; section?: string }[] = [
@@ -41,7 +41,6 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   const [correcting, setCorrecting] = useState(false);
   const [busy, setBusy] = useState(false);
-  const panelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const stored = typeof window !== 'undefined' ? window.localStorage.getItem('theme') : null;
@@ -59,14 +58,14 @@ export function Nav() {
     fetch('/api/modules').then((r) => r.json()).then(setMods).catch(() => {});
   }, []);
 
-  // Klick außerhalb schließt das Panel
+  // Body-Scroll sperren + Escape schließt, solange das Sheet offen ist
   useEffect(() => {
     if (!open) return;
-    function onClick(e: MouseEvent) {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) setOpen(false);
-    }
-    document.addEventListener('mousedown', onClick);
-    return () => document.removeEventListener('mousedown', onClick);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    function onKey(e: KeyboardEvent) { if (e.key === 'Escape') setOpen(false); }
+    document.addEventListener('keydown', onKey);
+    return () => { document.body.style.overflow = prev; document.removeEventListener('keydown', onKey); };
   }, [open]);
 
   function toggleTheme() {
@@ -95,76 +94,86 @@ export function Nav() {
     window.location.href = '/';
   }
 
+  function closeSheet() { setOpen(false); setCorrecting(false); }
+
   const activeProgram = mods?.profile.studyProgram ?? mods?.current.studyProgram ?? null;
   const programObj = mods?.studyPrograms.find((p) => p.program === activeProgram);
   const moduleTitle = mods?.current.title ?? 'Konsumentenverhalten';
   const programLabel = mods?.current.studyProgram ?? 'Online-Marketing';
   const showProgramPicker = mods ? (!mods.profile.studyProgram || correcting) : false;
+  const moduleList = programObj?.modules ?? mods?.studyPrograms.flatMap((p) => p.modules) ?? [];
 
   return (
     <aside className="sidebar">
-      <div className="brand-switch" ref={panelRef} style={{ position: 'relative' }}>
-        <button
-          type="button"
-          className="brand brand-btn"
-          onClick={() => setOpen((o) => !o)}
-          aria-expanded={open}
-          style={{ width: '100%', textAlign: 'left', cursor: 'pointer', background: 'none', border: 'none', display: 'block' }}
-        >
-          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{moduleTitle}</span>
-            <span aria-hidden style={{ opacity: 0.6, fontSize: 12, transform: open ? 'rotate(180deg)' : 'none', transition: 'transform .15s' }}>▾</span>
+      <div className="brand-switch">
+        <button type="button" className="module-trigger" onClick={() => setOpen(true)} aria-haspopup="dialog" aria-expanded={open}>
+          <span className="mt-top">
+            <span className="mt-title">{moduleTitle}</span>
+            <span className="mt-chevron" aria-hidden>▾</span>
           </span>
-          <small>{programLabel} · Modul wechseln</small>
+          <span className="mt-sub">{programLabel} · Modul wechseln</span>
         </button>
+      </div>
 
-        {open && mods && (
-          <div className="module-panel" style={{
-            position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 40, marginTop: 6,
-            background: 'var(--bg-card, #16181d)', border: '1px solid var(--border, #2a2e37)',
-            borderRadius: 10, padding: 12, boxShadow: '0 12px 30px rgba(0,0,0,.35)',
-          }}>
-            <div className="small dim" style={{ textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 6 }}>Studiengang</div>
-            {showProgramPicker ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
-                {mods.studyPrograms.map((p) => (
-                  <button key={p.program} className="btn small" disabled={busy}
-                    onClick={() => chooseProgram(p.program)}
-                    style={{ justifyContent: 'flex-start', fontWeight: p.program === activeProgram ? 700 : 400 }}>
-                    {p.program === activeProgram ? '● ' : '○ '}{p.program}
-                  </button>
-                ))}
-                {correcting && (
-                  <button className="btn small" onClick={() => setCorrecting(false)} disabled={busy}>Abbrechen</button>
-                )}
-              </div>
-            ) : (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 10 }}>
-                <strong style={{ fontSize: 14 }}>{activeProgram}</strong>
-                {mods.profile.canCorrect ? (
-                  <button className="btn small" onClick={() => setCorrecting(true)} disabled={busy}>korrigieren</button>
-                ) : (
-                  <span className="small dim" title="Nach einmaliger Korrektur gesperrt">🔒 fixiert</span>
-                )}
-              </div>
-            )}
+      {open && mods && (
+        <div className="module-overlay" role="dialog" aria-modal="true" aria-label="Modul wechseln" onClick={closeSheet}>
+          <div className="module-sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="ms-head">
+              <h3>Modul wechseln</h3>
+              <button className="ms-close" onClick={closeSheet} aria-label="Schließen">✕</button>
+            </div>
 
-            <div className="small dim" style={{ textTransform: 'uppercase', letterSpacing: '.06em', margin: '4px 0 6px' }}>Module</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-              {(programObj?.modules ?? mods.studyPrograms.flatMap((p) => p.modules)).map((m) => {
+            <div className="ms-section">
+              <div className="ms-label">Studiengang</div>
+              {showProgramPicker ? (
+                <div>
+                  {mods.studyPrograms.map((p) => {
+                    const active = p.program === activeProgram;
+                    return (
+                      <button key={p.program} className={`module-option ${active ? 'active' : ''}`} disabled={busy}
+                        onClick={() => chooseProgram(p.program)}>
+                        <span className="mo-dot" aria-hidden />
+                        <span className="mo-text">{p.program}</span>
+                        {active && <span className="mo-check" aria-hidden>✓</span>}
+                      </button>
+                    );
+                  })}
+                  {correcting && (
+                    <button className="btn small" style={{ marginTop: 8 }} onClick={() => setCorrecting(false)} disabled={busy}>Abbrechen</button>
+                  )}
+                  {!mods.profile.studyProgram && (
+                    <p className="small dim" style={{ margin: '8px 2px 0' }}>Nach der Wahl kannst du den Studiengang noch einmal korrigieren, danach ist er fixiert.</p>
+                  )}
+                </div>
+              ) : (
+                <div className="ms-program">
+                  <strong>{activeProgram}</strong>
+                  {mods.profile.canCorrect ? (
+                    <button className="btn small" onClick={() => setCorrecting(true)} disabled={busy}>korrigieren</button>
+                  ) : (
+                    <span className="ms-lock" title="Nach einmaliger Korrektur fixiert">🔒 fixiert</span>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <div className="ms-section">
+              <div className="ms-label">Module in diesem Studiengang</div>
+              {moduleList.map((m) => {
                 const active = m.id === mods.current.moduleId;
                 return (
-                  <button key={m.id} className="btn small" disabled={busy}
-                    onClick={() => switchModule(m.id)}
-                    style={{ justifyContent: 'flex-start', fontWeight: active ? 700 : 400, borderColor: active ? 'var(--accent, #6ea8fe)' : undefined }}>
-                    {active ? '● ' : '○ '}{m.title}
+                  <button key={m.id} className={`module-option ${active ? 'active' : ''}`} disabled={busy}
+                    onClick={() => switchModule(m.id)}>
+                    <span className="mo-dot" aria-hidden />
+                    <span className="mo-text">{m.title}</span>
+                    {active && <span className="mo-check" aria-hidden>✓</span>}
                   </button>
                 );
               })}
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {links.map((l) => (
         <span key={l.href} style={{ display: 'contents' }}>
