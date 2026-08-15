@@ -154,7 +154,7 @@ export default function SkriptPage() {
                                   ⤢
                                 </button>
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={`/images/kv/${f.file}`} alt={f.caption} />
+                                <img src={`/images/${content?.imageDir ?? 'kv'}/${f.file}`} alt={f.caption} />
                               </div>
                               {f.explanationSimple && <div className="small">{f.explanationSimple}</div>}
                               {f.explanationExpert && f.explanationExpert !== f.explanationSimple && (
@@ -191,7 +191,7 @@ export default function SkriptPage() {
             </button>
             <strong style={{ color: '#16181d', display: 'block', marginBottom: 10, paddingRight: 40 }}>{modalFigure.title}</strong>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/images/kv/${modalFigure.file}`} alt={modalFigure.title} style={{ maxWidth: '100%', display: 'block' }} />
+            <img src={`/images/${content?.imageDir ?? 'kv'}/${modalFigure.file}`} alt={modalFigure.title} style={{ maxWidth: '100%', display: 'block' }} />
           </div>
         </div>
       )}

@@ -10,6 +10,9 @@ export async function GET() {
     const mod = getModule();
     const state = await loadState();
     return NextResponse.json({
+      moduleId: mod.id,
+      moduleTitle: mod.title,
+      imageDir: mod.imageDir,
       chapters: mod.chapters,
       concepts: mod.concepts,
       figures: mod.figures,

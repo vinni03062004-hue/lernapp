@@ -127,6 +127,8 @@ export interface LearningModule {
   id: string;
   title: string;
   studyProgram: string;
+  /** Unterordner unter /public/images/ für die Abbildungen dieses Moduls (z. B. 'kv', 'mkt') */
+  imageDir: string;
   chapters: Chapter[];
   concepts: Concept[];
   questions: Question[];
@@ -287,6 +289,10 @@ export interface UserState {
     profileName?: string;
     /** Avatar des Profils: Bild als Data-URL oder ein Emoji */
     avatar?: string;
+    /** gewählter Studiengang des Profils (profilweit, modulübergreifend) */
+    studyProgram?: string;
+    /** Anzahl der Studiengang-Korrekturen (0 = frei wählbar, ab 1 = gesperrt) */
+    studyProgramChanges?: number;
     theme: 'light' | 'dark';
     examQuestionCount: number;
     examTimeLimitMin: number | null;

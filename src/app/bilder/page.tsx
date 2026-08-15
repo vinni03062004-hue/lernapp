@@ -67,7 +67,7 @@ export default function BilderPage() {
             </div>
             <div className="figure-frame">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/images/kv/${f.file}`} alt={f.caption} loading="lazy" />
+              <img src={`/images/${content.imageDir ?? 'kv'}/${f.file}`} alt={f.caption} loading="lazy" />
             </div>
             <button className="btn small" onClick={() => setOpenFigure(open ? null : f.id)} aria-expanded={open}>
               {open ? '▾ Erklärung einklappen' : '▸ Erklärung anzeigen'}

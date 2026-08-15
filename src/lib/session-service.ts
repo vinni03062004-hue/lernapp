@@ -26,7 +26,7 @@ export interface ClientQuestion {
   /** Zuordnung: linke Begriffe + gemischte rechte Optionen (origIndex für die Antwort) */
   assignmentLeft?: string[];
   assignmentRight?: { origIndex: number; text: string }[];
-  figure?: { file: string; title: string; caption: string; chapterTitle: string; pdfPage: number };
+  figure?: { file: string; imageDir: string; title: string; caption: string; chapterTitle: string; pdfPage: number };
   isOpen: boolean;
 }
 
@@ -55,6 +55,7 @@ export function sanitizeQuestion(q: Question): ClientQuestion {
   if (fig) {
     cq.figure = {
       file: fig.file,
+      imageDir: mod.imageDir,
       title: fig.title,
       caption: fig.caption,
       chapterTitle: chapter ? `Kapitel ${chapter.index}: ${chapter.title}` : '',

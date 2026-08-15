@@ -53,6 +53,8 @@ export function updateMastery(
     s.streak += 1;
     let gain = score;
     if (confidence === 'low') gain *= cfg.lowConfidenceFactor;
+    // Streng: Beherrschung wächst geglättet über mehrere richtige (idealerweise
+    // zeitlich verteilte) Antworten – einmal richtig ist noch keine Beherrschung.
     s.mastery = clamp01(s.mastery + cfg.masteryAlpha * (gain - s.mastery));
     // Spacing: nächste Intervallstufe
     const stage = Math.min(nextStage(s.intervalH), cfg.intervalsH.length - 1);

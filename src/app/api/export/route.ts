@@ -22,7 +22,7 @@ export async function GET() {
     lines.push('');
     lines.push(`## Gesamtstatus`);
     lines.push(`- Lernfortschritt: **${progress.progress} %** (Abdeckung ${progress.components.coverage} %, Korrektheit ${progress.components.correctness} %, Wiederholung ${progress.components.review} %, Stabilität ${progress.components.stability} %)`);
-    lines.push(`- Prüfungsbereitschaft: **${readiness.readiness} %** (Trefferquote ${readiness.components.recentAccuracy} %, Stabilität ${readiness.components.stability} %, schwere Fragen ${readiness.components.hardQuestions} %, Fehlerkorrektur ${readiness.components.errorRecovery} %, Kapitelabdeckung ${readiness.components.chapterCoverage} %)`);
+    lines.push(`- Prüfungsbereitschaft: **${readiness.readiness} %** (Trefferquote ${readiness.components.recentAccuracy} %, Stabilität ${readiness.components.stability} %, schwere Fragen ${readiness.components.hardQuestions} %, Fehlerkorrektur ${readiness.components.errorRecovery} %, Kapitel-Beherrschung ${readiness.components.chapterCoverage} %)`);
     for (const e of readiness.explanation) lines.push(`- Hinweis: ${e}`);
     lines.push('');
     lines.push(`## Kapitelstatus`);

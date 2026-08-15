@@ -23,7 +23,7 @@ interface ClientQuestion {
   clozeCount?: number;
   assignmentLeft?: string[];
   assignmentRight?: { origIndex: number; text: string }[];
-  figure?: { file: string; title: string; caption: string; chapterTitle: string; pdfPage: number };
+  figure?: { file: string; imageDir?: string; title: string; caption: string; chapterTitle: string; pdfPage: number };
   isOpen: boolean;
 }
 
@@ -445,7 +445,7 @@ export function SessionPlayer(props: {
                 <span className="small" style={{ color: '#5b6270' }}>{question.figure.chapterTitle} · PDF S. {question.figure.pdfPage}</span>
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/images/kv/${question.figure.file}`} alt={question.figure.caption} />
+              <img src={`/images/${question.figure.imageDir ?? 'kv'}/${question.figure.file}`} alt={question.figure.caption} />
             </div>
           )
         )}

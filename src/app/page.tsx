@@ -45,7 +45,7 @@ export default function HomePage() {
             <div className={`progress-fill ${r.readiness >= 75 ? 'green' : r.readiness >= 40 ? '' : 'warn'}`} style={{ width: `${r.readiness}%` }} />
           </div>
           <div className="small dim">
-            Trefferquote {r.components.recentAccuracy} % · Stabilität {r.components.stability} % · schwere Fragen {r.components.hardQuestions} % · Fehlerkorrektur {r.components.errorRecovery} % · Kapitelabdeckung {r.components.chapterCoverage} %
+            Trefferquote {r.components.recentAccuracy} % · Stabilität {r.components.stability} % · schwere Fragen {r.components.hardQuestions} % · Fehlerkorrektur {r.components.errorRecovery} % · Kapitel-Beherrschung {r.components.chapterCoverage} %
           </div>
           {r.explanation.map((e: string, i: number) => (
             <div key={i} className="small" style={{ marginTop: 8, color: 'var(--warn)' }}>⚠ {e}</div>

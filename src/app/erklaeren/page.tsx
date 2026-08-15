@@ -190,7 +190,7 @@ function ErklaerenInner() {
             </button>
             <strong style={{ color: '#16181d', display: 'block', marginBottom: 10, paddingRight: 40 }}>{modalFigure.title}</strong>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/images/kv/${modalFigure.file}`} alt={modalFigure.title} style={{ maxWidth: '100%', display: 'block' }} />
+            <img src={`/images/${content?.imageDir ?? 'kv'}/${modalFigure.file}`} alt={modalFigure.title} style={{ maxWidth: '100%', display: 'block' }} />
           </div>
         </div>
       )}

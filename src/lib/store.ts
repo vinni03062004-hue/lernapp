@@ -18,6 +18,7 @@ import fs from 'fs';
 import path from 'path';
 import { LearningConfig } from '@/config/learning';
 import { UserState } from './types';
+import { MODULE_IDS, DEFAULT_MODULE_ID } from '@/content';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 const STATE_VERSION = 1;
@@ -40,6 +41,37 @@ export async function getProfile(): Promise<string> {
   } catch {
     return 'default';
   }
+}
+
+/** Aktives Modul aus dem Request-Cookie "module" lesen. */
+export async function getModuleId(): Promise<string> {
+  try {
+    const { cookies } = await import('next/headers');
+    const v = cookies().get('module')?.value;
+    if (v && MODULE_IDS.includes(v)) return v;
+  } catch {
+    // kein Request-Kontext (Tests)
+  }
+  return DEFAULT_MODULE_ID;
+}
+
+/** Speicher-Schlüssel: Fortschritt ist pro Profil UND Modul getrennt. */
+function storageKey(profile: string, moduleId: string): string {
+  return `${profile}::${moduleId}`;
+}
+
+/** Basis-Profil-ID aus einem Speicher-Schlüssel (Teil vor "::"). */
+function baseProfile(key: string): string {
+  const i = key.indexOf('::');
+  return i < 0 ? key : key.slice(0, i);
+}
+
+function isEmptyState(st: UserState): boolean {
+  return (
+    (st.attempts?.length ?? 0) === 0 &&
+    (st.sessions?.length ?? 0) === 0 &&
+    Object.keys(st.mastery ?? {}).length === 0
+  );
 }
 
 export function defaultState(): UserState {
@@ -242,41 +274,100 @@ export async function saveStateFor(profile: string, state: UserState): Promise<v
   }
 }
 
-/** Zustand des AKTIVEN Profils (aus Cookie) laden. */
+/** Zustand des AKTIVEN Profils UND Moduls (aus Cookies) laden. */
 export async function loadState(): Promise<UserState> {
-  return loadStateFor(await getProfile());
+  const profile = await getProfile();
+  const moduleId = await getModuleId();
+  const key = storageKey(profile, moduleId);
+  const existing = usePostgres ? await pgLoad(key) : fileLoad(key);
+  // Migrate-on-read: Der frühere Einzel-Stand lag unter dem reinen Profil-
+  // Schlüssel und gehörte zum Standardmodul (Konsumentenverhalten).
+  if (isEmptyState(existing) && moduleId === DEFAULT_MODULE_ID) {
+    const legacy = usePostgres ? await pgLoad(profile) : fileLoad(profile);
+    if (!isEmptyState(legacy)) {
+      if (usePostgres) await pgSave(key, legacy);
+      else fileSave(key, legacy);
+      return legacy;
+    }
+  }
+  return existing;
 }
 
-/** Zustand des AKTIVEN Profils (aus Cookie) speichern. */
+/** Zustand des AKTIVEN Profils UND Moduls (aus Cookies) speichern. */
 export async function saveState(state: UserState): Promise<void> {
-  return saveStateFor(await getProfile(), state);
+  state.updatedAt = Date.now();
+  const key = storageKey(await getProfile(), await getModuleId());
+  try {
+    if (usePostgres) await pgSave(key, state);
+    else fileSave(key, state);
+  } catch (err) {
+    console.error('[store] Zustand konnte nicht gespeichert werden:', err);
+    throw err;
+  }
 }
 
-/** Alle vorhandenen Profile (für die Auswahl). "default" ist immer dabei. */
+/** Alle vorhandenen Profile (für die Auswahl). "default" ist immer dabei.
+ *  Speicher-Schlüssel enthalten das Modul ("profil::modul"); hier wird auf die
+ *  Basis-Profil-ID zusammengefasst. Name/Avatar stammen bevorzugt aus dem
+ *  Meta-Datensatz (reiner Profilschlüssel ohne "::"). */
 export async function listProfiles(): Promise<{ id: string; name: string; avatar?: string; updatedAt: number }[]> {
-  const list = usePostgres ? await pgList() : fileList();
+  const raw = usePostgres ? await pgList() : fileList();
+  const map = new Map<string, { id: string; name: string; avatar?: string; updatedAt: number; hasMeta: boolean }>();
+  for (const r of raw) {
+    const base = baseProfile(r.id);
+    const isMeta = r.id === base;
+    const cleanName = r.name && !r.name.includes('::') ? r.name : base;
+    const cur = map.get(base);
+    if (!cur) {
+      map.set(base, { id: base, name: isMeta ? cleanName : (cleanName || base), avatar: r.avatar, updatedAt: r.updatedAt, hasMeta: isMeta });
+    } else {
+      cur.updatedAt = Math.max(cur.updatedAt, r.updatedAt);
+      if (isMeta) { cur.name = cleanName; cur.avatar = r.avatar; cur.hasMeta = true; }
+      else if (!cur.hasMeta) {
+        if (!cur.name || cur.name === base) cur.name = cleanName;
+        if (!cur.avatar) cur.avatar = r.avatar;
+      }
+    }
+  }
+  const list = Array.from(map.values())
+    .map(({ hasMeta, ...v }) => v)
+    .sort((a, b) => b.updatedAt - a.updatedAt);
   if (!list.some((p) => p.id === 'default')) {
     list.push({ id: 'default', name: 'Standard', updatedAt: 0 });
   }
   return list;
 }
 
-/** Profil löschen ("default" ist geschützt). */
+/** Profil löschen ("default" ist geschützt) – inkl. aller Modul-Speicherstände. */
 export async function deleteProfile(profile: string): Promise<void> {
   const p = sanitizeProfile(profile);
   if (p === 'default') return;
-  if (usePostgres) await pgDelete(p);
-  else fileDelete(p);
+  if (usePostgres) {
+    const pool = await getPool();
+    await pool.query("DELETE FROM app_state_v2 WHERE profile = $1 OR profile LIKE $1 || '::%'", [p]);
+  } else {
+    fileDelete(p);
+    try {
+      if (fs.existsSync(DATA_DIR)) {
+        for (const n of fs.readdirSync(DATA_DIR)) {
+          if (n.startsWith(`state-${p}::`) && n.endsWith('.json')) fs.unlinkSync(path.join(DATA_DIR, n));
+        }
+      }
+    } catch {}
+  }
 }
 
-/** Zustand NUR des AKTIVEN Profils zurücksetzen (Name + Avatar bleiben erhalten). */
+/** Zustand NUR des AKTIVEN Profils+Moduls zurücksetzen (Name + Avatar bleiben erhalten). */
 export async function resetState(): Promise<UserState> {
   const profile = await getProfile();
-  const prev = await loadStateFor(profile);
+  const moduleId = await getModuleId();
+  const key = storageKey(profile, moduleId);
+  const prev = await loadStateFor(profile); // Meta-Datensatz (Name/Avatar)
   const fresh = defaultState();
   if (prev.settings?.profileName) fresh.settings.profileName = prev.settings.profileName;
   if (prev.settings?.avatar) fresh.settings.avatar = prev.settings.avatar;
-  await saveStateFor(profile, fresh);
+  if (usePostgres) await pgSave(key, fresh);
+  else fileSave(key, fresh);
   return fresh;
 }
 
