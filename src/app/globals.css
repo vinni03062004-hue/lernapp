@@ -18,6 +18,11 @@
   --shadow: 0 1px 2px rgba(15, 20, 40, 0.05), 0 8px 24px rgba(15, 20, 40, 0.06);
   --radius: 14px;
   --radius-sm: 9px;
+  /* Bewegungs-Tokens (emil-design-eng): starke Kurven statt schwachem ease */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-press: 140ms;
 }
 
 [data-theme='dark'] {
@@ -68,9 +73,10 @@ a:hover { text-decoration: underline; }
   padding: 9px 12px; border-radius: var(--radius-sm);
   color: var(--text); font-weight: 500; font-size: 14px;
   border: 1px solid transparent; cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s var(--ease-out), border-color 0.15s var(--ease-out), transform var(--dur-press) var(--ease-out);
 }
 .nav-link:hover { background: var(--bg-subtle); text-decoration: none; }
+.nav-link:active { transform: scale(0.985); }
 .nav-link.active { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
 .nav-link:focus-visible, .btn:focus-visible, .option-row:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
   outline: 2px solid var(--accent); outline-offset: 2px;
@@ -151,10 +157,10 @@ h3 { font-size: 15px; margin: 0 0 8px; }
   padding: 10px 18px; border-radius: var(--radius-sm);
   font-size: 14.5px; font-weight: 600; font-family: inherit;
   border: 1px solid var(--border); background: var(--bg-elev); color: var(--text);
-  cursor: pointer; transition: transform 0.06s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+  cursor: pointer; transition: transform var(--dur-press) var(--ease-out), background 0.15s var(--ease-out), border-color 0.15s var(--ease-out), opacity 0.15s var(--ease-out);
 }
 .btn:hover { background: var(--bg-subtle); }
-.btn:active { transform: scale(0.98); }
+.btn:active:not(:disabled) { transform: scale(0.97); }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
 .btn.primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
@@ -166,7 +172,7 @@ h3 { font-size: 15px; margin: 0 0 8px; }
 
 /* ---------- Progress ---------- */
 .progress-track { height: 9px; border-radius: 6px; background: var(--bg-subtle); overflow: hidden; }
-.progress-fill { height: 100%; border-radius: 6px; background: var(--accent); transition: width 0.5s cubic-bezier(0.25, 1, 0.4, 1); }
+.progress-fill { height: 100%; border-radius: 6px; background: var(--accent); transition: width 0.5s var(--ease-out); }
 .progress-fill.green { background: var(--success); }
 .progress-fill.warn { background: var(--warn); }
 .big-number { font-size: 34px; font-weight: 700; letter-spacing: -1px; }
@@ -188,12 +194,13 @@ h3 { font-size: 15px; margin: 0 0 8px; }
   padding: 12px 15px; margin-top: 9px; border-radius: var(--radius-sm);
   border: 1.5px solid var(--border); background: var(--bg-elev);
   cursor: pointer; font-size: 15px; font-family: inherit; color: var(--text);
-  transition: border-color 0.14s ease, background 0.14s ease;
+  transition: border-color 0.14s var(--ease-out), background 0.14s var(--ease-out), transform var(--dur-press) var(--ease-out);
 }
 .option-row:hover { border-color: var(--accent); }
 .option-row.selected { border-color: var(--accent); background: var(--accent-soft); }
 .option-row.correct { border-color: var(--success); background: var(--success-soft); }
 .option-row.wrong { border-color: var(--danger); background: var(--danger-soft); }
+.option-row:active:not(:disabled) { transform: scale(0.99); }
 .option-row:disabled { cursor: default; }
 
 input[type='text'], textarea, select {
@@ -203,7 +210,7 @@ input[type='text'], textarea, select {
 }
 textarea { min-height: 110px; resize: vertical; }
 
-.feedback-box { border-radius: var(--radius-sm); padding: 15px 17px; margin-top: 16px; border: 1px solid; animation: slideIn 0.25s ease; }
+.feedback-box { border-radius: var(--radius-sm); padding: 15px 17px; margin-top: 16px; border: 1px solid; animation: slideIn 0.22s var(--ease-out); }
 .feedback-box.ok { border-color: var(--success); background: var(--success-soft); }
 .feedback-box.partial { border-color: var(--warn); background: var(--warn-soft); }
 .feedback-box.bad { border-color: var(--danger); background: var(--danger-soft); }
@@ -254,7 +261,7 @@ table.data th { color: var(--text-dim); font-size: 12px; text-transform: upperca
   width: 100%; text-align: left; cursor: pointer; font-family: inherit;
   padding: 8px 12px; border-radius: var(--radius-sm);
   background: var(--accent-soft); border: 1px solid transparent; color: var(--text);
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s var(--ease-out), border-color 0.15s var(--ease-out);
 }
 .module-trigger:hover { border-color: var(--accent); }
 .module-trigger .mt-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
@@ -273,12 +280,12 @@ table.data th { color: var(--text-dim); font-size: 12px; text-transform: upperca
   width: 100%; max-width: 440px; background: var(--bg-elev);
   border: 1px solid var(--border); border-radius: var(--radius);
   box-shadow: var(--shadow); padding: 18px; max-height: 85vh; overflow-y: auto;
-  animation: mo-pop 0.16s cubic-bezier(0.25, 1, 0.4, 1);
+  animation: mo-pop 0.18s var(--ease-out);
 }
 @keyframes mo-pop { from { transform: translateY(8px) scale(0.98); opacity: 0; } to { transform: none; opacity: 1; } }
 .ms-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
 .ms-head h3 { margin: 0; font-size: 17px; }
-.ms-close { border: none; background: var(--bg-subtle); color: var(--text); width: 32px; height: 32px; border-radius: 8px; font-size: 17px; line-height: 1; cursor: pointer; transition: background 0.15s ease; }
+.ms-close { border: none; background: var(--bg-subtle); color: var(--text); width: 32px; height: 32px; border-radius: 8px; font-size: 17px; line-height: 1; cursor: pointer; transition: background 0.15s var(--ease-out); }
 .ms-close:hover { background: var(--border); }
 .ms-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin: 4px 0 8px; }
 .ms-program { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 13px; background: var(--bg-subtle); border-radius: var(--radius-sm); margin-bottom: 4px; }
@@ -291,10 +298,11 @@ table.data th { color: var(--text-dim); font-size: 12px; text-transform: upperca
   padding: 13px 14px; border-radius: var(--radius-sm);
   border: 1.5px solid var(--border); background: var(--bg-elev); color: var(--text);
   font-size: 15px; font-weight: 600; cursor: pointer; text-align: left; font-family: inherit;
-  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  transition: border-color 0.15s var(--ease-out), background 0.15s var(--ease-out), color 0.15s var(--ease-out), transform var(--dur-press) var(--ease-out);
 }
 .module-option + .module-option { margin-top: 8px; }
 .module-option:hover { background: var(--bg-subtle); }
+.module-option:active:not(:disabled) { transform: scale(0.99); }
 .module-option:disabled { opacity: 0.55; cursor: default; }
 .module-option.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 .module-option .mo-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--text-dim); flex-shrink: 0; }
@@ -311,7 +319,7 @@ table.data th { color: var(--text-dim); font-size: 12px; text-transform: upperca
   .module-sheet {
     max-width: 100%; border-radius: 18px 18px 0 0;
     padding: 16px 16px calc(18px + env(safe-area-inset-bottom));
-    max-height: 82vh; animation: mo-sheet 0.22s cubic-bezier(0.25, 1, 0.4, 1);
+    max-height: 82vh; animation: mo-sheet 0.28s var(--ease-drawer);
   }
   @keyframes mo-sheet { from { transform: translateY(100%); } to { transform: none; } }
   .module-sheet::before { content: ""; display: block; width: 38px; height: 4px; border-radius: 3px; background: var(--border); margin: -4px auto 12px; }
