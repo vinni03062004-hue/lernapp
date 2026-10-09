@@ -100,9 +100,9 @@ export async function aiGradeFreetext(
     system: systemPrompt(ctx.moduleLabel ?? 'deines Studiengangs'),
     turns: [{ role: 'user', text: buildUserPrompt(question, answer, ctx) }],
     json: true,
-    maxTokens: 1024,
+    maxTokens: 2048,
     temperature: 0.1,
-    thinkingBudget: 0, // 2.5-Flash: Thinking aus → vollständiges JSON, kein Abschneiden
+    thinkingBudget: 0, // so wenig Denken wie möglich → vollständiges JSON, kein Abschneiden
   });
   if (!text) return null;
 

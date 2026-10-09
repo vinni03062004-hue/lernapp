@@ -228,7 +228,7 @@ async function generateBatch(mod: LearningModule, chapters: Chapter[], focus: Co
     thinkingBudget: 0,
     maxTokens: Math.min(8192, 800 + focus.length * 500),
     temperature: 0.7,
-    timeoutMs: 40000,
+    timeoutMs: 30000,
   });
   const gen = parseArray(genText).filter(
     (g) => g && typeof g.prompt === 'string' && g.prompt.trim().length >= 15
@@ -252,7 +252,7 @@ async function generateBatch(mod: LearningModule, chapters: Chapter[], focus: Co
     thinkingBudget: 0,
     maxTokens: Math.min(4096, 400 + gen.length * 120),
     temperature: 0,
-    timeoutMs: 30000,
+    timeoutMs: 20000,
   });
   const checks = parseArray(verifyText);
   const okIndices = new Set<number>();

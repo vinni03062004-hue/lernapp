@@ -116,9 +116,9 @@ export const LearningConfig = {
    */
   ai: {
     /** Standard-Gemini-Modell (per Env GEMINI_MODEL überschreibbar) */
-    model: 'gemini-2.0-flash',
+    model: 'gemini-3.5-flash-lite',
     /** Timeout, danach Fallback auf Rubrik-/Offline-Bewertung */
-    timeoutMs: 15000,
+    timeoutMs: 25000,
   },
 
   /** Fehlerklassifikation. */

@@ -292,7 +292,7 @@ export function answerFromKnowledge(mod: LearningModule, units: KnowledgeUnit[],
     return {
       core: best.unit.title,
       simple,
-      detailed: rest ? (rest.length > 1400 ? `${rest.slice(0, 1400)} …` : rest) : undefined,
+      detailed: rest ? (rest.length > 700 ? `${rest.slice(0, 700)} …` : rest) : undefined,
       sources,
       uncertain,
       noEvidence: false,

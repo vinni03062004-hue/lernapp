@@ -65,9 +65,9 @@ export async function aiExplain(
   const text = await geminiGenerate({
     system: systemPrompt(moduleLabel),
     turns,
-    maxTokens: 1400,
+    maxTokens: 2048,
     temperature: 0.4,
-    thinkingBudget: 0, // 2.5-Flash: Thinking aus -> vollständige Antwort, kein Abschneiden
+    thinkingBudget: 0, // so wenig Denken wie möglich (Gemini 2.5: aus, Gemini 3: minimal/low)
   });
   if (!text) return null;
 
