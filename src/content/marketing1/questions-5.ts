@@ -14,7 +14,7 @@ export const questions5: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Akquisitorisch = Gestaltung des Vertriebssystems; logistisch = Zugriff der Konsumenten auf die Waren.',
-    source: 'Kapitel 5.1, PDF S. 20', conceptIds: ['mc-distribution', 'mc-akquisitorisch', 'mc-logistisch'],
+    source: 'Kapitel 5.1, PDF S. 20', conceptIds: ['mc-distribution'],
   },
   {
     id: 'qm5-02', chapterId: 'm5', type: 'true_false', goal: 'distinction', difficulty: 2,
@@ -32,7 +32,7 @@ export const questions5: Question[] = [
       { left: 'Sortimentsgestaltung', right: 'Importeure liefern große Mengen, Endverbraucher kaufen wenige Stück und andere Lebensmittel dazu' },
     ],
     explanation: 'Handelsunternehmen steigern den Kundennutzen durch die Überbrückung räumlicher, zeitlicher und sortimentsbezogener Diskrepanzen.',
-    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-ueberbrueckung', 'mc-raeumlich', 'mc-zeitlich', 'mc-sortiment'],
+    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-ueberbrueckung'],
   },
   {
     id: 'qm5-04', chapterId: 'm5', type: 'single_choice', goal: 'distinction', difficulty: 2,
@@ -78,7 +78,7 @@ export const questions5: Question[] = [
       { left: 'Exklusiver Vertrieb', right: 'Tarbiana-Trüffelbutter nur in Spezialitätenläden und online' },
     ],
     explanation: 'Intensiv = sehr viele Partner (Convenience Goods), selektiv = mehrere (Shopping Goods), exklusiv = sehr wenige (Specialty Goods).',
-    source: 'Kapitel 5.3, PDF S. 23', conceptIds: ['mc-distributionsgrad', 'mc-intensiv', 'mc-selektiv', 'mc-exklusiv'],
+    source: 'Kapitel 5.3, PDF S. 23', conceptIds: ['mc-distributionsgrad'],
   },
   {
     id: 'qm5-09', chapterId: 'm5', type: 'multiple_choice', goal: 'understanding', difficulty: 2,
@@ -103,8 +103,8 @@ export const questions5: Question[] = [
       { point: 'Gegenbeispiel Nordstrom Local: Stylistenberatung, Café-Atmosphäre, Lieferung – Händler schafft Zusatznutzen', keywords: ['nordstrom', 'stylist', 'café', 'beratung'] },
     ],
     modelAnswer: 'Disintermediation bezeichnet den Trend zur Ausschaltung von Intermediären. Das geschieht oft, wenn sie keinen Zusatznutzen mehr bringen; ein weiterer Grund ist die Einsparung der Handelsmarge. Beispiel: Durch E-Commerce verkaufen Hersteller direkt an Endverbraucher (Direct-to-Consumer), etwa Adidas oder „Social Brands“, die ausschließlich über Instagram verkaufen. Gegenbeispiel ist Nordstrom Local: Statt Kleiderständern gibt es Café-Atmosphäre mit professioneller Stylistenberatung, die zusammengestellten Outfits werden geliefert – der Händler schafft also Zusatznutzen und bleibt relevant.',
-    explanation: 'Begriff + Gründe + Beispiel + Gegenbeispiel.',
-    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-disintermediation', 'mc-d2c'],
+    explanation: 'Kernpunkte laut Skript: Begriff, Gründe, Beispiel, Gegenbeispiel.',
+    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-disintermediation'],
   },
   {
     id: 'qm5-11', chapterId: 'm5', type: 'transfer', goal: 'application', difficulty: 3,
@@ -117,7 +117,7 @@ export const questions5: Question[] = [
     ],
     modelAnswer: 'Passend ist ein exklusiver Vertrieb mit sehr wenigen Vertriebspartnern – er ist für teure Specialty Goods gedacht, deren wenige Kunden sachkundig bedient werden (wie die Tarbiana-Trüffelbutter nur in Spezialitätenläden und online). Zusätzlich bietet sich direkter Vertrieb an (eigene Boutique, Onlineshop): Er sichert die Kontrolle über Preise, Rabatte und Präsentation, eine enge Kundenbeziehung und ungefilterte Kundeninformationen – der hohe Aufwand ist bei kleiner Zielgruppe tragbar. So wird der Vertrieb als markenbildendes Element im Einklang mit dem hochwertigen Image geplant.',
     explanation: 'Specialty Good → exklusiv; Direktvertrieb sichert Kontrolle.',
-    source: 'Kapitel 5.2–5.3, PDF S. 22–24', conceptIds: ['mc-exklusiv', 'mc-direkt-indirekt', 'mc-vertrieb-einklang', 'mc-specialty'],
+    source: 'Kapitel 5.2–5.3, PDF S. 22–24', conceptIds: ['mc-distributionsgrad', 'mc-direkt-indirekt', 'mc-vertriebsziele', 'mc-specialty'],
   },
 
   // ======================= neue offene Fragen =======================
@@ -131,8 +131,8 @@ export const questions5: Question[] = [
       { point: 'Beste Produkte nutzen wenig, wenn sie nicht kostengünstig und zeitnah ankommen', keywords: ['kostengünstig', 'zeitnah', 'beste produkte', 'nutzen wenig', 'qualität der vertriebskanäle'] },
     ],
     modelAnswer: 'Die Distributions- bzw. Vertriebspolitik bezieht sich auf die Verteilung von Leistungen von der Produktion zur Konsumption (Meffert/Burmann/Kirchgeorg 2015). Sie stellt sicher, dass das Vertriebssystem effizient und effektiv gestaltet ist (akquisitorische Komponente) und dass die Konsumenten adäquaten Zugriff auf die Waren haben (logistische Komponente). Der Erfolg hängt nicht nur von der Qualität der Leistungen, sondern auch von der Qualität der Vertriebskanäle ab: Die besten Produkte nutzen wenig, wenn sie nicht kostengünstig und zeitnah bei den Konsumenten ankommen.',
-    explanation: 'Definition + zwei Komponenten + Erfolgsrelevanz.',
-    source: 'Kapitel 5.1, PDF S. 20', conceptIds: ['mc-distribution', 'mc-akquisitorisch', 'mc-logistisch'],
+    explanation: 'Kernpunkte laut Skript: Verteilung von Leistungen von der Produktion zur Konsumption; akquisitorische und logistische Komponente; Erfolg hängt auch von der Qualität der Vertriebskanäle ab.',
+    source: 'Kapitel 5.1, PDF S. 20', conceptIds: ['mc-distribution'],
   },
   {
     id: 'qm5-13', chapterId: 'm5', type: 'open', goal: 'understanding', difficulty: 2,
@@ -144,8 +144,8 @@ export const questions5: Question[] = [
       { point: 'Einklang: der Leistung angemessen, der Zielgruppe entgegenkommen, Image aus Preis- und Kommunikationspolitik unterstützen', keywords: ['angemessen', 'zielgruppe', 'image', 'einklang', 'preis- und kommunikationspolitik'] },
     ],
     modelAnswer: 'Aufgabe des Vertriebs ist es, die Verfügbarkeit von Leistungen für die Kunden zu gewährleisten. Drei Zielarten werden parallel verfolgt: psychologische Ziele (ein einzigartiges, markentreues und positives Kauferlebnis vermitteln), versorgungsorientierte Ziele (lückenlose Verfügbarkeit) und ökonomische Ziele (Absatzmenge, Preisniveau und Vertriebskosten optimieren). Die Distributionspolitik soll im Einklang mit den übrigen Marketingmaßnahmen stehen: der Unternehmensleistung angemessen sein, der Zielgruppe entgegenkommen und das durch Preis- und Kommunikationspolitik vermittelte Image unterstützen.',
-    explanation: 'Drei Zielarten + Einklang.',
-    source: 'Kapitel 5.1, PDF S. 20', conceptIds: ['mc-vertriebsziele', 'mc-vertrieb-einklang'],
+    explanation: 'Kernpunkte laut Skript: Drei Zielarten, Einklang.',
+    source: 'Kapitel 5.1, PDF S. 20', conceptIds: ['mc-vertriebsziele'],
   },
   {
     id: 'qm5-14', chapterId: 'm5', type: 'open', goal: 'distinction', difficulty: 3,
@@ -159,7 +159,7 @@ export const questions5: Question[] = [
     ],
     modelAnswer: 'Die Push-Strategie „drückt“ Produkte in den Handel, etwa durch Absatzförderungsmaßnahmen wie Rabatte, Boni oder Exklusivrechte; digital z. B. über Retail Media (bezahlte, gesponserte Produktplatzierungen auf Amazon) oder exklusive Verträge („Prime-Exklusivprodukte“, „Only at Zalando“). Sie ist sinnvoll, wenn die Markentreue gering ist, Kunden sich impulsiv im Geschäft entscheiden und der Produktnutzen relativ klar ist. Die Pull-Strategie erzeugt einen Nachfragesog: Der Hersteller richtet seine Kommunikation direkt an die Endkunden (Social-Media-Kampagnen, Content Marketing, gute Suchmaschinenplatzierung/SEO), um ein positives Image zu schaffen, das Konsumenten ins Geschäft oder in den Onlineshop zieht. Sie ist sinnvoll, wenn Kunden markentreu und stärker in den Kauf involviert sind. In der Regel wenden Unternehmen beide Strategien gleichzeitig an.',
     explanation: 'Vollständige Abgrenzung inkl. Einsatzbedingungen.',
-    source: 'Kapitel 5.1, PDF S. 20–21', conceptIds: ['mc-push-pull', 'mc-pull', 'mc-retail-media', 'mc-involvement'],
+    source: 'Kapitel 5.1, PDF S. 20–21', conceptIds: ['mc-push-pull', 'mc-pull', 'mc-involvement'],
   },
   {
     id: 'qm5-15', chapterId: 'm5', type: 'transfer', goal: 'application', difficulty: 3,
@@ -184,7 +184,7 @@ export const questions5: Question[] = [
       { point: 'Bezug: Pull bei stark involvierten Kunden; Content Marketing und SEO sind Pull-Maßnahmen', keywords: ['pull', 'nachfragesog'] },
     ],
     modelAnswer: 'Involvement liegt vor, wenn ein Konsument beim Produktkauf eine starke Beteiligung verspürt und viel Zeit in die Entscheidung investiert – bei solchen (und markentreuen) Kunden ist die Pull-Strategie sinnvoll. Content Marketing ist die gezielte Bereitstellung nützlicher Inhalte zur Kundenansprache und -bindung, z. B. ein Blog mit Tipps, YouTube-Tutorials oder Rezeptideen von Lebensmittelmarken. SEO ist die Optimierung von Webseiten für höhere Sichtbarkeit und ein besseres Ranking in Suchmaschinen wie Google. Content Marketing und SEO sind typische Pull-Maßnahmen, die einen Nachfragesog bei den Endkunden erzeugen.',
-    explanation: 'Drei Begriffe + Einordnung.',
+    explanation: 'Kernpunkte laut Skript: Involvement, Content Marketing und SEO; die Pull-Strategie ist sinnvoll bei markentreuen, stärker involvierten Kunden und nutzt Content Marketing und SEO.',
     source: 'Kapitel 5.1, PDF S. 20–21', conceptIds: ['mc-involvement', 'mc-content-marketing', 'mc-seo', 'mc-pull'],
   },
   {
@@ -197,8 +197,8 @@ export const questions5: Question[] = [
       { point: 'Leistungen: Nachfrage erzeugen, Kunden beraten, Risiko übernehmen, Marktforschung', keywords: ['nachfrage', 'beraten', 'risiko', 'marktforschung'] },
     ],
     modelAnswer: 'Intermediäre kaufen und verkaufen Sachgüter; sie bearbeiten diese zwar nicht weiter, verbinden sie aber oft mit relevanten Dienstleistungen. Weil es für Hersteller sehr aufwendig wäre, alle Vertriebsaufgaben selbst zu übernehmen, geben sie einen Großteil an Handelsunternehmen ab, die spezielle Kontakte, Kompetenz und Erfahrung haben: Diese erzeugen Nachfrage durch Marketingkommunikation, beraten Kunden bei Kaufentscheidungen, übernehmen Teile des Risikos und betreiben Marktforschung. Handelsunternehmen tragen zur Wertschöpfung bei, sofern sie den Kundennutzen steigern.',
-    explanation: 'Definition + Gründe + Leistungen des Handels.',
-    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-intermediaere', 'mc-handelsleistungen'],
+    explanation: 'Kernpunkte laut Skript: Definition, Gründe, Leistungen des Handels.',
+    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-intermediaere'],
   },
   {
     id: 'qm5-18', chapterId: 'm5', type: 'open', goal: 'understanding', difficulty: 3,
@@ -211,8 +211,8 @@ export const questions5: Question[] = [
       { point: 'Sortiment: qualitative Diskrepanz (auch andere Lebensmittel)', keywords: ['qualitativ', 'andere lebensmittel'] },
     ],
     modelAnswer: 'Handelsunternehmen tragen zur Wertschöpfung bei, sofern sie den Kundennutzen steigern – insbesondere durch die Überbrückung von Lücken zwischen Herstellung und Konsum. Räumliche Überbrückung: Transport der Waren vom Herstellungsort in die Nähe des Ge- oder Verbrauchsorts – Bananen aus Costa Rica, Kolumbien und Ecuador liegen in jedem Supermarkt. Zeitliche Überbrückung: Lagerung und Vorratshaltung sorgen für Verfügbarkeit zur rechten Zeit – Bananen werden nach der Ernte gekühlt und später in Reifereien durch Begasung mit Ethen nachgereift. Sortimentsgestaltung: Abstimmung des Herstellerangebots mit der Nachfrage – quantitativ liefern Importeure große Mengen, während Endverbraucher wenige Stück kaufen (quantitative Diskrepanz); qualitativ wollen Endverbraucher auch andere Lebensmittel mitnehmen (qualitative Diskrepanz).',
-    explanation: 'Drei Funktionen + zwei Diskrepanzarten.',
-    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-ueberbrueckung', 'mc-raeumlich', 'mc-zeitlich', 'mc-sortiment'],
+    explanation: 'Kernpunkte laut Skript: Drei Funktionen, zwei Diskrepanzarten.',
+    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-ueberbrueckung'],
   },
   {
     id: 'qm5-19', chapterId: 'm5', type: 'open', goal: 'distinction', difficulty: 2,
@@ -225,7 +225,7 @@ export const questions5: Question[] = [
     ],
     modelAnswer: 'Disintermediation ist der Trend zur Ausschaltung von Intermediären – die Zwischenstufe fällt weg, etwa wenn Hersteller per E-Commerce direkt an Endverbraucher verkaufen (D2C, z. B. Adidas oder Social Brands über Instagram). Bei der vertikalen Integration gliedert ein Unternehmen dagegen vor- oder nachgelagerte Wertschöpfungsstufen ein, die vorher eigenständige Akteure erbracht haben: Edeka betreibt in Hamburg eine eigene Bananenreiferei – die Funktion wird nicht beseitigt, sondern integriert.',
     explanation: 'Wegfall vs. Eingliederung einer Funktion.',
-    source: 'Kapitel 5.1, PDF S. 21–22', conceptIds: ['mc-disintermediation', 'mc-vertikale-integration', 'mc-d2c'],
+    source: 'Kapitel 5.1, PDF S. 21–22', conceptIds: ['mc-disintermediation', 'mc-vertikale-integration'],
   },
   {
     id: 'qm5-20', chapterId: 'm5', type: 'open', goal: 'distinction', difficulty: 3,
@@ -250,8 +250,8 @@ export const questions5: Question[] = [
       { point: 'Praxis: Mischformen aus direktem und indirektem Vertrieb', keywords: ['mischform', 'beides', 'direkt und indirekt'] },
     ],
     modelAnswer: 'Die Wahl erfolgt oft durch Vergleichsberechnungen: Die Handelsmarge wird den Kosten einer eigenen Vertriebsabteilung gegenübergestellt. Zusätzlich spielen die Zahl der Kunden, die Komplexität und der monetäre Wert des Produkts eine Rolle. In der Praxis entscheiden sich Unternehmen oft für Mischformen und nutzen direkten und indirekten Vertrieb.',
-    explanation: 'Entscheidungskriterien + Praxis.',
-    source: 'Kapitel 5.2, PDF S. 22', conceptIds: ['mc-vertriebsweg-wahl'],
+    explanation: 'Kernpunkte laut Skript: Vergleichsrechnung (Handelsmarge vs. Kosten einer eigenen Vertriebsabteilung), Zahl der Kunden, Komplexität und monetärer Wert des Produkts; in der Praxis oft Mischformen.',
+    source: 'Kapitel 5.2, PDF S. 22', conceptIds: ['mc-indirekt'],
   },
   {
     id: 'qm5-22', chapterId: 'm5', type: 'open', goal: 'distinction', difficulty: 3,
@@ -265,7 +265,7 @@ export const questions5: Question[] = [
     ],
     modelAnswer: 'Werden unternehmensunabhängige, externe Vertriebsorgane mit einer wesentlichen akquisitorischen Funktion beauftragt, spricht man von indirektem Vertrieb. Vertragshändler sind rechtlich selbstständig, aber durch Verträge fest in die Vertriebsstrategie des Anbieters eingebunden (typisch für die Automobilbranche). Franchisepartner sind noch stärker gebunden: Der Anbieter hat ein Weisungsrecht und darf Verhalten und Ergebnisse kontrollieren (z. B. Fast-Food-Restaurants). Absatzhelfer – Handelsvertreter (Kosmetik), Kommissionäre (Antiquitäten) und Makler (Immobilien, Versicherungen) – unterscheiden sich nach Tätigkeit, Dauer und Vergütungsanspruch und erwerben kein Eigentum an den Produkten. Absatzmittler sind Groß- und Einzelhandel: Der Großhandel verkauft große Mengen an gewerbliche Nachfrager, der Einzelhandel an private Endverbraucher; sie erwerben Eigentum.',
     explanation: 'Vier externe Vertriebsorgane mit Abgrenzung.',
-    source: 'Kapitel 5.2, PDF S. 22', conceptIds: ['mc-externe-vertriebsorgane', 'mc-vertragshaendler', 'mc-franchising', 'mc-absatzhelfer-mittler', 'mc-absatzmittler'],
+    source: 'Kapitel 5.2, PDF S. 22', conceptIds: ['mc-vertragshaendler', 'mc-franchising', 'mc-absatzhelfer-mittler', 'mc-absatzmittler'],
   },
   {
     id: 'qm5-23', chapterId: 'm5', type: 'open', goal: 'distinction', difficulty: 2,
@@ -304,7 +304,7 @@ export const questions5: Question[] = [
     ],
     modelAnswer: 'Die vertikale Gestaltung betrachtet die Stufen möglicher Vertriebsorgane, also die Länge der Vertriebskanäle; die horizontale Gestaltung bezieht sich auf die Zahl der unterschiedlichen Absatzmittler innerhalb der einzuschaltenden Absatzstufen. Die Breite des Vertriebssystems hängt von der Zahl der gewählten Vertriebskanäle ab (Homburg 2017): Beim Einkanalsystem wird nur ein Vertriebsweg genutzt (z. B. der Einzelhandel). Beim Mehrkanalvertrieb (Multichannel) – heute die Regel – nutzt ein Unternehmen mehrere Kanäle, um Kundensegmente zu erreichen (möve: Flagship- und Outlet-Stores, Onlineshop, Shop-in-Shops, Fachhändler, möve Professional). Beim Omnichannel-Marketing werden die bisher getrennten Kanäle nahtlos vernetzt, um ein durchgängiges, widerspruchsfreies Kundenerlebnis zu schaffen.',
     explanation: 'Länge vs. Breite + drei Ausprägungen.',
-    source: 'Kapitel 5.2–5.3, PDF S. 22–23', conceptIds: ['mc-vertikale-gestaltung', 'mc-horizontale-gestaltung', 'mc-breite', 'mc-einkanal', 'mc-multi-omni', 'mc-omnichannel'],
+    source: 'Kapitel 5.2–5.3, PDF S. 22–23', conceptIds: ['mc-vertikale-gestaltung', 'mc-horizontale-gestaltung', 'mc-breite', 'mc-multi-omni', 'mc-omnichannel'],
   },
   {
     id: 'qm5-26', chapterId: 'm5', type: 'transfer', goal: 'application', difficulty: 2,
@@ -329,8 +329,8 @@ export const questions5: Question[] = [
       { point: 'Exklusiv: sehr wenige Partner, teure Specialty Goods, sachkundige Bedienung (Tarbiana-Trüffelbutter)', keywords: ['exklusiv', 'specialty', 'trüffel', 'tarbiana', 'sehr wenige'] },
     ],
     modelAnswer: 'Auch innerhalb eines Vertriebskanals kann die Breite variieren – das beschreibt der Distributionsgrad: Je mehr Vertriebsorgane auf einer Stufe eingesetzt werden, desto intensiver ist der Vertrieb. Intensiver Vertrieb: sehr viele Partner, günstige Produkte, Convenience Goods, sinnvoll bei sehr großer Zielgruppe – „Deutsche Markenbutter“ in jedem Lebensmittelgeschäft. Selektiver Vertrieb: mehrere Partner, Shopping Goods – Andechser Bio-Almbutter vor allem in gut sortierten Bioläden. Exklusiver Vertrieb: sehr wenige Partner, teure Specialty Goods, wenige Gourmetkunden werden sachkundig bedient – Tarbiana-Trüffelbutter nur in Spezialitätenläden und online.',
-    explanation: 'Drei Distributionsgrade + Verknüpfung mit Kapitel 2.',
-    source: 'Kapitel 5.3, PDF S. 23–24', conceptIds: ['mc-distributionsgrad', 'mc-intensiv', 'mc-selektiv', 'mc-exklusiv'],
+    explanation: 'Kernpunkte laut Skript: Drei Distributionsgrade, Verknüpfung mit Kapitel 2.',
+    source: 'Kapitel 5.3, PDF S. 23–24', conceptIds: ['mc-distributionsgrad'],
   },
   {
     id: 'qm5-28', chapterId: 'm5', type: 'open', goal: 'fact', difficulty: 3,
@@ -344,7 +344,7 @@ export const questions5: Question[] = [
     ],
     modelAnswer: 'Produkt: Wie erklärungsbedürftig ist es, wie oft wird es gebraucht, ist es transport- und lagerfähig, wie viel Kundendienst ist nötig? Unternehmen: Größe, Finanzkraft, Erfahrung, Marktstellung, Strategie. Markt: Marktposition und Wachstumsraten der Vertriebskanäle. Kunden: Einkaufsverhalten. Absatzmittler: vertragliche Bindung, Flexibilität, Standort, Größe, Image, Beeinflussbarkeit, Vertriebskosten. Konkurrenz: Vertriebsstrategie der Konkurrenz. Umfeld: Technologie, Gesetzgebung, soziokulturelle Veränderungen. Der Vertrieb ist dabei als markenbildendes Element im Einklang mit den übrigen Marketingmaßnahmen zu planen.',
     explanation: 'Sieben Faktoren aus der Tabelle auf S. 24.',
-    source: 'Kapitel 5.3, PDF S. 24', conceptIds: ['mc-einflussfaktoren-vertrieb', 'mc-vertrieb-einklang'],
+    source: 'Kapitel 5.3, PDF S. 24', conceptIds: ['mc-einflussfaktoren-vertrieb', 'mc-vertriebsziele'],
   },
   {
     id: 'qm5-29', chapterId: 'm5', type: 'transfer', goal: 'application', difficulty: 3,
@@ -357,7 +357,7 @@ export const questions5: Question[] = [
     ],
     modelAnswer: 'Produkt: Das Werkzeug ist teuer und sehr erklärungsbedürftig, es braucht Beratung und Kundendienst – ein intensiver Vertrieb über viele Händler scheidet aus; sinnvoll ist ein selektiver oder sogar exklusiver Vertrieb über wenige, fachkundige Partner. Unternehmen: Die geringe Finanzkraft spricht gegen einen großen eigenen Außendienst, weil der direkte Vertrieb hohen Aufwand bedeutet. Empfehlenswert ist daher eine Mischform: indirekter Vertrieb über spezialisierte Absatzhelfer (z. B. Handelsvertreter, die nur bei Abschluss eine Provision erhalten) oder ausgewählten Fachhandel, ergänzt um direkte Elemente wie einen Onlineshop mit Beratung, um Kundenkontakt und ungefilterte Informationen zu sichern. Die Wahl sollte durch eine Vergleichsrechnung (Handelsmarge vs. Kosten eigener Vertrieb) abgesichert werden.',
     explanation: 'Einflussfaktoren → begründete Vertriebsentscheidung (mehrere vertretbare Lösungen, Begründung zählt).',
-    source: 'Kapitel 5.2–5.3, PDF S. 22–24', conceptIds: ['mc-einflussfaktoren-vertrieb', 'mc-vertriebsweg-wahl', 'mc-selektiv', 'mc-absatzhelfer-mittler'],
+    source: 'Kapitel 5.2–5.3, PDF S. 22–24', conceptIds: ['mc-einflussfaktoren-vertrieb', 'mc-indirekt', 'mc-distributionsgrad', 'mc-absatzhelfer-mittler'],
   },
 
   // ======================= neue geschlossene Fragen =======================
@@ -380,7 +380,7 @@ export const questions5: Question[] = [
     options: ['Push-Strategie', 'Pull-Strategie', 'Disintermediation', 'Exklusiver Vertrieb'],
     correctOptions: [0],
     explanation: 'Retail Media ist eine digitale Form der Push-Strategie, ebenso exklusive Verträge wie „Prime-Exklusivprodukte“ oder „Only at Zalando“.',
-    source: 'Kapitel 5.1, PDF S. 20', conceptIds: ['mc-retail-media', 'mc-push-pull'],
+    source: 'Kapitel 5.1, PDF S. 20', conceptIds: ['mc-push-pull'],
   },
   {
     id: 'qm5-32', chapterId: 'm5', type: 'multiple_choice', goal: 'understanding', difficulty: 2,
@@ -426,14 +426,14 @@ export const questions5: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Intermediäre verbinden die Waren oft mit relevanten Dienstleistungen und übernehmen u. a. Teile des Risikos.',
-    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-intermediaere', 'mc-handelsleistungen'],
+    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-intermediaere'],
   },
   {
     id: 'qm5-36', chapterId: 'm5', type: 'cloze', goal: 'understanding', difficulty: 2,
     prompt: 'Importeure liefern große Mengen, Endverbraucher kaufen wenige Stück – das ist eine ______ Diskrepanz. Dass Endverbraucher zusätzlich andere Lebensmittel mitnehmen wollen, ist eine ______ Diskrepanz.',
     clozeAnswers: [['quantitative', 'quantitativ'], ['qualitative', 'qualitativ']],
     explanation: 'Beide werden durch die Sortimentsgestaltung des Handels überbrückt.',
-    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-sortiment'],
+    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-ueberbrueckung'],
   },
   {
     id: 'qm5-37', chapterId: 'm5', type: 'single_choice', goal: 'fact', difficulty: 1,
@@ -441,7 +441,7 @@ export const questions5: Question[] = [
     options: ['Adidas und „Social Brands“, die ausschließlich über Instagram verkaufen', 'Edeka und Rewe', 'Nordstrom Local', 'Karstadt und Kaufhof'],
     correctOptions: [0],
     explanation: 'Nordstrom Local ist das Gegenbeispiel zur Disintermediation; Edeka steht für vertikale Integration.',
-    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-d2c'],
+    source: 'Kapitel 5.1, PDF S. 21', conceptIds: ['mc-disintermediation'],
   },
   {
     id: 'qm5-38', chapterId: 'm5', type: 'assignment', goal: 'distinction', difficulty: 2,
@@ -527,7 +527,7 @@ export const questions5: Question[] = [
       { left: 'Omnichannel-Marketing', right: 'Alle Kanäle nahtlos vernetzt – durchgängiges, widerspruchsfreies Erlebnis' },
     ],
     explanation: 'Breite nach Homburg (2017).',
-    source: 'Kapitel 5.3, PDF S. 23', conceptIds: ['mc-einkanal', 'mc-multi-omni', 'mc-omnichannel', 'mc-breite'],
+    source: 'Kapitel 5.3, PDF S. 23', conceptIds: ['mc-breite', 'mc-multi-omni', 'mc-omnichannel'],
   },
   {
     id: 'qm5-46', chapterId: 'm5', type: 'single_choice', goal: 'application', difficulty: 2,
@@ -577,7 +577,7 @@ export const questions5: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Der Vertrieb soll der Leistung angemessen sein, der Zielgruppe entgegenkommen und das Image unterstützen.',
-    source: 'Kapitel 5.1 und 5.3, PDF S. 20 und 24', conceptIds: ['mc-vertrieb-einklang'],
+    source: 'Kapitel 5.1 und 5.3, PDF S. 20 und 24', conceptIds: ['mc-vertriebsziele'],
   },
   {
     id: 'qm5-51', chapterId: 'm5', type: 'true_false', goal: 'understanding', difficulty: 3,

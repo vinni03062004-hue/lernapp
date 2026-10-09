@@ -13,7 +13,7 @@ export const questions3: Question[] = [
       'Um Vertriebspartner auszuwählen',
     ],
     correctOptions: [0],
-    explanation: 'Aufgaben der Marketingkommunikation: informieren, überzeugen, erinnern.',
+    explanation: 'Aufgabe der Marketingkommunikation: informieren, überzeugen, erinnern.',
     source: 'Kapitel 3.1, PDF S. 11', conceptIds: ['mc-komm-aufgaben', 'mc-kommunikationspolitik'],
   },
   {
@@ -87,7 +87,7 @@ export const questions3: Question[] = [
       { left: 'Engagement Rate', right: 'Wie aktiv Nutzer reagieren (Kommentare, Shares, Likes pro Post)' },
     ],
     explanation: 'Digitale Messgrößen zur Messung der Kommunikationsergebnisse (Schritt 7).',
-    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-kpis', 'mc-ctr', 'mc-conversion', 'mc-engagement'],
+    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-kpis'],
   },
   {
     id: 'qm3-09', chapterId: 'm3', type: 'transfer', goal: 'application', difficulty: 3,
@@ -100,7 +100,7 @@ export const questions3: Question[] = [
     ],
     modelAnswer: 'Geeignet sind Mund-zu-Mund-Kommunikation bzw. Influencer-Marketing und interaktives Marketing. WoM ist wegen der persönlichen Bindung sehr einflussreich und zeitnah; über Influencer nutzt das Label die authentische Stimme und Glaubwürdigkeit reichweitenstarker Personen und kann einen viralen Effekt erzielen. Interaktives Marketing (Social Media, Retargeting, suchgebundene Anzeigen) erlaubt individuelle Ansprache, und über digitale Daten lassen sich die Interessen der Konsumenten ermitteln. Auch PR wäre wegen vergleichsweise geringer Kosten und hoher Glaubwürdigkeit denkbar. Klassische Werbung ist dagegen teuer, erlaubt keine individuelle Ansprache, und ihre Effizienz ist schwer messbar – für ein kleines Budget ungeeignet. Nachteil von WoM: begrenzte Einflussmöglichkeiten und schwer messbare Wirkung.',
     explanation: 'Instrumentenwahl hängt u. a. vom verfügbaren Budget ab (Faktor 6 der Medienkombination).',
-    source: 'Kapitel 3.1–3.2, PDF S. 12–15', conceptIds: ['mc-wom', 'mc-influencer', 'mc-interaktiv', 'mc-werbung', 'mc-medienkombination'],
+    source: 'Kapitel 3.1–3.2, PDF S. 12–15', conceptIds: ['mc-wom', 'mc-interaktiv', 'mc-werbung', 'mc-kommmix'],
   },
 
   // ======================= neue offene Fragen =======================
@@ -114,7 +114,7 @@ export const questions3: Question[] = [
       { point: 'Medienneutral: alle Kanäle objektiv nach Effektivität (Nutzen) und Effizienz (Aufwand) bewerten', keywords: ['medienneutral', 'effektivität', 'effizienz', 'objektiv'] },
     ],
     modelAnswer: 'Kommunikationspolitik gestaltet und übermittelt Informationen, um die Konsumenten im Sinne der Unternehmensziele zu beeinflussen (Homburg 2017). Eine kohärente Marketingkommunikation macht Marken bekannt und füllt sie mit Inhalt, schafft also Markenassoziationen – das gelingt nur mit stimmigen Botschaften und strategischer Positionierung. Deshalb müssen die Kommunikationsaktivitäten integriert und aufeinander abgestimmt werden. Medienneutrale Planung heißt, alle Kommunikationsoptionen und -kanäle objektiv nach ihrer Effektivität (Nutzen) und Effizienz (betriebener Aufwand) zu bewerten.',
-    explanation: 'Definition + Integration + Medienneutralität.',
+    explanation: 'Kernpunkte laut Skript: Definition, Integration, Medienneutralität.',
     source: 'Kapitel 3.1, PDF S. 11', conceptIds: ['mc-kommunikationspolitik', 'mc-integrierte-kommunikation', 'mc-medienneutral'],
   },
   {
@@ -127,7 +127,7 @@ export const questions3: Question[] = [
       { point: 'Einstellungen der Nachfrager; Kaufabsicht', keywords: ['einstellung', 'kaufabsicht'] },
     ],
     modelAnswer: 'Ökonomische (wirtschaftliche) Ziele wie Marktanteil, Kundenzahl, Absatz und Rentabilität beziehen sich auf den Marketingmix als Ganzes und lassen sich nicht allein der Kommunikation zurechnen. Nur die vorökonomischen (potenzialbezogenen) Ziele sind reine Kommunikationsziele: Kategoriebedürfnis, Bekanntheitsgrad und Image, Einstellungen der Nachfrager zum Unternehmen und zu den Produkten sowie die Kaufabsicht.',
-    explanation: 'Abgrenzung + vier reine Kommunikationsziele.',
+    explanation: 'Kernpunkte laut Skript: Abgrenzung, vier reine Kommunikationsziele.',
     source: 'Kapitel 3.1, PDF S. 11', conceptIds: ['mc-komm-ziele', 'mc-kategoriebeduerfnis'],
   },
   {
@@ -152,8 +152,8 @@ export const questions3: Question[] = [
       { point: '7. Ergebnisse messen, 8. Prozess steuern', keywords: ['messen', 'ergebnisse', 'steuern', 'überwach'] },
     ],
     modelAnswer: '1. Zielgruppe auswählen: An wen richtet sich die Kommunikation (ganzes Marktsegment oder Teilmenge)? 2. Kommunikationsziele festlegen: Welche konkreten Ziele in welchem Zeitraum? 3. Kommunikationsbotschaft bestimmen: Was soll wie und von wem gesagt werden? 4. Kommunikationskanäle auswählen: persönliche Kanäle oder Massenkanäle (Grenzen verwischen durch soziale Medien, programmatische Werbung, KI). 5. Budget festlegen: z. B. nach finanziellen Möglichkeiten, Prozent vom Umsatz, an Mitbewerbern orientiert oder – empfohlen – auf Basis von Zielen und Aufgaben. 6. Kommunikationsmix gestalten: Medien und Kanäle unter Berücksichtigung von Merkmalen und Kosten durchdacht kombinieren. 7. Kommunikationsergebnisse messen: Konsumentenbefragungen, CTR, Conversion Rate, Engagement Rate. 8. Marketingkommunikationsprozess steuern: Instrumente kontinuierlich überwachen, koordinieren und anpassen, zunehmend per Marketing-Automatisierung.',
-    explanation: 'Reihenfolge + Kerninhalt je Schritt.',
-    source: 'Kapitel 3.1, PDF S. 11–12', conceptIds: ['mc-8schritte-komm', 'mc-zielgruppe', 'mc-botschaft', 'mc-kanaele', 'mc-budget', 'mc-ergebnismessung', 'mc-prozesssteuerung'],
+    explanation: 'Kernpunkte laut Skript: Reihenfolge, Kerninhalt je Schritt.',
+    source: 'Kapitel 3.1, PDF S. 11–12', conceptIds: ['mc-8schritte-komm'],
   },
   {
     id: 'qm3-14', chapterId: 'm3', type: 'open', goal: 'fact', difficulty: 2,
@@ -166,7 +166,7 @@ export const questions3: Question[] = [
     ],
     modelAnswer: 'Das Budget kann nach den finanziellen Möglichkeiten, als Prozentsatz des Umsatzes, orientiert an den Mitbewerbern oder auf Basis von Zielen und Aufgaben festgelegt werden. Empfehlenswert ist laut Skript der Weg auf Basis von Zielen und Aufgaben.',
     explanation: 'Schritt 5 der Kommunikationsplanung.',
-    source: 'Kapitel 3.1, PDF S. 11', conceptIds: ['mc-budget'],
+    source: 'Kapitel 3.1, PDF S. 11', conceptIds: ['mc-8schritte-komm'],
   },
   {
     id: 'qm3-15', chapterId: 'm3', type: 'open', goal: 'understanding', difficulty: 2,
@@ -178,8 +178,8 @@ export const questions3: Question[] = [
       { point: 'Beispiel: KI-personalisierte Coupons in Retail-Apps (Lidl, REWE, dm)', keywords: ['coupon', 'lidl', 'rewe', 'dm', 'personalisiert'], weight: 0.5 },
     ],
     modelAnswer: 'Retargeting ist eine Onlinestrategie, bei der ehemalige Besucher gezielt erneut angesprochen werden – z. B. mit einer Instagram-Anzeige für zuvor angesehene Produkte. Programmatische Werbung ist automatisierter Anzeigenhandel über Algorithmen, die Werbeflächen in Echtzeit ersteigern. Bei der Kanalwahl (Schritt 4) unterscheidet man grob persönliche Kanäle und Massenkanäle; diese Grenzen verwischen jedoch durch soziale Medien, programmatische Werbung und KI, die massenhaft und zugleich personalisiert ansprechen – etwa KI-personalisierte Coupons in den Retail-Apps von Lidl, REWE oder dm.',
-    explanation: 'Zwei digitale Begriffe + Einordnung in Schritt 4.',
-    source: 'Kapitel 3.1, PDF S. 11–12', conceptIds: ['mc-retargeting', 'mc-programmatic', 'mc-kanaele'],
+    explanation: 'Kernpunkte laut Skript: Retargeting und programmatische Werbung; in Schritt 4 (Kanäle auswählen) verwischen die Grenzen durch soziale Medien, programmatische Werbung und KI.',
+    source: 'Kapitel 3.1, PDF S. 11–12', conceptIds: ['mc-retargeting', 'mc-programmatic', 'mc-8schritte-komm'],
   },
   {
     id: 'qm3-16', chapterId: 'm3', type: 'open', goal: 'understanding', difficulty: 2,
@@ -191,8 +191,8 @@ export const questions3: Question[] = [
       { point: 'Einordnung: Schritt 7 – Kommunikationsergebnisse messen', keywords: ['schritt 7', 'ergebnisse messen', 'wirkung', 'messen'] },
     ],
     modelAnswer: 'Die Click-Through-Rate misst die Klickhäufigkeit von Anzeigen – z. B. ein Banner wird gesehen, 1 % klickt. Die Conversion Rate ist der Anteil der Besucher, die eine Zielhandlung ausführen – 100 Besucher, 5 Käufe = 5 %. Die Engagement Rate misst, wie aktiv Nutzer reagieren, etwa Kommentare, Shares und Likes pro Post. Alle drei sind digitale Messgrößen für Schritt 7 „Kommunikationsergebnisse messen“ (neben Konsumentenbefragungen).',
-    explanation: 'Drei Kennzahlen + Einordnung.',
-    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-ctr', 'mc-conversion', 'mc-engagement', 'mc-ergebnismessung'],
+    explanation: 'Kernpunkte laut Skript: CTR, Conversion Rate und Engagement Rate als digitale Messgrößen in Schritt 7 (Kommunikationsergebnisse messen).',
+    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-kpis', 'mc-8schritte-komm'],
   },
   {
     id: 'qm3-17', chapterId: 'm3', type: 'open', goal: 'fact', difficulty: 2,
@@ -204,8 +204,8 @@ export const questions3: Question[] = [
       { point: 'Kaufentscheidung: kognitiver/sonstiger Aufwand – impulsiv, habituell, limitiert, extensiv', keywords: ['aufwand', 'impulsiv', 'habituell', 'limitiert', 'extensiv'] },
     ],
     modelAnswer: 'Auswahl und Kombination hängen ab von (1) der Marktstellung des Unternehmens, (2) der Art des Produktmarkts (Konsum oder Industrie), (3) den Charakteristiken der Zielgruppe, (4) der Kaufbereitschaft der Konsumenten und der Art der Kaufentscheidung, (5) der Phase im Lebenszyklus und (6) dem zur Verfügung stehenden Budget. Die Kaufentscheidung bezieht sich darauf, mit welchem kognitiven und sonstigen Aufwand ein Kauf verbunden ist; man unterscheidet impulsive, habituelle, limitierte und extensive Kaufentscheidungen.',
-    explanation: 'Sechs Faktoren + Kaufentscheidungstypen.',
-    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-medienkombination', 'mc-kaufentscheidung'],
+    explanation: 'Kernpunkte laut Skript: Sechs Faktoren, Kaufentscheidungstypen.',
+    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-kommmix', 'mc-kaufentscheidung'],
   },
   {
     id: 'qm3-18', chapterId: 'm3', type: 'open', goal: 'understanding', difficulty: 3,
@@ -232,7 +232,7 @@ export const questions3: Question[] = [
       { point: 'Folge: definierte Zielgruppen leichter, viele Konsumenten über ein Medium schwerer erreichbar (Wetten, dass?)', keywords: ['einfacher', 'schwieriger', 'ein einziges medium', 'wetten'] },
     ],
     modelAnswer: 'Massenmediale Kommunikation richtet sich an eine Masse von Empfängern und ist nicht individuell auf Personen abgestimmt; persönliche Kommunikation richtet sich an individuelle Konsumenten und kann in Form und Inhalt angepasst werden. Fragmentierung bezeichnet die Änderung der Struktur der Medienlandschaft: Klassische Mainstreammedien verlieren an Reichweite, stattdessen gibt es immer mehr Angebote mit sehr spitzen Zielgruppensegmenten. Dadurch wird es einfacher, genau definierte Zielgruppen zu erreichen, aber schwieriger, viele Konsumenten über ein einziges Medium zu erreichen – „Wetten, dass?“ hatte in den 80ern 20 Mio. Zuschauer, vor der Einstellung 2014 nur noch 6–7 Mio.',
-    explanation: 'Abgrenzung + Fragmentierung mit Beispiel.',
+    explanation: 'Kernpunkte laut Skript: Abgrenzung, Fragmentierung mit Beispiel.',
     source: 'Kapitel 3.2, PDF S. 12', conceptIds: ['mc-massenmedial', 'mc-persoenliche-komm', 'mc-fragmentierung'],
   },
   {
@@ -245,8 +245,8 @@ export const questions3: Question[] = [
       { point: 'Nachteile: hohe Kosten, Werbemüdigkeit, Ausblenden, keine individuelle Ansprache, schwer messbar', keywords: ['kosten', 'werbemüdigkeit', 'ausblenden', 'individuelle ansprache', 'schwer messbar'] },
     ],
     modelAnswer: 'Werbung ist die unpersönliche, durch einen explizit genannten Auftraggeber bezahlte Präsentation von Produkten. Kanäle: Printmedien (Zeitungen, Flyer), Übertragungsmedien (Radio, TV, Kino), Displaymedien (Plakate, Schilder) und digitale Medien (soziale Netzwerke, Suchmaschinen, Websites, Apps). Vorteile: Erreichbarkeit einer großen Menge von Konsumenten, starke Ausdruckskraft durch Bild, Ton und Farbe, präsente und wiederholbare Botschaft, Aufbau eines positiven Images, volle Kontrolle über die Produktpräsentation. Nachteile: hohe Kosten, Werbemüdigkeit, mögliches Ausblenden durch neue Technologie, keine individuelle Ansprache, Effizienz und Effektivität schwer messbar.',
-    explanation: 'Definition + Kanäle + Vor-/Nachteile.',
-    source: 'Kapitel 3.2, PDF S. 13', conceptIds: ['mc-werbung', 'mc-werbemuedigkeit'],
+    explanation: 'Kernpunkte laut Skript: Definition, Kanäle, Vor-/Nachteile.',
+    source: 'Kapitel 3.2, PDF S. 13', conceptIds: ['mc-werbung'],
   },
   {
     id: 'qm3-21', chapterId: 'm3', type: 'open', goal: 'understanding', difficulty: 2,
@@ -258,7 +258,7 @@ export const questions3: Question[] = [
       { point: 'Gefahr: Wirkungsnachlass, Schaden für den Markenwert', keywords: ['markenwert', 'wirkungsnachlass', 'schaden', 'nachlass'] },
     ],
     modelAnswer: 'Verkaufsförderung (Promotion) ist die kurzfristige Anregung von Verkauf durch gezielte Anreize wie Warenproben, Coupons, Preisnachlässe, Flash Sales oder Gamification. Sie hat an Bedeutung gewonnen, weil die Wirkung klassischer Werbung nachlässt. Sie liefert keine Argumente im Sinne von Wettbewerbsvorteilen, sondern greifbare, direkte Anreize zum Handeln (z. B. Black Friday); durch die zeitliche Limitierung lassen sich die Effekte messen. Zu starker oder zu häufiger Einsatz führt aber zu Wirkungsnachlass und kann dem Markenwert schaden.',
-    explanation: 'Definition + Bedeutungsgewinn + Abgrenzung + Risiko.',
+    explanation: 'Kernpunkte laut Skript: kurzfristige Anregung von Verkauf durch Anreize; gewinnt an Bedeutung, weil die Wirkung klassischer Werbung nachlässt; direkte Anreize statt Wettbewerbsargumente; zu starker Einsatz kann dem Markenwert schaden.',
     source: 'Kapitel 3.2, PDF S. 13', conceptIds: ['mc-verkaufsfoerderung'],
   },
   {
@@ -271,7 +271,7 @@ export const questions3: Question[] = [
       { point: 'Beispiele: Mercedes/Fashion Week Berlin, Red Bull Music Academy/Flugtage', keywords: ['mercedes', 'fashion week', 'red bull'], weight: 0.5 },
     ],
     modelAnswer: 'Unternehmen organisieren und/oder unterstützen finanziell Aktivitäten und Programme in Sport, Kunst, Unterhaltung oder Wohltätigkeit – auch Festivals, virtuelle Events, Webinare, Werksbesichtigungen, Firmenmuseen (Porschemuseum) oder Aktionen in Fußgängerzonen. Der Sponsor tritt in markenaufbauenden Kontakt und schafft durch gemeinsame Erlebnisse eine emotionale Bindung (z. B. Mercedes bei der Fashion Week Berlin, Red Bull mit Music Academy und Flugtagen). Neben ökonomischen Größen (Umsatz, Gewinn, Marktanteil) werden vor allem psychologische Ziele verfolgt: Steigerung der Bekanntheit, Imageverbesserung, Kontaktpflege und der Nachweis gesellschaftlichen Engagements und Verantwortung.',
-    explanation: 'Definition + Wirkung + Ziele.',
+    explanation: 'Kernpunkte laut Skript: Definition, Wirkung, Ziele.',
     source: 'Kapitel 3.2, PDF S. 13–14', conceptIds: ['mc-sponsoring'],
   },
   {
@@ -286,7 +286,7 @@ export const questions3: Question[] = [
       { point: 'Balancefunktion (Anreiz-Beitrags-Gleichgewicht) und Stabilisierungsfunktion (Krisenfestigkeit)', keywords: ['balance', 'anreiz-beitrag', 'gleichgewicht', 'stabilisierung', 'krisenfest'] },
     ],
     modelAnswer: 'Informationsfunktion: Vermittlung von Informationen an die Öffentlichkeit. Kontaktfunktion: Aufbau und Aufrechterhaltung der Stakeholderverbindungen. Imagefunktion: Aufbau, Änderung und Pflege des Unternehmensbildes. Absatzförderungsfunktion: Verkaufsförderung durch Anerkennung und Vertrauen. Sozialfunktion: Aufzeigen der gesellschaftlichen und sozialen Unternehmensleistungen. Balancefunktion: Anreiz-Beitrags-Gleichgewicht der Unternehmensstakeholder. Stabilisierungsfunktion: Erhöhung der Krisenfestigkeit aufgrund stabiler Beziehungen zu den Anspruchsgruppen.',
-    explanation: 'Typische Aufzählungsfrage – alle sieben mit Kurzerklärung.',
+    explanation: 'Laut Skript (S. 14, Meffert et al. 2015): Informations-, Kontakt-, Image-, Absatzförderungs-, Sozial-, Balance- und Stabilisierungsfunktion.',
     source: 'Kapitel 3.2, PDF S. 14', conceptIds: ['mc-pr-funktionen', 'mc-pr'],
   },
   {
@@ -312,8 +312,8 @@ export const questions3: Question[] = [
       { point: 'Grenzen: begrenzte Einflussmöglichkeiten der Unternehmen, Wirkung schwer messbar', keywords: ['begrenzte einfluss', 'schwer messbar', 'einflussmöglichkeit'] },
     ],
     modelAnswer: 'Mund-zu-Mund-Kommunikation (Word-of-Mouth) ist die persönliche Kommunikation von Konsumenten untereinander über ihre Erfahrungen mit Unternehmen und Produkten – zunehmend elektronisch über soziale Medien und Blogs. Formen: Buzz Marketing (Mundpropaganda in Foren, auf Bewertungsplattformen oder Plattformen wie Instagram oder Reddit), Viral Marketing (Verbreitung wird über Influencer oder Onlinemedien multipliziert) und Influencer-Marketing (strategische Kooperation mit reichweitenstarken Personen, deren authentische Stimme und Glaubwürdigkeit genutzt werden). Wegen der persönlichen Bindung ist WoM sehr einflussreich, dialogisch und zeitnah (Amazon nutzt Kundenbewertungen zur Verbesserung der Angebote). Grenzen: Unternehmen haben nur begrenzte Einflussmöglichkeiten, und die Wirkung ist schwer messbar.',
-    explanation: 'Definition + drei Formen + Vor-/Nachteile.',
-    source: 'Kapitel 3.2, PDF S. 15', conceptIds: ['mc-wom', 'mc-buzz', 'mc-viral', 'mc-influencer'],
+    explanation: 'Kernpunkte laut Skript: Definition, drei Formen, Vor-/Nachteile.',
+    source: 'Kapitel 3.2, PDF S. 15', conceptIds: ['mc-wom'],
   },
   {
     id: 'qm3-26', chapterId: 'm3', type: 'open', goal: 'understanding', difficulty: 2,
@@ -352,7 +352,7 @@ export const questions3: Question[] = [
     ],
     modelAnswer: 'Die Kommunikation ist nicht integriert. Nach Keller/Swaminathan ist vor allem das Kriterium Gemeinsamkeit verletzt, weil die Wege keine konsistente Botschaft vermitteln; auch Komplementarität fehlt, da sich die Kanäle nicht gegenseitig ergänzen. Kommunikationsaktivitäten müssen integriert und aufeinander abgestimmt werden, damit eine einheitliche und stimmige Markenbotschaft entsteht. Zudem wird Schritt 8 vernachlässigt: Instrumente dürfen nicht isoliert laufen, sondern müssen kontinuierlich überwacht, koordiniert und bei Bedarf angepasst werden – zunehmend über Marketing-Automatisierungssysteme.',
     explanation: 'Anwendung der IMK-Kriterien auf einen Missstand.',
-    source: 'Kapitel 3.1, PDF S. 11–12 und 16', conceptIds: ['mc-6kriterien', 'mc-integrierte-kommunikation', 'mc-prozesssteuerung', 'mc-kommmix'],
+    source: 'Kapitel 3.1, PDF S. 11–12 und 16', conceptIds: ['mc-6kriterien', 'mc-integrierte-kommunikation', 'mc-8schritte-komm', 'mc-kommmix'],
   },
   {
     id: 'qm3-29', chapterId: 'm3', type: 'transfer', goal: 'application', difficulty: 2,
@@ -364,7 +364,7 @@ export const questions3: Question[] = [
     ],
     modelAnswer: 'Rabattaktionen sind Verkaufsförderung – kurzfristige, direkte Kaufanreize. Laut Skript führt ein zu starker oder zu häufiger Einsatz zu Wirkungsnachlass: Die Wirkung lässt mit der Zeit nach, und Konsumenten blenden verkaufsfördernde Maßnahmen wegen Überfrachtung aus. Außerdem kann dies dem Markenwert schaden – Kunden gewöhnen sich an Rabatte und kaufen nur noch mit Gutschein.',
     explanation: 'Nachteile der Verkaufsförderung in der Praxis.',
-    source: 'Kapitel 3.2, PDF S. 13', conceptIds: ['mc-verkaufsfoerderung', 'mc-konsistenter-mix'],
+    source: 'Kapitel 3.2, PDF S. 13', conceptIds: ['mc-verkaufsfoerderung', 'mc-brandequity'],
   },
 
   // ======================= neue geschlossene Fragen =======================
@@ -392,7 +392,7 @@ export const questions3: Question[] = [
       { left: 'Merit Beauty verlagert 2025 kurzfristig Budget von TikTok', right: 'Marketingkommunikationsprozess steuern' },
     ],
     explanation: 'Alle Beispiele stammen aus der Acht-Schritte-Liste im Skript.',
-    source: 'Kapitel 3.1, PDF S. 11–12', conceptIds: ['mc-8schritte-komm', 'mc-zielgruppe', 'mc-botschaft', 'mc-kommmix', 'mc-ergebnismessung', 'mc-prozesssteuerung'],
+    source: 'Kapitel 3.1, PDF S. 11–12', conceptIds: ['mc-8schritte-komm', 'mc-kommmix'],
   },
   {
     id: 'qm3-32', chapterId: 'm3', type: 'single_choice', goal: 'fact', difficulty: 1,
@@ -400,14 +400,14 @@ export const questions3: Question[] = [
     options: ['Auf Basis von Zielen und Aufgaben', 'Als Prozentsatz des Umsatzes', 'Nach den finanziellen Möglichkeiten', 'Orientiert an den Mitbewerbern'],
     correctOptions: [0],
     explanation: 'Die ziel- und aufgabenorientierte Budgetierung ist der empfehlenswerte Weg.',
-    source: 'Kapitel 3.1, PDF S. 11', conceptIds: ['mc-budget'],
+    source: 'Kapitel 3.1, PDF S. 11', conceptIds: ['mc-8schritte-komm'],
   },
   {
     id: 'qm3-33', chapterId: 'm3', type: 'cloze', goal: 'application', difficulty: 1,
     prompt: 'Ein Onlineshop hat 100 Besucher, von denen 5 kaufen. Die Conversion Rate beträgt damit ______ Prozent.',
     clozeAnswers: [['5', 'fünf', '5 %', '5%']],
     explanation: 'Conversion Rate = Anteil der Besucher mit Zielhandlung: 5 von 100 = 5 %.',
-    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-conversion'],
+    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-kpis'],
   },
   {
     id: 'qm3-34', chapterId: 'm3', type: 'true_false', goal: 'fact', difficulty: 1,
@@ -435,7 +435,7 @@ export const questions3: Question[] = [
     options: ['Marktstellung des Unternehmens', 'Phase im Lebenszyklus', 'Zur Verfügung stehendes Budget', 'Geschlecht des Geschäftsführers', 'Art des Produktmarkts (Konsum oder Industrie)'],
     correctOptions: [0, 1, 2, 4],
     explanation: 'Sechs Faktoren: Marktstellung, Art des Produktmarkts, Zielgruppencharakteristiken, Kaufbereitschaft/Art der Kaufentscheidung, Lebenszyklusphase, Budget.',
-    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-medienkombination'],
+    source: 'Kapitel 3.1, PDF S. 12', conceptIds: ['mc-kommmix'],
   },
   {
     id: 'qm3-37', chapterId: 'm3', type: 'assignment', goal: 'distinction', difficulty: 2,
@@ -584,7 +584,7 @@ export const questions3: Question[] = [
       { left: 'Influencer-Marketing', right: 'Kooperation mit reichweitenstarken Personen, deren authentische Stimme genutzt wird' },
     ],
     explanation: 'Influencer-Marketing ist die gezielte strategische Nutzung des viralen Effekts.',
-    source: 'Kapitel 3.2, PDF S. 15', conceptIds: ['mc-buzz', 'mc-viral', 'mc-influencer'],
+    source: 'Kapitel 3.2, PDF S. 15', conceptIds: ['mc-wom'],
   },
   {
     id: 'qm3-51', chapterId: 'm3', type: 'single_choice', goal: 'fact', difficulty: 1,

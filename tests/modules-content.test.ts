@@ -3,7 +3,7 @@ import { getModuleById, MODULE_IDS } from '@/content';
 import { answerFromKnowledge, buildKnowledgeBase, retrieve } from '@/lib/retrieval';
 import { buildExamContext, pickFocusConcepts } from '@/lib/ai-exam';
 import { scoreAnswer } from '@/lib/scoring';
-import { cardOverrides } from '@/content/marketing1/lernkarten';
+import { cardOverrides, overviewIds } from '@/content/marketing1/lernkarten';
 import { LearningModule, Question } from '@/lib/types';
 
 const OPEN_TYPES = ['open', 'transfer', 'image_open'];
@@ -121,6 +121,7 @@ describe('Marketing 1: Lernskript und Abdeckung', () => {
 
   it('Lernkarten: jede Karte ist kurz (max. 160 Zeichen + Stichpunkte), Overrides passen zu Begriffen', () => {
     expect(Object.keys(cardOverrides).filter((id) => !conceptIds.has(id))).toEqual([]);
+    expect([...overviewIds].filter((id) => !conceptIds.has(id))).toEqual([]);
     const tooLong = mod.concepts.filter((c) => (c.short ?? c.definition).length > 160).map((c) => c.id);
     expect(tooLong, `zu lang: ${tooLong.join(', ')}`).toEqual([]);
     for (const c of mod.concepts) {
@@ -129,6 +130,12 @@ describe('Marketing 1: Lernskript und Abdeckung', () => {
         expect(p.length, `${c.id}: ${p}`).toBeLessThanOrEqual(110);
       }
     }
+  });
+
+  it('nur Skriptinhalte: keine eigenen Merkhilfen, Prüfungshinweise oder „typischen Fehler“', () => {
+    expect(mod.concepts.filter((c) => c.mnemonic || c.examRelevance).map((c) => c.id)).toEqual([]);
+    expect(sections.filter(({ s }) => s.blocks.some((b) => b.kind === 'exam')).map(({ s }) => s.id)).toEqual([]);
+    expect(mod.figures.filter((f) => f.misconceptions?.length).map((f) => f.id)).toEqual([]);
   });
 
   it('jeder Skriptbegriff wird mindestens einmal abgefragt', () => {
@@ -156,8 +163,8 @@ describe('Marketing 1: Lernskript und Abdeckung', () => {
   it('Retrieval nutzt Begriffe und Skript-Abschnitte des Moduls', () => {
     const kb = buildKnowledgeBase(mod);
     expect(kb.filter((u) => u.kind === 'section').length).toBe(sections.length);
-    const hits = retrieve('Was versteht man unter der Skimmingstrategie?', kb);
-    expect(hits[0].unit.title.toLowerCase()).toContain('skimming');
+    const hits = retrieve('Was versteht man unter Preisabfolge, Skimming und Penetration?', kb);
+    expect(hits[0].unit.title.toLowerCase()).toContain('preisabfolge');
     expect(hits[0].unit.source).toMatch(/PDF S\. 18/);
     const a = answerFromKnowledge(mod, kb, 'Unterschied Absatzhelfer Absatzmittler Eigentum');
     expect(a.noEvidence).toBe(false);

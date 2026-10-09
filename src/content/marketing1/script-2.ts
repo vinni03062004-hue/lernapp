@@ -27,7 +27,7 @@ export const sections2: ScriptSection[] = [
       { kind: 'example', title: 'Kernleistung + Zusatz- und Serviceleistungen', text: 'Küche = Schränke/Geräte + Planung, Beratung, Lieferung, Montage, Garantie.' },
       { kind: 'merke', text: 'In gesättigten Märkten unterscheiden sich Produkte oft nur geringfügig – Zusatzleistungen werden immer bedeutender, um sich aus Kundensicht vom Wettbewerb abzuheben.' },
       { kind: 'figure', figureId: 'f-produktebenen3' },
-      { kind: 'definitions', conceptIds: ['mc-kernprodukt', 'mc-reales-produkt', 'mc-erweitertes-produkt', 'mc-leistung-nutzen'] },
+      { kind: 'definitions', conceptIds: ['mc-leistung-nutzen'] },
     ],
   },
   {
@@ -36,8 +36,7 @@ export const sections2: ScriptSection[] = [
       { kind: 'definitions', conceptIds: ['mc-grundnutzen', 'mc-zusatznutzen'] },
       { kind: 'text', text: 'Vom Nutzenstandpunkt aus ergeben sich fünf Kategorien – je mehr Nutzenkomponenten, desto höher die Kategorie. Die Zusatznutzen sind nicht an eine Reihenfolge gebunden und müssen nicht zwangsläufig vorhanden sein.' },
       { kind: 'figure', figureId: 'f-produktebenen5' },
-      { kind: 'definitions', conceptIds: ['mc-nutzenkategorien', 'mc-generisches-produkt', 'mc-erwartetes-produkt', 'mc-augmentiertes-produkt', 'mc-potenzielles-produkt'] },
-      { kind: 'exam', text: 'Nicht verwechseln: Die Leistungs-Sicht (Kernprodukt → reales → erweitertes Produkt, E-Bike) und die Nutzen-Sicht (Grundnutzen → generisch → erwartet → augmentiert → potenziell, Hose) sind zwei verschiedene Modelle.' },
+      { kind: 'definitions', conceptIds: ['mc-nutzenkategorien'] },
     ],
   },
   {
@@ -67,13 +66,15 @@ export const sections2: ScriptSection[] = [
         ['Nutzungshäufigkeit', 'Waren des täglichen vs. des aperiodischen Bedarfs', 'Zahnpasta vs. Weihnachtsbäume'],
         ['Kaufgewohnheit', 'Convenience, Shopping, Specialty und Unsought Goods', 'Shampoo/Brot · Kleidung/Möbel · Antiquitäten/hochpreisige Modemarken · Versicherungen'],
       ] },
-      { kind: 'definitions', conceptIds: ['mc-sachgueter-dl', 'mc-konsum-invest', 'mc-verbrauch-gebrauch', 'mc-bedarf', 'mc-kaufgewohnheit', 'mc-convenience', 'mc-shopping', 'mc-specialty', 'mc-unsought'] },
+      { kind: 'definitions', conceptIds: ['mc-convenience', 'mc-shopping', 'mc-specialty', 'mc-unsought'] },
     ],
   },
   {
     id: 's2-gestaltungsfelder', sub: '2.2', title: 'Gestaltungsfelder der Produktpolitik', pdfPages: '8',
     blocks: [
-      { kind: 'definitions', conceptIds: ['mc-produktmanager', 'mc-ziele-produktpolitik', 'mc-gestaltungsfelder', 'mc-produktprogramm'] },
+      { kind: 'definitions', conceptIds: ['mc-produktmanager'] },
+      { kind: 'text', text: 'Ziele der Produktpolitik können ökonomisch (verkaufte Mengen, Ansprache bestimmter Segmente) oder psychologisch (Image, Konsumenteneinstellungen) sein.' },
+      { kind: 'definitions', conceptIds: ['mc-gestaltungsfelder', 'mc-produktprogramm'] },
     ],
   },
   {
@@ -87,7 +88,7 @@ export const sections2: ScriptSection[] = [
         ['Qualitätsmanagement', 'Wie können die funktional-technischen Eigenschaften dauerhaft gesichert werden? (Optimierung von Arbeitsabläufen und Prozessen)', '–'],
         ['Servicepolitik', 'Sollen weitere Serviceleistungen (Garantien, Lieferung, Kundendienst, Value Added Services) angeboten werden?', 'Pampers-Onlinebabyratgeber, Schwangerschaftstipps'],
       ] },
-      { kind: 'definitions', conceptIds: ['mc-technisch-funktional', 'mc-produktdesign', 'mc-verpackung', 'mc-qualitaetsmanagement', 'mc-servicepolitik', 'mc-serviceleistungen'] },
+      { kind: 'definitions', conceptIds: ['mc-serviceleistungen'] },
     ],
   },
   {
@@ -95,7 +96,6 @@ export const sections2: ScriptSection[] = [
     blocks: [
       { kind: 'text', text: 'Die meisten Produkte müssen mit der Zeit an neue Marktrealitäten angepasst werden (Walsh/Deseniss/Kilian 2013):' },
       { kind: 'definitions', conceptIds: ['mc-produktvariation', 'mc-produktdiff', 'mc-produktelimination'] },
-      { kind: 'exam', text: 'Variation ersetzt die alte Version (Basisfunktion bleibt, Design/Farbe/Geschmack ändern sich). Differenzierung ergänzt eine Version für ein neues Segment – beide Varianten werden angeboten, das Programm erweitert sich.' },
     ],
   },
   {
@@ -125,7 +125,7 @@ export const sections2: ScriptSection[] = [
         ['Verfallsphase', 'kaum noch Bedarf, Umsatz stark rückläufig – Ende des Zyklus', 'Produkt nicht mehr unterstützt'],
       ] },
       { kind: 'figure', figureId: 'f-lebenszyklus' },
-      { kind: 'definitions', conceptIds: ['mc-einfuehrungsphase', 'mc-wachstumsphase', 'mc-reifephase', 'mc-saettigungsphase', 'mc-verfallsphase', 'mc-erfahrungskurve', 'mc-economies-of-scale'] },
+      { kind: 'definitions', conceptIds: ['mc-erfahrungskurve', 'mc-economies-of-scale'] },
     ],
   },
   {
@@ -135,7 +135,6 @@ export const sections2: ScriptSection[] = [
       { kind: 'definitions', conceptIds: ['mc-skurve'] },
       { kind: 'figure', figureId: 'f-skurve' },
       { kind: 'merke', text: 'Unternehmen müssen die Grenzen ihrer Technologien abschätzen, um auf Technologiesprünge vorbereitet zu sein – F&E sollte kontinuierlich neue Produkte entwickeln und vorbereiten.' },
-      { kind: 'definitions', conceptIds: ['mc-diskontinuitaet'] },
     ],
   },
   {
@@ -152,8 +151,6 @@ export const sections2: ScriptSection[] = [
         'Anstieg in der Mitte: Produkt wird bekannter, Unsicherheit und Preise sinken, Verfügbarkeit steigt, soziale Empfehlungen wirken.',
         'Verlangsamung am Schluss: Der Markt ist weitgehend gesättigt.',
       ] },
-      { kind: 'definitions', conceptIds: ['mc-adopterkategorien'] },
-      { kind: 'exam', text: 'Adoption = individueller Übernahmeprozess in fünf Phasen; Diffusion = kumulierte Adoption im Zeitablauf. Bei Fragen zum Kurvenverlauf die Gründe für Anstieg (bekannter, weniger Unsicherheit, sinkende Preise, Verfügbarkeit, Empfehlungen) und Verlangsamung (Sättigung) nennen.' },
     ],
   },
 ];

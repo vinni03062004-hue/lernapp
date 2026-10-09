@@ -120,6 +120,7 @@ function conceptBlock(mod: LearningModule, c: Concept, n: number): string {
     `[${n}] conceptId: ${c.id} | Kapitel ${ch?.index ?? '?'}: ${ch?.title ?? ''}`,
     `Begriff: ${c.term}`,
     `Definition (Skript): ${c.definition}`,
+    c.points?.length ? `Stichpunkte (Skript): ${c.points.join('; ')}` : '',
     c.context ? `Einordnung: ${c.context}` : '',
     c.example ? `Beispiel (Skript): ${c.example}` : '',
     partners.length ? `Abgrenzungsbegriffe: ${partners.map((p) => `${p.term} – ${p.definition}`).join(' || ')}` : '',

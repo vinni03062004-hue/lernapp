@@ -7,10 +7,9 @@ export const sections1: ScriptSection[] = [
     blocks: [
       { kind: 'definitions', conceptIds: ['mc-marketing', 'mc-markt', 'mc-austausch'] },
       { kind: 'text', text: 'Aus dem Austausch ergeben sich die zwei zentralen theoretischen Leitideen der Marketingwissenschaft:' },
-      { kind: 'definitions', conceptIds: ['mc-gratifikation', 'mc-knappheit'] },
+      { kind: 'definitions', conceptIds: ['mc-gratifikation'] },
       { kind: 'definitions', conceptIds: ['mc-kaeufermarkt'] },
       { kind: 'merke', text: 'Die Nachfrage bildet den Engpass – Marketing dient dazu, diesen Engpass zu bewältigen, Kunden zu gewinnen und zu binden. Der Nachfrager steht im Zentrum des modernen Marketings. Die allermeisten Märkte sind heutzutage Käufermärkte.' },
-      { kind: 'exam', text: 'Bei „Erläutern Sie …“-Fragen zum Markt immer beide Rollen nennen: Ziel (Märkte schaffen/beeinflussen) UND Bezugsobjekt (Märkte geben die Rahmenbedingungen für Austauschprozesse vor).' },
     ],
   },
   {
@@ -32,8 +31,7 @@ export const sections1: ScriptSection[] = [
         ['2010er', 'Digitalisierung und Automatisierung von Prozessen schreiten voran – digitale Wertschöpfungsmodelle (Plattformen wie Uber, Abos wie Netflix, Freemium wie Spotify).', 'Netzwerk- und digitale Wertschöpfungsorientierung'],
         ['2020er', 'Nachhaltigkeit und soziale Verantwortung werden zu zentralen gesellschaftlichen und unternehmerischen Anforderungen.', 'Nachhaltigkeitsorientierung'],
       ] },
-      { kind: 'definitions', conceptIds: ['mc-evolution', 'mc-verkaufsorientierung', 'mc-aida', 'mc-marktorientierung', 'mc-wettbewerbsorientierung', 'mc-umfeldorientierung', 'mc-deepening', 'mc-broadening', 'mc-beziehungsorientierung', 'mc-digitale-wertschoepfung', 'mc-nachhaltigkeitsorientierung'] },
-      { kind: 'exam', text: 'Typische Aufgabe: Entwicklung des Marketingbegriffs beschreiben. Gute Antworten nennen pro Phase Zeitraum + Einfluss + Verständnis + Orientierung (z. B. „1980er: globaler Wettbewerb → strategische Positionierung → Wettbewerbsorientierung“). Deepening und Broadening gehören beide in die 1990er.' },
+      { kind: 'definitions', conceptIds: ['mc-evolution'] },
     ],
   },
   {
@@ -49,11 +47,10 @@ export const sections1: ScriptSection[] = [
         ['in ways that benefit the organization', 'Marketing unterstützt den Unternehmenszweck, meist finanzielle Ziele (Umsatz, Gewinn, Rendite) = Wertorientierung; auch nicht kommerzielle Ziele (Mitgliederzahl, Aufmerksamkeit) möglich.'],
         ['and its stakeholders', 'Auch die Auswirkung der Unternehmenstätigkeit auf externe Anspruchsgruppen (Bürger, Umweltgruppen) wird berücksichtigt (Stakeholderorientierung).'],
       ] },
-      { kind: 'definitions', conceptIds: ['mc-ama-merkmale', 'mc-kundennutzen', 'mc-wertorientierung', 'mc-stakeholderorientierung'] },
+      { kind: 'definitions', conceptIds: ['mc-ama-merkmale', 'mc-kundennutzen'] },
       { kind: 'text', text: 'Die Definition umfasst die drei Kernbausteine des Marketings:' },
-      { kind: 'definitions', conceptIds: ['mc-kernbausteine', 'mc-funktional', 'mc-fuehrung', 'mc-aktivitaet'] },
+      { kind: 'definitions', conceptIds: ['mc-funktional', 'mc-fuehrung', 'mc-aktivitaet'] },
       { kind: 'definitions', conceptIds: ['mc-marketingmix', 'mc-marketing-automation'] },
-      { kind: 'exam', text: 'Die drei Kernbausteine werden gern als offene Frage gestellt. Pro Baustein: Name + Klammerbegriff (Planungsprozess / Leitphilosophie / Sozialtechnologie) + ein Satz Erklärung (Abteilung gleichrangig mit Produktion · alle Funktionen am Markt ausrichten · Werkzeugkasten Marketingmix, Nachfrage gezielt beeinflussen).' },
     ],
   },
   {
@@ -71,7 +68,6 @@ export const sections1: ScriptSection[] = [
       ] },
       { kind: 'text', text: 'Der Marketingmix wird daher nicht nur über die vier Ps strukturiert, sondern zusätzlich über die Phase der Geschäftsbeziehung – die sogenannten drei Rs:' },
       { kind: 'definitions', conceptIds: ['mc-drei-rs', 'mc-akquise'] },
-      { kind: 'exam', text: 'Abgrenzungsfragen („Grenzen Sie … ab“) am besten entlang der fünf Tabellenkriterien beantworten – das zeigt Struktur und sichert Punkte.' },
     ],
   },
   {
@@ -92,14 +88,13 @@ export const sections1: ScriptSection[] = [
     blocks: [
       { kind: 'definitions', conceptIds: ['mc-branding'] },
       { kind: 'example', text: 'Marken haben ein „Eigenleben“ entwickelt und gelten heute auch für Veranstaltungen, Dienstleistungen, Menschen und Orte – z. B. Musikfestival „Rock am Ring“ oder Städtemarketing.' },
-      { kind: 'definitions', conceptIds: ['mc-marke', 'mc-marke-marketing'] },
-      { kind: 'exam', text: 'Juristische Sicht = Kennzeichen, das Angebote unterscheidet (für Marketingmanager wenig hilfreich). Marketingsicht = Wirkung: Werte vermitteln, Beziehung aufbauen, höhere Zahlungsbereitschaft.' },
+      { kind: 'definitions', conceptIds: ['mc-marke'] },
     ],
   },
   {
     id: 's1-brandequity', sub: '1.2', title: 'Wert der Marke (Brand Equity)', pdfPages: '4',
     blocks: [
-      { kind: 'definitions', conceptIds: ['mc-brandequity', 'mc-markenvoraussetzungen'] },
+      { kind: 'definitions', conceptIds: ['mc-brandequity'] },
       { kind: 'list', title: 'Reale Marketingvorteile durch Markenführung', items: [
         'verbesserte Wahrnehmung der Produktleistung',
         'stärkere Kundentreue',
@@ -115,14 +110,14 @@ export const sections1: ScriptSection[] = [
         'leichtere Personalbeschaffung und -bindung',
         'höhere Marktrendite',
       ] },
-      { kind: 'definitions', conceptIds: ['mc-markenvorteile', 'mc-konsistenter-mix'] },
+      { kind: 'definitions', conceptIds: ['mc-markenvorteile'] },
       { kind: 'merke', text: 'Werden kurzfristige verkaufsfördernde Maßnahmen (z. B. Preisreduktionen) überbetont, kann die Marke an Wert verlieren.' },
     ],
   },
   {
     id: 's1-positionierung', sub: '1.2', title: 'Positionierung im Markt', pdfPages: '4',
     blocks: [
-      { kind: 'definitions', conceptIds: ['mc-positionierung', 'mc-positionierungsfragen', 'mc-relevante-wettbewerber', 'mc-indirekter-wettbewerb'] },
+      { kind: 'definitions', conceptIds: ['mc-positionierung', 'mc-relevante-wettbewerber'] },
       { kind: 'example', title: 'Direkter vs. indirekter Wettbewerb', text: 'Für Gerolsteiner Naturell sind stille Wasser direkte, sprudelnde Wasser und andere Getränke indirekte Wettbewerber.' },
       { kind: 'definitions', conceptIds: ['mc-pop-pod'] },
       { kind: 'example', title: 'Point of Difference', text: 'Fiji Water: Herkunft und angeblich besondere Reinheit – gezielt über die Promotionsstrategie kommuniziert.' },
@@ -134,12 +129,11 @@ export const sections1: ScriptSection[] = [
       { kind: 'definitions', conceptIds: ['mc-abnehmergerichtet'] },
       { kind: 'text', text: 'Grundsätzlich gibt es zwei Wahlmöglichkeiten: besser oder billiger als die Konkurrenz sein.' },
       { kind: 'definitions', conceptIds: ['mc-qualitaetsfuehrer', 'mc-kostenfuehrer', 'mc-kostendegression', 'mc-nische'] },
-      { kind: 'table', title: 'Matrix der vier Strategierichtungen', columns: ['Marktabdeckung', 'Zentraler Vorteil: Qualität', 'Zentraler Vorteil: Preis'], rows: [
+      { kind: 'table', title: 'Matrix von vier Strategierichtungen', columns: ['Marktabdeckung', 'Zentraler Vorteil: Qualität', 'Zentraler Vorteil: Preis'], rows: [
         ['Gesamt', 'Strategie der Qualitätsführerschaft (z. B. Volvic, Evian)', 'Strategie der aggressiven Kostenführerschaft (z. B. Frische Brise, Handelsmarken)'],
         ['Teil', 'Strategie der selektiven Qualitätsführerschaft (z. B. Voss, Fiji)', 'Strategie der selektiven Kostenführerschaft (z. B. günstige regionale Mineralwassermarken)'],
       ] },
-      { kind: 'definitions', conceptIds: ['mc-strategiematrix', 'mc-selektive-qf', 'mc-aggressive-kf', 'mc-selektive-kf'] },
-      { kind: 'exam', text: 'Bei der Matrix die beiden Achsen benennen (Marktabdeckung: gesamt/teil · Vorteil: Qualität/Preis) und jede der vier Strategien mit Skript-Beispiel belegen. „Selektiv“ heißt immer: Teilmarkt bzw. Nische.' },
+      { kind: 'definitions', conceptIds: ['mc-strategiematrix'] },
     ],
   },
   {
@@ -161,8 +155,7 @@ export const sections1: ScriptSection[] = [
         ['5: Marketingimplementierung', 'Realisierung und Durchsetzung inkl. Bestimmung von Verantwortlichkeiten, Führungskonzepten und Budgets', 'Produktlaunch durch die zuständige Marketingabteilung'],
         ['6: Marketingcontrolling', 'Evaluation der Zielerreichung und ggf. Anpassung der Maßnahmen', 'Wurde das Marktanteilsziel erreicht?'],
       ] },
-      { kind: 'definitions', conceptIds: ['mc-6schritte', 'mc-situationsanalyse', 'mc-marketingziele', 'mc-marketingstrategie', 'mc-marketinginstrumente', 'mc-dienstleistungs-ps', 'mc-implementierung', 'mc-controlling', 'mc-marktsegment'] },
-      { kind: 'exam', text: 'Strategie (Schritt 3, langfristig: Märkte, Segmente, Zielgruppe, Bearbeitung) nicht mit Instrumenten (Schritt 4, operativ: konkrete 4 Ps) verwechseln – ein beliebter Fehler in Transferaufgaben.' },
+      { kind: 'definitions', conceptIds: ['mc-6schritte', 'mc-marktsegment'] },
     ],
   },
 ];

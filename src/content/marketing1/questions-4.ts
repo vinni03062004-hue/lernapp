@@ -21,14 +21,14 @@ export const questions4: Question[] = [
     prompt: 'Die Zahlungsbereitschaft des anvisierten Kundensegments definiert die Preis______; die Gesamtkosten bilden die Preis______.',
     clozeAnswers: [['obergrenze', 'Obergrenze'], ['untergrenze', 'Untergrenze']],
     explanation: 'Käufer → Preisobergrenze; Kosten → Preisuntergrenze. Dazwischen liegt der preispolitische Spielraum.',
-    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-preisgrenzen'],
+    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-einflussfaktoren-preis'],
   },
   {
     id: 'qm4-03', chapterId: 'm4', type: 'true_false', goal: 'fact', difficulty: 1,
     prompt: 'Ein Preis von 2,99 € statt 3,00 € nutzt aus, dass Kunden dazu tendieren, Nachkommastellen zu ignorieren (Schwellenpreis).',
     correctBool: true,
     explanation: 'Richtig – psychologischer Effekt der Preiswahrnehmung.',
-    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-schwellenpreis'],
+    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-einflussfaktoren-preis'],
   },
   {
     id: 'qm4-04', chapterId: 'm4', type: 'assignment', goal: 'distinction', difficulty: 3,
@@ -55,14 +55,14 @@ export const questions4: Question[] = [
     options: ['Skimmingstrategie', 'Penetrationsstrategie', 'Preisfolgerschaft', 'Preiskampf'],
     correctOptions: [0],
     explanation: 'Skimming (Abschöpfung): hohe Einführungspreise schöpfen die Preisbereitschaft früher Segmente ab, danach Preissenkung für die frühe und späte Mehrheit.',
-    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-skimming'],
+    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preisabfolge'],
   },
   {
     id: 'qm4-07', chapterId: 'm4', type: 'cloze', goal: 'distinction', difficulty: 2,
     prompt: 'Die ______strategie durchdringt den Markt mit geringen Einführungspreisen und erhöht die Preise danach; die ______strategie startet mit sehr hohen Preisen und senkt sie später.',
     clozeAnswers: [['Penetrations', 'Penetration'], ['Skimming', 'Abschöpfungs', 'Abschöpfung']],
     explanation: 'Penetration: niedrig → hoch (z. B. Rasierer günstig, Klingen teuer). Skimming: hoch → niedrig (z. B. iPhone 7: 759 → 629 €).',
-    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-penetration', 'mc-skimming'],
+    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preisabfolge'],
   },
   {
     id: 'qm4-08', chapterId: 'm4', type: 'multiple_choice', goal: 'fact', difficulty: 2,
@@ -70,7 +70,7 @@ export const questions4: Question[] = [
     options: ['Zeitliche Preisdifferenzierung', 'Räumliche Preisdifferenzierung', 'Personelle Preisdifferenzierung', 'Kostenorientierte Preisdifferenzierung', 'Preisbündelung'],
     correctOptions: [0, 1, 2, 4],
     explanation: 'Formen: mengenmäßig, zeitlich, räumlich, personell, leistungsbezogen; Sonderform Preisbündelung. „Kostenorientiert“ ist ein Verfahren der Preisbestimmung.',
-    source: 'Kapitel 4.2, PDF S. 18–19', conceptIds: ['mc-preisdiff', 'mc-preisbuendelung'],
+    source: 'Kapitel 4.2, PDF S. 18–19', conceptIds: ['mc-preisdiff'],
   },
   {
     id: 'qm4-09', chapterId: 'm4', type: 'assignment', goal: 'distinction', difficulty: 2,
@@ -82,7 +82,7 @@ export const questions4: Question[] = [
       { left: 'Treuerabatt', right: 'Belohnung für langfristige und kontinuierliche Bestellungen' },
     ],
     explanation: 'Vier Typen von Rabatten nach Walsh/Deseniss/Kilian (2013).',
-    source: 'Kapitel 4.3, PDF S. 20', conceptIds: ['mc-rabatte', 'mc-funktionsrabatt', 'mc-mengenrabatt', 'mc-zeitrabatt', 'mc-treuerabatt'],
+    source: 'Kapitel 4.3, PDF S. 20', conceptIds: ['mc-rabatte'],
   },
   {
     id: 'qm4-10', chapterId: 'm4', type: 'open', goal: 'distinction', difficulty: 2,
@@ -95,7 +95,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: 'Die kostenorientierte Preisbestimmung nutzt vornehmlich die Kostenrechnung: Preis = Stückkosten plus branchen- oder firmenüblicher Aufschlag. Sie ist die intuitivste Art, weit verbreitet, schnell, kostengünstig und transparent und wird von Konsumenten als fair wahrgenommen, vernachlässigt aber jegliche nachfrage- und wettbewerbsbezogenen Aspekte. Die marktorientierte Preisbestimmung orientiert sich an den Reaktionen der Marktteilnehmer (Kunden/Nachfrage und Preisverhalten der Konkurrenz) und wird den Anforderungen der Praxis besser gerecht. Verfahren: Break-even-Analyse (erforderliche Absatzmenge bei gegebenem Preis bis zur Gewinnschwelle), Perceived-Value-Pricing (Preis nach empfundenem Wert aus Kundensicht) und Cournot-Preis (gewinnmaximaler Preis mithilfe der Preis-Absatz-Funktion).',
     explanation: 'Kosten + Aufschlag vs. Orientierung am Markt.',
-    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-preisbestimmung', 'mc-kostenorientiert', 'mc-marktorientiert', 'mc-breakeven', 'mc-perceived-value', 'mc-cournot'],
+    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-kostenorientiert', 'mc-marktorientiert'],
   },
   {
     id: 'qm4-11', chapterId: 'm4', type: 'transfer', goal: 'application', difficulty: 3,
@@ -108,7 +108,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: 'Es handelt sich um Yield Management: Die Nachfrage soll erlösmaximal mit den vorhandenen Kapazitäten synchronisiert werden – das Modell wurde ursprünglich von Fluglinien entwickelt. Die automatische Preisanpassung nach Nachfrageintensität (Frühbucher- und Last-Minute-Preise) entspricht Dynamic Pricing; dahinter steht zeitliche Preisdifferenzierung zur bestmöglichen Auslastung. Sinnvoll ist es, weil die Bedingungen erfüllt sind: fixe Kapazitäten (Sitzplätze), nicht lagerbare Güter (ein leerer Sitz ist nach dem Abflug wertlos), hohe Fixkosten bei geringen variablen Kosten, starke Nachfrageschwankungen, Vorausbuchung und mögliche Preisdifferenzierung.',
     explanation: 'Fluglinien sind das Ursprungsbeispiel des Yield Managements.',
-    source: 'Kapitel 4.2–4.3, PDF S. 18–19', conceptIds: ['mc-yield', 'mc-dynamic', 'mc-pd-zeit'],
+    source: 'Kapitel 4.2–4.3, PDF S. 18–19', conceptIds: ['mc-yield', 'mc-dynamic', 'mc-preisdiff'],
   },
 
   // ======================= neue offene Fragen =======================
@@ -122,8 +122,8 @@ export const questions4: Question[] = [
       { point: 'Ziele: Unternehmensziele, handelsbezogene und konsumentenbezogene Ziele', keywords: ['unternehmensziel', 'handelsbezogen', 'konsumentenbezogen', 'preiswahrnehmung', 'präsenz'] },
     ],
     modelAnswer: 'Preispolitik umfasst alle Entscheidungen, die sich mit der Festlegung eines Entgelts für in Anspruch genommene Leistungen befassen (Homburg 2017) – nicht nur die Preishöhe, sondern auch Bedingungen wie Zahlungsbedingungen und Rabatte, daher auch Kontrahierungspolitik. Preise sind ein wesentlicher Indikator für die Marktstellung und wirken direkt auf Umsatz und Gewinn; die Preispolitik ist eine komplexe Managementaufgabe mit strategischen und operativen Entscheidungsparametern. Sie richtet sich nach den Unternehmenszielen (Umsatz, Gewinn, Marktanteil, Rentabilität) sowie nach handelsbezogenen (z. B. mehr Präsenz in Handelskanälen) und konsumentenbezogenen Zielen (z. B. Beeinflussung der Preiswahrnehmung).',
-    explanation: 'Definition + Stellung + Ziele.',
-    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-preispolitik', 'mc-ziele-preispolitik'],
+    explanation: 'Kernpunkte laut Skript: Definition, Stellung, Ziele.',
+    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-preispolitik'],
   },
   {
     id: 'qm4-13', chapterId: 'm4', type: 'open', goal: 'understanding', difficulty: 3,
@@ -137,7 +137,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: '1) Käufer: Die Zahlungsbereitschaft des anvisierten Kundensegments definiert die Preisobergrenze; wahrgenommener Nutzen und Herstellerkosten müssen nicht zusammenhängen (Milchkaffee bei Starbucks 10–30 % teurer als im unabhängigen Café). 2) Kosten: Der Preis soll über die Lebensdauer die Kosten decken und einen Gewinnbeitrag bringen – die Gesamtkosten bilden die Preisuntergrenze. 3) Konkurrenzsituation: Konsumenten beziehen Wettbewerbspreise in die Preiswürdigkeit ein; Vergleichsportale (Idealo, Google Shopping) erhöhen die Transparenz, es entsteht ein Preiskorridor, oft per Preis-Monitoring überwacht. 4) Externe Rahmenbedingungen: Handelsstruktur (Discounter vs. exklusiver Partner), gesamtwirtschaftliche Situation, saisonale Schwankungen. 5) Psychologische Effekte: Kunden ignorieren Nachkommastellen, was Schwellenpreise wie 2,99 € ausnutzen.',
     explanation: 'Fünf Faktoren mit Beispielen.',
-    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-einflussfaktoren-preis', 'mc-preisgrenzen', 'mc-preiskorridor', 'mc-externe-rahmen', 'mc-schwellenpreis'],
+    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-einflussfaktoren-preis'],
   },
   {
     id: 'qm4-14', chapterId: 'm4', type: 'transfer', goal: 'application', difficulty: 2,
@@ -150,7 +150,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: 'Die Preisobergrenze ergibt sich aus der Zahlungsbereitschaft des anvisierten Kundensegments, nicht aus den Kosten – die Gesamtkosten bilden nur die Preisuntergrenze. Der wahrgenommene Nutzen (z. B. durch Marke und Erlebnis) und die realen Herstellerkosten müssen nicht zusammenhängen. Genau das zeigt das Skript-Beispiel: Ein Milchkaffee bei Starbucks ist 10–30 % teurer als im unabhängigen Café.',
     explanation: 'Zahlungsbereitschaft statt Kosten bestimmt die Obergrenze.',
-    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-preisgrenzen', 'mc-einflussfaktoren-preis'],
+    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-einflussfaktoren-preis'],
   },
   {
     id: 'qm4-15', chapterId: 'm4', type: 'open', goal: 'understanding', difficulty: 2,
@@ -162,7 +162,7 @@ export const questions4: Question[] = [
       { point: 'Zweck: Prognose, welche Mengen zu welchen Preisen verkauft werden können', keywords: ['prognose'] },
     ],
     modelAnswer: 'Die Preis-Absatz-Funktion ist ein mathematisch-analytischer Ansatz aus der mikroökonomischen Preistheorie, der Konsumentenreaktionen auf Preisänderungen abbildet: den funktionalen Zusammenhang zwischen dem Preis eines Produkts und der in einem gewissen Zeitraum abgesetzten Menge. Sie wird auf Grundlage einer ausreichend großen Datenbasis ermittelt (Rechnungswesen, Kundenbefragungen, Analyse von Nutzerverhalten, E-Commerce-Verkaufsdaten) und dient der Prognose, welche Mengen zu welchen Preisen verkauft werden können.',
-    explanation: 'Definition + Datenbasis + Zweck.',
+    explanation: 'Kernpunkte laut Skript: Definition, Datenbasis, Zweck.',
     source: 'Kapitel 4.1, PDF S. 17', conceptIds: ['mc-paf'],
   },
   {
@@ -201,8 +201,8 @@ export const questions4: Question[] = [
       { point: 'Zugaben von Geld-/Sachwerten/Dienstleistungen – v. a. an den Handel, Akzeptanz der Preise', keywords: ['zugabe', 'handel', 'akzeptanz', 'verkostung', 'displaymaterial'] },
     ],
     modelAnswer: 'Da Preise über den Produktlebenszyklus mehrmals angepasst werden müssen, erfolgt die Festlegung als systematischer Planungsprozess: 1. Analyse des preispolitischen Spielraums (Preiskorridor zwischen Unter- und Obergrenze), 2. Festlegung spezifischer preispolitischer Zielsetzungen, 3. preispolitische Strategieentwicklung, 4. Einsatz der Preisinstrumente, 5. Preiskontrolle (fortlaufende Überwachung von Handelsabgabe-, Endverbraucher- und Konkurrenzpreisen). Die vier Instrumente sind: (1) Preise, (2) Preisnachlässe (Rabatte, Boni, Skonti), (3) Preiszuschläge (z. B. für Sonderleistungen oder bestimmte Lieferzeiten) und (4) Zugaben von Geld- und Sachwerten sowie Dienstleistungen, die sich vor allem an den Handel richten und die Akzeptanz der geforderten Preise unterstützen sollen (z. B. Verkostungen, Displaymaterial).',
-    explanation: 'Fünf Prozessschritte + vier Instrumente.',
-    source: 'Kapitel 4.1, PDF S. 17–18', conceptIds: ['mc-preisprozess', 'mc-preisspielraum', 'mc-preisinstrumente', 'mc-preiskontrolle', 'mc-boni'],
+    explanation: 'Kernpunkte laut Skript: Fünf Prozessschritte, vier Instrumente.',
+    source: 'Kapitel 4.1, PDF S. 17–18', conceptIds: ['mc-preisprozess', 'mc-preisinstrumente'],
   },
   {
     id: 'qm4-19', chapterId: 'm4', type: 'open', goal: 'fact', difficulty: 1,
@@ -214,7 +214,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: 'Die Preiskontrolle begleitet den Prozess der Preisfestlegung fortlaufend: Sie überwacht Handelsabgabepreis, Endverbraucherpreis und Konkurrenzpreise und zeigt rechtzeitig an, wann eine Preiskorrektur notwendig wird.',
     explanation: 'Fünfter Schritt des Preisprozesses.',
-    source: 'Kapitel 4.1, PDF S. 18', conceptIds: ['mc-preiskontrolle'],
+    source: 'Kapitel 4.1, PDF S. 18', conceptIds: ['mc-preisprozess'],
   },
   {
     id: 'qm4-20', chapterId: 'm4', type: 'open', goal: 'fact', difficulty: 2,
@@ -227,7 +227,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: 'Die Preispositionierung bezieht sich auf die Höhe des Preises. Hochpreisstrategie: Spitzenqualität zu Premiumpreisen, z. B. Designmöbelstudios wie BoConcept oder Seyfarth. Mittelpreisstrategie: mittleres Preisniveau bei Standardqualität, z. B. Vollsortimenter wie Höffner, Kraft oder die XXXL-Marken der Lutz-Gruppe (größter Marktanteil). Niedrigpreisstrategie: Mindestqualität zu sehr geringen Preisen, z. B. Möbeldiscounter wie Roller, Poco, Sconto.',
     explanation: 'Drei Positionierungsstrategien mit Möbel-Beispielen.',
-    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preispositionierung', 'mc-hochpreis', 'mc-mittelpreis', 'mc-niedrigpreis'],
+    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preispositionierung'],
   },
   {
     id: 'qm4-21', chapterId: 'm4', type: 'open', goal: 'distinction', difficulty: 2,
@@ -240,7 +240,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: 'Strategien des Preiswettbewerbs beziehen sich darauf, ob und wie sich ein Unternehmen am Verhalten der Konkurrenz orientiert – die Preispositionierung dagegen auf die Höhe des Preises. Preisführerschaft: ein sehr hoher, durch Marke und Qualität gerechtfertigter Preis, der dem Wettbewerb als Orientierung dient (Apple iPhone X ab 999 Dollar; Apples Durchschnittspreis ca. dreimal so hoch wie bei Samsung). Preiskampf: das Gegenteil – das Bestreben, den niedrigsten Preis am Markt zu fordern, typisch für Lebensmitteldiscounter. Preisfolgerschaft: Reaktion auf die Preise des Marktführers, ohne die Preise selbst strategisch zu planen (senkt Aldi die Preise, ziehen Norma, Netto usw. nach).',
     explanation: 'Zwei unterschiedliche Strategiedimensionen.',
-    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preiswettbewerb', 'mc-preisfuehrerschaft', 'mc-preiskampf', 'mc-preisfolgerschaft', 'mc-preispositionierung'],
+    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preiswettbewerb', 'mc-preispositionierung'],
   },
   {
     id: 'qm4-22', chapterId: 'm4', type: 'open', goal: 'distinction', difficulty: 3,
@@ -253,7 +253,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: 'Beide sind Strategien der Preisabfolge, also der Preisentwicklung im Produktlebenszyklus. Skimming (Abschöpfung): Sehr hohe Einführungspreise nutzen die Preisbereitschaft von Innovatoren und Frühadoptern, um schnell Gewinne abzuschöpfen; sind diese Segmente gesättigt, sinkt der Preis für die frühe und späte Mehrheit – Apple senkte den iPhone-7-Preis mit Vorstellung von iPhone 8 und X von 759 auf 629 Euro. Penetration folgt der umgekehrten Logik: mit geringen Preisen den Markt so schnell wie möglich durchdringen und die Preise danach erhöhen – z. B. Rasierer günstig, Nachfüllpacks mit Klingen teuer. Dass Preisstrategien scheitern können, zeigt Netflix: 2011 versuchte das Unternehmen durch Entkopplung von DVD-Verleih und Streaming eine Preiserhöhung von 60 % und verlor 800.000 Kunden und 77 % des Börsenwerts.',
     explanation: 'Hoch → runter vs. niedrig → hoch, plus Risiko.',
-    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preisabfolge', 'mc-skimming', 'mc-penetration', 'mc-adopterkategorien'],
+    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preisabfolge', 'mc-diffusion'],
   },
   {
     id: 'qm4-23', chapterId: 'm4', type: 'open', goal: 'understanding', difficulty: 3,
@@ -266,8 +266,8 @@ export const questions4: Question[] = [
       { point: 'Preisbündelung als Sonderform (MagentaEINS)', keywords: ['bündelung', 'paketpreis', 'magenta'] },
     ],
     modelAnswer: 'Preisdifferenzierung ist die Forderung unterschiedlicher Preise für verschiedene Marktsegmente – sinnvoll, weil die Segmente unterschiedliche Zahlungsbereitschaften haben. Mengenmäßig: geringere Durchschnittspreise bei höheren Abnahmemengen (Kartenmacherei: 5 Einladungen 3,63 €/Stück, bei 500 nur 1,35 €), gibt Kostenvorteile weiter und regt größere Bestellungen an. Zeitlich: bestmögliche Auslastung vorhandener Kapazitäten (Kinotag am Wochenanfang, günstigere Nachmittagsvorstellungen). Räumlich: Preise nach geografischen Aspekten (Benzin ist in Hamburg, Bremen und Berlin wegen stärkerer Konkurrenz günstiger als in Thüringen und Baden-Württemberg). Personell: Vergünstigungen für Gruppen wie Studenten oder Senioren (kostenloses Jugendkonto der Sparkassen, Seniorenmenüs). Leistungsbezogen: geringfügige Leistungsänderungen erzeugen Preisklassen (gebundene Ausgabe, Taschenbuch, E-Book). Sonderform Preisbündelung: mehrere Leistungen zu einem günstigeren Paketpreis (MagentaEINS der Telekom).',
-    explanation: 'Begründung + sechs Formen.',
-    source: 'Kapitel 4.2, PDF S. 18–19', conceptIds: ['mc-preisdiff', 'mc-pd-menge', 'mc-pd-zeit', 'mc-pd-raum', 'mc-pd-person', 'mc-pd-leistung', 'mc-preisbuendelung'],
+    explanation: 'Kernpunkte laut Skript: Segmente haben unterschiedliche Zahlungsbereitschaften; mengenmäßig, zeitlich, räumlich, personell, leistungsbezogen und Preisbündelung als Sonderform.',
+    source: 'Kapitel 4.2, PDF S. 18–19', conceptIds: ['mc-preisdiff'],
   },
   {
     id: 'qm4-24', chapterId: 'm4', type: 'transfer', goal: 'application', difficulty: 3,
@@ -280,7 +280,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: '(a) Studierendenrabatt = personelle Preisdifferenzierung (Vergünstigung für eine Personengruppe). (b) Günstigere Vormittagstarife = zeitliche Preisdifferenzierung zur besseren Auslastung der Kapazitäten (wie Nachmittagsvorstellungen im Kino). (c) Jahresvertrag mit niedrigerem Monatspreis = mengenmäßige Preisdifferenzierung (geringerer Durchschnittspreis bei höherer Abnahmemenge). (d) Premium-Mitgliedschaft mit Sauna = leistungsbezogene Preisdifferenzierung (veränderte Leistung erzeugt eine andere Preisklasse).',
     explanation: 'Anwendung der Formen auf einen neuen Fall.',
-    source: 'Kapitel 4.2, PDF S. 18–19', conceptIds: ['mc-pd-person', 'mc-pd-zeit', 'mc-pd-menge', 'mc-pd-leistung'],
+    source: 'Kapitel 4.2, PDF S. 18–19', conceptIds: ['mc-preisdiff'],
   },
   {
     id: 'qm4-25', chapterId: 'm4', type: 'open', goal: 'understanding', difficulty: 3,
@@ -293,8 +293,8 @@ export const questions4: Question[] = [
       { point: 'Einsatz: Hotels, Transportunternehmen, Konzerttickets', keywords: ['hotel', 'transport', 'konzert'] },
     ],
     modelAnswer: 'Beim Yield Management soll die Nachfrage erlösmaximal mit den vorhandenen Kapazitäten synchronisiert werden; ursprünglich wurde es von Fluglinien entwickelt. Sinnvoll ist es bei (1) fixen Kapazitäten, (2) nicht lagerbaren Gütern, (3) hohen Fixkosten und geringen variablen Kosten, (4) starken Nachfrageschwankungen, (5) Vorausbuchung und (6) möglicher Preisdifferenzierung. Typische Bereiche sind Hotels, Transportunternehmen und Konzerttickets.',
-    explanation: 'Typische Aufzählungsfrage.',
-    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-yield', 'mc-innovpricing'],
+    explanation: 'Laut Skript (S. 19): fixe Kapazitäten, nicht lagerbare Güter, hohe Fixkosten und geringe variable Kosten, starke Nachfrageschwankungen, Vorausbuchung, Preisdifferenzierung möglich. Einsatz insbesondere bei Hotels, Transportunternehmen und Konzerttickets.',
+    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-yield', 'mc-dynamic', 'mc-auction', 'mc-reverse'],
   },
   {
     id: 'qm4-26', chapterId: 'm4', type: 'open', goal: 'distinction', difficulty: 2,
@@ -319,8 +319,8 @@ export const questions4: Question[] = [
       { point: 'Absatzkredite ermöglichen/erleichtern den Kauf', keywords: ['ermöglichen', 'erleichtern'] },
     ],
     modelAnswer: 'Die Festlegung der Endpreise bedeutet nicht, dass Konsumenten diese auch tatsächlich entrichten – besonders im B2B-Bereich wird über Konditionen verhandelt, daher spielt die Konditionenpolitik dort eine große Rolle. Dazu zählen Absatzkredite (durch sie ermöglichen oder erleichtern Unternehmen potenziellen Kunden den Kauf der eigenen Erzeugnisse), Lieferungs- und Zahlungsbedingungen sowie Rabatte (Funktions-, Mengen-, Zeit- und Treuerabatte).',
-    explanation: 'Definition + Elemente.',
-    source: 'Kapitel 4.3, PDF S. 19–20', conceptIds: ['mc-konditionenpolitik', 'mc-absatzkredite', 'mc-rabatte'],
+    explanation: 'Kernpunkte laut Skript: Endpreise werden nicht immer tatsächlich entrichtet, v. a. im B2B wichtig; Absatzkredite, Lieferungs- und Zahlungsbedingungen, Rabatte.',
+    source: 'Kapitel 4.3, PDF S. 19–20', conceptIds: ['mc-konditionenpolitik', 'mc-rabatte'],
   },
   {
     id: 'qm4-28', chapterId: 'm4', type: 'open', goal: 'fact', difficulty: 2,
@@ -333,8 +333,8 @@ export const questions4: Question[] = [
       { point: 'Boni: rückwirkende Nachlässe am Ende einer Abrechnungsperiode', keywords: ['boni', 'rückwirkend', 'abrechnungsperiode'], weight: 0.5 },
     ],
     modelAnswer: 'Funktionsrabatte sind die Gegenleistung für vom Handel übernommene Funktionen wie Lagerung, Präsentation oder Kundenkontakt. Mengenrabatte gibt es für die Bestellung größerer Mengen durch das Handelsunternehmen. Zeitrabatte hängen von der Bestellzeit ab, z. B. vor der Saison; Skonto ist eine Sonderform für eine frühzeitige Zahlung. Treuerabatte belohnen langfristige und kontinuierliche Bestellungen. Boni sind dagegen rückwirkende Nachlässe am Ende einer Abrechnungsperiode, etwa über eine Kundenkarte; Rabatte, Boni und Skonti zählen zu den Preisnachlässen.',
-    explanation: 'Vier Rabattarten + Einordnung von Skonto und Boni.',
-    source: 'Kapitel 4.1 und 4.3, PDF S. 17 und 20', conceptIds: ['mc-rabatte', 'mc-funktionsrabatt', 'mc-mengenrabatt', 'mc-zeitrabatt', 'mc-treuerabatt', 'mc-skonto', 'mc-boni'],
+    explanation: 'Kernpunkte laut Skript: Vier Rabattarten, Einordnung von Skonto und Boni.',
+    source: 'Kapitel 4.1 und 4.3, PDF S. 17 und 20', conceptIds: ['mc-rabatte', 'mc-preisinstrumente'],
   },
   {
     id: 'qm4-29', chapterId: 'm4', type: 'transfer', goal: 'application', difficulty: 2,
@@ -346,7 +346,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: 'Hersteller A verfolgt die Skimmingstrategie: Ein sehr hoher Einführungspreis schöpft die Preisbereitschaft von Innovatoren und Frühadoptern ab; sind diese Segmente gesättigt, wird der Preis für die frühe und späte Mehrheit gesenkt (wie Apple beim iPhone 7). Hersteller B nutzt die Logik der Penetrationsstrategie wie im Skript-Beispiel Rasierer/Klingen: Mit einem geringen Einstiegspreis wird der Markt schnell durchdrungen, verdient wird anschließend über die teuren Nachfüllprodukte.',
     explanation: 'Übertragung der Skript-Beispiele auf neue Fälle.',
-    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-skimming', 'mc-penetration'],
+    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preisabfolge'],
   },
   {
     id: 'qm4-30', chapterId: 'm4', type: 'transfer', goal: 'application', difficulty: 3,
@@ -359,7 +359,7 @@ export const questions4: Question[] = [
     ],
     modelAnswer: 'Der Hersteller nutzt die kostenorientierte Preisbestimmung (Stückkosten plus Aufschlag). Sie ist zwar einfach, schnell und transparent, vernachlässigt aber jegliche nachfrage- und wettbewerbsbezogenen Aspekte – genau das zeigt sich hier: Die Konkurrenz ist günstiger, und der empfundene Wert der Kunden liegt unter dem Preis. Empfehlenswert ist eine marktorientierte Preisbestimmung: Perceived-Value-Pricing richtet den Preis am empfundenen Wert aus Kundensicht aus; eine Break-even-Analyse zeigt, welche Absatzmenge bei einem marktfähigen Preis zur Gewinnschwelle nötig ist; der Cournot-Preis ermittelt mithilfe der Preis-Absatz-Funktion den gewinnmaximalen Preis.',
     explanation: 'Schwäche der Kostenorientierung im Wettbewerb.',
-    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-kostenorientiert', 'mc-marktorientiert', 'mc-perceived-value', 'mc-breakeven', 'mc-cournot', 'mc-preiskorridor'],
+    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-kostenorientiert', 'mc-marktorientiert', 'mc-einflussfaktoren-preis'],
   },
   {
     id: 'qm4-31', chapterId: 'm4', type: 'open', goal: 'understanding', difficulty: 2,
@@ -370,8 +370,8 @@ export const questions4: Question[] = [
       { point: 'Ziel: Maximierung des langfristigen Kundenwerts (heute kostenlos, später wertvoller Kunde)', keywords: ['maximierung', 'langfristig', 'kundenwert', 'später'] },
     ],
     modelAnswer: 'Der Customer Lifetime Value ist der Wert, den ein Kunde über die gesamte Zeit seiner Kundschaft für ein Unternehmen darstellt. Das kostenlose Jugendkonto der Sparkassen ist eine personelle Preisdifferenzierung: Jugendliche erhalten eine Vergünstigung, damit sie als Kunden gewonnen werden und der langfristige Kundenwert maximiert wird – die Bank verzichtet heute auf Erlöse, um über die gesamte Kundenbeziehung mehr zu verdienen.',
-    explanation: 'CLV + Verbindung zur personellen Preisdifferenzierung.',
-    source: 'Kapitel 4.2, PDF S. 19', conceptIds: ['mc-clv', 'mc-pd-person'],
+    explanation: 'Kernpunkte laut Skript: Customer Lifetime Value = Wert eines Kunden über die gesamte Zeit seiner Kundschaft; Beispiel kostenloses Jugendkonto der Sparkassen (personelle Preisdifferenzierung).',
+    source: 'Kapitel 4.2, PDF S. 19', conceptIds: ['mc-clv', 'mc-preisdiff'],
   },
 
   // ======================= neue geschlossene Fragen =======================
@@ -386,14 +386,14 @@ export const questions4: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Externe Rahmenbedingungen: Handelsstruktur (z. B. Discounter vs. exklusiver Partner), Gesamtwirtschaft, Saisonalität.',
-    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-externe-rahmen'],
+    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-einflussfaktoren-preis'],
   },
   {
     id: 'qm4-33', chapterId: 'm4', type: 'true_false', goal: 'understanding', difficulty: 2,
     prompt: 'Laut Skript müssen der wahrgenommene Nutzen eines Produkts und die realen Herstellerkosten eng zusammenhängen.',
     correctBool: false,
     explanation: 'Falsch – sie müssen NICHT zusammenhängen (Beispiel Starbucks).',
-    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-preisgrenzen'],
+    source: 'Kapitel 4.1, PDF S. 16', conceptIds: ['mc-einflussfaktoren-preis'],
   },
   {
     id: 'qm4-34', chapterId: 'm4', type: 'single_choice', goal: 'fact', difficulty: 2,
@@ -455,7 +455,7 @@ export const questions4: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Frühe Zahlung = Skonto; Aufschläge = Preiszuschläge; Kredite = Absatzkredite.',
-    source: 'Kapitel 4.1, PDF S. 17', conceptIds: ['mc-boni', 'mc-skonto'],
+    source: 'Kapitel 4.1, PDF S. 17', conceptIds: ['mc-preisinstrumente', 'mc-rabatte'],
   },
   {
     id: 'qm4-40', chapterId: 'm4', type: 'single_choice', goal: 'understanding', difficulty: 2,
@@ -479,7 +479,7 @@ export const questions4: Question[] = [
       { left: 'Niedrigpreisstrategie', right: 'Roller, Poco, Sconto' },
     ],
     explanation: 'Designmöbelstudios – Vollsortimenter – Möbeldiscounter.',
-    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-hochpreis', 'mc-mittelpreis', 'mc-niedrigpreis'],
+    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preispositionierung'],
   },
   {
     id: 'qm4-42', chapterId: 'm4', type: 'assignment', goal: 'distinction', difficulty: 2,
@@ -490,7 +490,7 @@ export const questions4: Question[] = [
       { left: 'Preisfolgerschaft', right: 'Senkt Aldi die Preise, ziehen Norma und Netto nach' },
     ],
     explanation: 'Führen – Kämpfen – Folgen.',
-    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preisfuehrerschaft', 'mc-preiskampf', 'mc-preisfolgerschaft'],
+    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preiswettbewerb'],
   },
   {
     id: 'qm4-43', chapterId: 'm4', type: 'single_choice', goal: 'application', difficulty: 2,
@@ -498,7 +498,7 @@ export const questions4: Question[] = [
     options: ['Skimmingstrategie', 'Penetrationsstrategie', 'Preiskampf', 'Räumliche Preisdifferenzierung'],
     correctOptions: [0],
     explanation: 'Erst hoher Preis für Innovatoren und Frühadopter, dann Senkung für die Mehrheit.',
-    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-skimming'],
+    source: 'Kapitel 4.2, PDF S. 18', conceptIds: ['mc-preisabfolge'],
   },
   {
     id: 'qm4-44', chapterId: 'm4', type: 'true_false', goal: 'fact', difficulty: 2,
@@ -518,7 +518,7 @@ export const questions4: Question[] = [
       { left: 'Gebundene Ausgabe, Taschenbuch und E-Book', right: 'leistungsbezogen' },
     ],
     explanation: 'Fünf Formen der Preisdifferenzierung mit Skript-Beispielen.',
-    source: 'Kapitel 4.2, PDF S. 18–19', conceptIds: ['mc-pd-menge', 'mc-pd-zeit', 'mc-pd-raum', 'mc-pd-person', 'mc-pd-leistung'],
+    source: 'Kapitel 4.2, PDF S. 18–19', conceptIds: ['mc-preisdiff'],
   },
   {
     id: 'qm4-46', chapterId: 'm4', type: 'single_choice', goal: 'application', difficulty: 1,
@@ -526,7 +526,7 @@ export const questions4: Question[] = [
     options: ['Preisbündelung', 'Penetrationsstrategie', 'Reverse Pricing', 'Treuerabatt'],
     correctOptions: [0],
     explanation: 'Preisbündelung ist die Sonderform der Preisdifferenzierung.',
-    source: 'Kapitel 4.2, PDF S. 19', conceptIds: ['mc-preisbuendelung'],
+    source: 'Kapitel 4.2, PDF S. 19', conceptIds: ['mc-preisdiff'],
   },
   {
     id: 'qm4-47', chapterId: 'm4', type: 'single_choice', goal: 'fact', difficulty: 2,
@@ -539,7 +539,7 @@ export const questions4: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Option 2 = Perceived-Value-Pricing, Option 3 = Cournot-Preis, Option 4 = kostenorientierte Preisbestimmung.',
-    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-breakeven'],
+    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-marktorientiert'],
   },
   {
     id: 'qm4-48', chapterId: 'm4', type: 'assignment', goal: 'distinction', difficulty: 2,
@@ -550,7 +550,7 @@ export const questions4: Question[] = [
       { left: 'Cournot-Preis', right: 'Gewinnmaximaler Preis unter Verwendung der Preis-Absatz-Funktion' },
     ],
     explanation: 'Drei marktorientierte Verfahren.',
-    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-breakeven', 'mc-perceived-value', 'mc-cournot', 'mc-marktorientiert'],
+    source: 'Kapitel 4.3, PDF S. 19', conceptIds: ['mc-marktorientiert'],
   },
   {
     id: 'qm4-49', chapterId: 'm4', type: 'multiple_choice', goal: 'fact', difficulty: 2,
@@ -593,7 +593,7 @@ export const questions4: Question[] = [
     prompt: 'Zur Konditionenpolitik zählen ______, Lieferungs- und Zahlungsbedingungen sowie ______.',
     clozeAnswers: [['Absatzkredite', 'Absatzkredit'], ['Rabatte', 'Rabatt']],
     explanation: 'Konditionenpolitik: Absatzkredite, Lieferungs- und Zahlungsbedingungen, Rabatte – besonders wichtig im B2B.',
-    source: 'Kapitel 4.3, PDF S. 20', conceptIds: ['mc-konditionenpolitik', 'mc-absatzkredite'],
+    source: 'Kapitel 4.3, PDF S. 20', conceptIds: ['mc-konditionenpolitik'],
   },
   {
     id: 'qm4-54', chapterId: 'm4', type: 'single_choice', goal: 'distinction', difficulty: 2,
@@ -601,14 +601,14 @@ export const questions4: Question[] = [
     options: ['Zeitrabatts', 'Mengenrabatts', 'Treuerabatts', 'Funktionsrabatts'],
     correctOptions: [0],
     explanation: 'Skonto = Sonderform des Zeitrabatts für eine frühzeitige Zahlung.',
-    source: 'Kapitel 4.3, PDF S. 20', conceptIds: ['mc-skonto', 'mc-zeitrabatt'],
+    source: 'Kapitel 4.3, PDF S. 20', conceptIds: ['mc-rabatte'],
   },
   {
     id: 'qm4-55', chapterId: 'm4', type: 'true_false', goal: 'fact', difficulty: 1,
     prompt: 'Ein Funktionsrabatt ist eine Gegenleistung für Funktionen, die der Handel übernimmt – etwa Lagerung, Präsentation oder Kundenkontakt.',
     correctBool: true,
     explanation: 'Richtig.',
-    source: 'Kapitel 4.3, PDF S. 20', conceptIds: ['mc-funktionsrabatt'],
+    source: 'Kapitel 4.3, PDF S. 20', conceptIds: ['mc-rabatte'],
   },
   {
     id: 'qm4-56', chapterId: 'm4', type: 'single_choice', goal: 'fact', difficulty: 1,
@@ -621,6 +621,6 @@ export const questions4: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Seine Analyse ist Schritt 1 des Prozesses der Preisfestlegung.',
-    source: 'Kapitel 4.1, PDF S. 17', conceptIds: ['mc-preisspielraum'],
+    source: 'Kapitel 4.1, PDF S. 17', conceptIds: ['mc-preisprozess'],
   },
 ];

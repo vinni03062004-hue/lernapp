@@ -416,6 +416,11 @@ table.data th { color: var(--text-dim); font-size: 12px; text-transform: upperca
 .lk-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .lk-term.open .lk-more { color: var(--accent); border-color: var(--accent); }
 .lk-term-def { margin-top: 3px; font-size: 14.5px; line-height: 1.5; }
+.lk-kind {
+  display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 999px; vertical-align: 2px;
+  background: var(--bg-subtle); color: var(--text-dim); font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
 .lk-points { margin: 5px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 2px; font-size: 14px; line-height: 1.45; }
 .lk-details {
   display: flex; flex-direction: column; gap: 7px;

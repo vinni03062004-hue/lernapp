@@ -13,24 +13,20 @@ export const concepts3: Concept[] = [
     id: 'mc-integrierte-kommunikation', chapterId: 'm3', term: 'Integrierte Marketingkommunikation',
     definition: 'Kommunikationsaktivitäten müssen integriert und aufeinander abgestimmt werden, damit eine kohärente Marketingkommunikation Marken bekannt macht und mit Inhalt füllt (Markenassoziationen).',
     context: 'Ziel des Kommunikationsmix: so kombinieren, dass eine einheitliche und stimmige Markenbotschaft entsteht.',
-    examRelevance: 'Begründen können, warum Abstimmung nötig ist, und die sechs Bewertungskriterien nennen.',
   },
   {
     id: 'mc-medienneutral', chapterId: 'm3', term: 'Medienneutrale Planung',
     definition: 'Alle Kommunikationsoptionen und -kanäle sollten bezüglich ihrer Effektivität (Nutzen) und Effizienz (betriebener Aufwand) objektiv bewertet werden.',
-    mnemonic: 'Effektivität = Nutzen; Effizienz = Aufwand.',
   },
   {
-    id: 'mc-komm-aufgaben', chapterId: 'm3', term: 'Aufgaben der Marketingkommunikation',
+    id: 'mc-komm-aufgaben', chapterId: 'm3', term: 'Aufgabe der Marketingkommunikation',
     definition: 'In Dialog mit den Konsumenten treten, um sie über Produkte und Marken zu informieren, von Produkten und Marken zu überzeugen und an Produkte und Marken zu erinnern.',
-    mnemonic: 'Informieren – Überzeugen – Erinnern.',
   },
   {
     id: 'mc-komm-ziele', chapterId: 'm3', term: 'Kommunikationsziele (ökonomisch vs. vorökonomisch)',
     definition: 'Ziele werden in ökonomische (wirtschaftliche) und vorökonomische (potenzialbezogene) Größen unterteilt. Wirtschaftliche Ziele (Marktanteil, Kundenzahl, Absatz, Rentabilität) beziehen sich auf den Marketingmix als Ganzes – nur die potenzialbezogenen Ziele sind reine Kommunikationsziele: Kategoriebedürfnis, Bekanntheitsgrad und Image, Einstellungen der Nachfrager zum Unternehmen und zu den Produkten, Kaufabsicht der Nachfrager.',
     context: 'Schritt 2 der Kommunikationsplanung: Welche konkreten Ziele sollen in einem bestimmten Zeitraum verfolgt werden?',
     example: 'Coca-Cola-Kampagne „New Guy“: das gesamte Portfolio emotional erlebbar machen und die Markenassoziation stärken.',
-    examRelevance: 'Klassische Abgrenzung: Warum sind Marktanteil/Absatz KEINE reinen Kommunikationsziele?',
     synonyms: ['reine Kommunikationsziele', 'vorökonomische Ziele', 'potenzialbezogene Ziele'],
   },
   {
@@ -40,44 +36,10 @@ export const concepts3: Concept[] = [
 
   // ---------- Kommunikationsprogramme entwickeln (S. 11–12) ----------
   {
-    id: 'mc-8schritte-komm', chapterId: 'm3', term: 'Acht Schritte der Kommunikationsplanung',
+    id: 'mc-8schritte-komm', chapterId: 'm3', term: 'Kommunikationsprogramme entwickeln (acht Schritte)',
     definition: 'Erfolgreiche Kampagnen werden analytisch und stufenweise geplant (Kotler/Keller/Opresnik 2015): 1. Zielgruppe auswählen, 2. Kommunikationsziele festlegen, 3. Kommunikationsbotschaft bestimmen, 4. Kommunikationskanäle auswählen, 5. Budget festlegen, 6. Kommunikationsmix gestalten, 7. Kommunikationsergebnisse messen, 8. Marketingkommunikationsprozess steuern.',
-    mnemonic: 'Wen? Wozu? Was? Worüber? Wie viel? Welcher Mix? Was hat’s gebracht? Wie steuern?',
-    examRelevance: 'Reihenfolge + je ein Satz Erklärung, idealerweise mit Skript-Beispiel.',
-  },
-  {
-    id: 'mc-zielgruppe', chapterId: 'm3', term: 'Zielgruppe auswählen (Schritt 1)',
-    definition: 'An wen richtet sich die Kommunikation? Die Zielgruppe kann deckungsgleich mit dem Marktsegment oder nur eine Teilmenge davon sein.',
-    example: 'HelloFresh: E-Mails, persönliche Anrufe, Rückgewinnungsrabatte und Retargeting-Anzeigen für abgesprungene Kunden.',
-    synonyms: ['Zielgruppe'],
-  },
-  {
-    id: 'mc-botschaft', chapterId: 'm3', term: 'Kommunikationsbotschaft bestimmen (Schritt 3)',
-    definition: 'Was soll wie und von wem gesagt werden?',
-    example: 'Nikes „Just Do It“, seit 1988 zentraler Bestandteil der Markenidentität.',
-    synonyms: ['Kommunikationsbotschaft'],
-  },
-  {
-    id: 'mc-kanaele', chapterId: 'm3', term: 'Kommunikationskanäle auswählen (Schritt 4)',
-    definition: 'Auf welchem Träger soll die Botschaft vermittelt werden? Grob: persönliche Kanäle vs. Massenkanäle – die Grenzen verwischen jedoch durch soziale Medien, programmatische Werbung und KI.',
-    example: 'KI-personalisierte Coupons in Retail-Apps von Lidl, REWE, dm.',
-    synonyms: ['Kommunikationskanäle'],
-  },
-  {
-    id: 'mc-budget', chapterId: 'm3', term: 'Kommunikationsbudget festlegen (Schritt 5)',
-    definition: 'Wie viel Geld soll ausgegeben werden? Möglichkeiten: nach finanziellen Möglichkeiten, als Prozentsatz des Umsatzes, orientiert an den Mitbewerbern oder auf Basis von Zielen und Aufgaben – Letzteres ist der empfehlenswerte Weg.',
-    examRelevance: 'Vier Methoden nennen und die ziel-/aufgabenorientierte als empfohlene kennzeichnen.',
-    synonyms: ['Budgetierung', 'Werbebudget'],
-  },
-  {
-    id: 'mc-ergebnismessung', chapterId: 'm3', term: 'Kommunikationsergebnisse messen (Schritt 7)',
-    definition: 'Welche Wirkung hatten die Maßnahmen? Gemessen über Konsumentenbefragungen sowie digitale Messgrößen wie CTR, Conversion Rate oder Engagement Rate.',
-    example: 'Duolingo „Duo is Dead“: +51 % täglich aktive Nutzer auf 40,5 Mio.',
-  },
-  {
-    id: 'mc-prozesssteuerung', chapterId: 'm3', term: 'Marketingkommunikationsprozess steuern (Schritt 8)',
-    definition: 'Instrumente dürfen nicht isoliert laufen, sondern müssen kontinuierlich überwacht, koordiniert und bei Bedarf angepasst werden – zunehmend über Marketing-Automatisierungssysteme.',
-    example: 'Merit Beauty verlagerte 2025 sein Budget kurzfristig von TikTok auf andere Plattformen.',
+    example: 'HelloFresh (Zielgruppe), Coca-Cola „New Guy“ (Ziele), Nike „Just Do It“ (Botschaft), KI-Coupons von Lidl, REWE, dm (Kanäle), Zara vs. H&M (Mix), Duolingo „Duo is Dead“ (Messung), Merit Beauty (Steuerung).',
+    context: 'Budget-Möglichkeiten: nach finanziellen Möglichkeiten, als Prozentsatz des Umsatzes, orientiert an den Mitbewerbern oder auf Basis von Zielen und Aufgaben – Letzteres ist der empfehlenswerte Weg.',
   },
   {
     id: 'mc-retargeting', chapterId: 'm3', term: 'Retargeting',
@@ -90,44 +52,20 @@ export const concepts3: Concept[] = [
     synonyms: ['Programmatic Advertising'],
   },
   {
-    id: 'mc-kpis', chapterId: 'm3', term: 'Digitale Messgrößen (CTR, Conversion Rate, Engagement Rate)',
+    id: 'mc-kpis', chapterId: 'm3', term: 'Digitale Messgrößen: CTR, Conversion Rate, Engagement Rate',
     definition: 'Digitale Kennzahlen zur Messung der Kommunikationsergebnisse (Schritt 7): Click-Through-Rate, Conversion Rate und Engagement Rate.',
-    synonyms: ['KPIs', 'Kennzahlen'],
-  },
-  {
-    id: 'mc-ctr', chapterId: 'm3', term: 'Click-Through-Rate (CTR)',
-    definition: 'Kennzahl für die Klickhäufigkeit von Anzeigen.',
-    example: 'Ein Banner wird gesehen, 1 % klickt.',
-    confusableWith: ['Conversion Rate'],
-  },
-  {
-    id: 'mc-conversion', chapterId: 'm3', term: 'Conversion Rate',
-    definition: 'Anteil der Besucher, die Zielhandlungen ausführen.',
-    example: '100 Besucher, 5 Käufe = 5 %.',
-    confusableWith: ['Click-Through-Rate (CTR)'],
-  },
-  {
-    id: 'mc-engagement', chapterId: 'm3', term: 'Engagement Rate',
-    definition: 'Misst, wie aktiv Nutzer reagieren.',
-    example: 'Kommentare, Shares und Likes pro Post.',
+    synonyms: ['Kennzahlen', 'CTR', 'Conversion Rate', 'Engagement Rate'],
   },
 
   // ---------- Medien kombinieren (S. 12) ----------
-  {
-    id: 'mc-medienkombination', chapterId: 'm3', term: 'Einflussfaktoren der Medienkombination',
-    definition: 'Jedes Kommunikationswerkzeug hat Vor- und Nachteile; Auswahl und Kombination hängen ab von (1) der Marktstellung des Unternehmens, (2) der Art des Produktmarkts (Konsum oder Industrie), (3) den Charakteristiken der Zielgruppe, (4) der Kaufbereitschaft der Konsumenten und der Art der Kaufentscheidung, (5) der Phase im Lebenszyklus und (6) dem zur Verfügung stehenden Budget.',
-    examRelevance: 'Sechs Faktoren aufzählen können.',
-  },
   {
     id: 'mc-kaufentscheidung', chapterId: 'm3', term: 'Kaufentscheidung',
     definition: 'Bezieht sich darauf, mit welchem kognitiven und sonstigen Aufwand ein Kauf verbunden ist: impulsive, habituelle, limitierte und extensive Kaufentscheidungen.',
     synonyms: ['impulsive Kaufentscheidung', 'habituelle Kaufentscheidung', 'limitierte Kaufentscheidung', 'extensive Kaufentscheidung'],
   },
   {
-    id: 'mc-6kriterien', chapterId: 'm3', term: 'Sechs Kriterien der integrierten Marketingkommunikation',
+    id: 'mc-6kriterien', chapterId: 'm3', term: 'Sechs Kriterien der integrierten Marketingkommunikation (Keller/Swaminathan 2019)',
     definition: 'Zur Einschätzung von Effektivität und Effizienz (Keller/Swaminathan 2019): Reichweite (Wird die angestrebte Zielgruppe erreicht?), Mitwirkung (Welche Auswirkung hat die Kommunikation auf die Zielgruppe?), Gemeinsamkeit (Vermitteln die Kommunikationswege eine konsistente Botschaft?), Komplementarität (Ergänzen sich die Kommunikationswege gegenseitig?), Vielseitigkeit (Wirkt die Kommunikation bei Konsumenten mit einem wie mit mehreren Kontakten?), Kosten (Welche Kosten fallen an?).',
-    mnemonic: 'R-M-G-K-V-K: Reichweite, Mitwirkung, Gemeinsamkeit, Komplementarität, Vielseitigkeit, Kosten.',
-    examRelevance: 'Alle sechs mit Leitfrage; Gemeinsamkeit (konsistente Botschaft) und Komplementarität (gegenseitige Ergänzung) nicht vertauschen.',
     synonyms: ['Reichweite', 'Mitwirkung', 'Gemeinsamkeit', 'Komplementarität', 'Vielseitigkeit'],
   },
 
@@ -154,7 +92,6 @@ export const concepts3: Concept[] = [
     definition: 'Der Marketingkommunikationsmix besteht aus acht Werkzeugen: Werbung, Verkaufsförderung, Sponsoring & Events, Public Relations (massenmedial) sowie Direktmarketing, interaktives Marketing, Mund-zu-Mund-Kommunikation und persönlicher Verkauf (persönlich) – so zu kombinieren, dass eine einheitliche und stimmige Markenbotschaft entsteht.',
     context: 'Schritt 6 der Planung („Kommunikationsmix gestalten“): Welche Medien und Kanäle werden ausgewählt? Merkmale und Kosten jedes Werkzeugs berücksichtigen – entscheidend ist nicht die bloße Auswahl, sondern die durchdachte Kombination.',
     example: 'Zara: praktisch keine Werbung, sondern exklusive Standorte, Store-Design und Mund-zu-Mund-Kommunikation; H&M: klassische Werbung + digitale Präsenz.',
-    mnemonic: '4 massenmedial (W-V-S-P) + 4 persönlich (D-I-M-P) = 8.',
     synonyms: ['Kommunikationsmix', 'Kommunikationsinstrumente'],
   },
 
@@ -162,8 +99,7 @@ export const concepts3: Concept[] = [
   {
     id: 'mc-werbung', chapterId: 'm3', term: 'Werbung',
     definition: 'Die unpersönliche, durch einen dabei explizit genannten Auftraggeber bezahlte Präsentation von Produkten (massenmedial).',
-    context: 'Vier Kanalgruppen: Print-, Übertragungs-, Display- und digitale Medien. Stärken sind Reichweite, Ausdruckskraft und volle Kontrolle über die Produktpräsentation; Schwächen hohe Kosten, Werbemüdigkeit und fehlende individuelle Ansprache.',
-    examRelevance: 'Definition (unpersönlich, bezahlt, genannter Auftraggeber) + je mindestens drei Vor- und Nachteile.',
+    context: 'Kanäle: Print-, Übertragungs-, Display- und digitale Medien. Werbung wird umso störender empfunden, je drastischer sie die Mediennutzung unterbricht – zusätzlich „Werbemüdigkeit“ und Ausblenden durch neue Technologien.',
   },
   {
     id: 'mc-product-placement', chapterId: 'm3', term: 'Product Placement',
@@ -175,10 +111,6 @@ export const concepts3: Concept[] = [
     confusableWith: ['Search Engine Optimization (SEO)'],
     synonyms: ['Suchmaschinenwerbung', 'SEA'],
   },
-  {
-    id: 'mc-werbemuedigkeit', chapterId: 'm3', term: 'Werbemüdigkeit',
-    definition: 'Werbung wird umso störender empfunden, je drastischer sie die Mediennutzung unterbricht; hinzu kommen „Werbemüdigkeit“ der Konsumenten und das Ausblenden von Werbung durch neue Technologien.',
-  },
 
   // ---------- Verkaufsförderung (S. 13) ----------
   {
@@ -186,7 +118,6 @@ export const concepts3: Concept[] = [
     definition: 'Kurzfristige Anregung von Verkauf durch gezielte Anreize (massenmedial) – hat an Bedeutung gewonnen, weil die Wirkung klassischer Werbung nachlässt.',
     context: 'Durch die zeitliche Limitierung lassen sich die Effekte messen. Verkaufsförderung liefert keine Argumente im Sinne von Wettbewerbsvorteilen, sondern greifbare, direkte Anreize zum Handeln. Zu starker oder zu häufiger Einsatz führt zu Wirkungsnachlass und kann dem Markenwert schaden.',
     example: 'Black Friday.',
-    mnemonic: 'VKF = kurzfristiger Anreiz, kein Wettbewerbsargument.',
     synonyms: ['Promotion', 'Sales Promotion'],
   },
   {
@@ -219,8 +150,6 @@ export const concepts3: Concept[] = [
   {
     id: 'mc-pr-funktionen', chapterId: 'm3', term: 'Funktionen der PR',
     definition: 'Nach Meffert et al. (2015): Informationsfunktion (Vermittlung von Informationen an die Öffentlichkeit), Kontaktfunktion (Aufbau und Aufrechterhaltung der Stakeholderverbindungen), Imagefunktion (Aufbau, Änderung und Pflege des Unternehmensbildes), Absatzförderungsfunktion (Verkaufsförderung durch Anerkennung und Vertrauen), Sozialfunktion (Aufzeigen der gesellschaftlichen und sozialen Unternehmensleistungen), Balancefunktion (Anreiz-Beitrags-Gleichgewicht der Unternehmensstakeholder), Stabilisierungsfunktion (Erhöhung der Krisenfestigkeit aufgrund stabiler Beziehungen zu den Anspruchsgruppen).',
-    mnemonic: 'I-K-I-A-S-B-S: „Ich Kann Immer Aus Sieben Bausteinen Schöpfen.“',
-    examRelevance: 'Typische Aufzählungsfrage: die sieben Funktionen mit kurzer Erklärung.',
     synonyms: ['Informationsfunktion', 'Kontaktfunktion', 'Imagefunktion', 'Absatzförderungsfunktion', 'Sozialfunktion', 'Balancefunktion', 'Stabilisierungsfunktion'],
   },
 
@@ -239,7 +168,6 @@ export const concepts3: Concept[] = [
     definition: 'Weiterentwicklung des Direktmarketings – es findet ein Austausch zwischen Konsument und Unternehmen statt (früher z. B. Rückantwortkarten) (persönlich).',
     context: 'Die Vorteile entsprechen denen des Direktmarketings; zusätzlich können durch die Analyse digitaler Daten die Interessen der Konsumenten ermittelt werden – zielgerechte Ansprache.',
     confusableWith: ['Direktmarketing'],
-    mnemonic: 'Direkt = Einbahnstraße zum Kunden; interaktiv = Austausch in beide Richtungen.',
   },
   {
     id: 'mc-suchgebunden', chapterId: 'm3', term: 'Suchgebundene Anzeigen',
@@ -250,24 +178,9 @@ export const concepts3: Concept[] = [
   {
     id: 'mc-wom', chapterId: 'm3', term: 'Mund-zu-Mund-Kommunikation (Word-of-Mouth)',
     definition: 'Persönliche Kommunikation von Konsumenten untereinander, die sich über ihre Erfahrungen mit Unternehmen und Produkten austauschen – zunehmend elektronisch (soziale Medien, Blogs).',
-    context: 'Aufgrund der persönlichen Bindung sehr einflussreich; die Kommunikation erfolgt sehr zeitnah. Formen: Buzz Marketing, Viral Marketing, Influencer-Marketing.',
+    context: 'Aufgrund der persönlichen Bindung sehr einflussreich; die Kommunikation erfolgt sehr zeitnah.',
     example: 'Amazon nutzt Kundenbewertungen gezielt zur Verbesserung der Angebote.',
     synonyms: ['Word-of-Mouth', 'WoM', 'Mundpropaganda'],
-  },
-  {
-    id: 'mc-buzz', chapterId: 'm3', term: 'Buzz Marketing',
-    definition: 'Mundpropaganda in Foren, auf Bewertungsplattformen oder Social-Media-Plattformen wie Instagram oder Reddit.',
-    confusableWith: ['Viral Marketing'],
-  },
-  {
-    id: 'mc-viral', chapterId: 'm3', term: 'Viral Marketing',
-    definition: 'Die Verbreitung von Inhalten wird über Influencer oder Onlinemedien multipliziert – viraler Effekt.',
-    confusableWith: ['Buzz Marketing', 'Influencer-Marketing'],
-  },
-  {
-    id: 'mc-influencer', chapterId: 'm3', term: 'Influencer-Marketing',
-    definition: 'Gezielte strategische Nutzung des viralen Effekts: Kooperation mit reichweitenstarken Personen, um deren authentische Stimme und Glaubwürdigkeit für die Markenbotschaft zu nutzen.',
-    confusableWith: ['Viral Marketing'],
   },
 
   // ---------- Persönlicher Verkauf (S. 16) ----------

@@ -33,7 +33,7 @@ export const questions2: Question[] = [
       { left: 'Unsought Goods', right: 'Versicherungen – nicht aktiv nachgefragt' },
     ],
     explanation: 'Die vier Typen nach Kaufgewohnheit (Walsh/Deseniss/Kilian 2013) – sie tauchen beim Distributionsgrad wieder auf.',
-    source: 'Kapitel 2.1, PDF S. 8', conceptIds: ['mc-kaufgewohnheit', 'mc-convenience', 'mc-shopping', 'mc-specialty', 'mc-unsought'],
+    source: 'Kapitel 2.1, PDF S. 8', conceptIds: ['mc-guetertypen', 'mc-convenience', 'mc-shopping', 'mc-specialty', 'mc-unsought'],
   },
   {
     id: 'qm2-04', chapterId: 'm2', type: 'single_choice', goal: 'distinction', difficulty: 2,
@@ -63,7 +63,7 @@ export const questions2: Question[] = [
     options: ['Das Produkt schützen', 'Werblich anpreisen', 'Anwenderfreundlich sein', 'Möglichst schwer und massiv sein', 'Möglichst leicht und ökologisch sinnvoll zu entsorgen sein'],
     correctOptions: [0, 1, 2, 4],
     explanation: 'Schützen, anpreisen, anwenderfreundlich, leicht und ökologisch sinnvoll entsorgbar.',
-    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-verpackung'],
+    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-produktgestaltung'],
   },
   {
     id: 'qm2-08', chapterId: 'm2', type: 'assignment', goal: 'fact', difficulty: 2,
@@ -76,7 +76,7 @@ export const questions2: Question[] = [
       { left: 'Verfallsphase', right: 'Produkt wird nicht mehr unterstützt' },
     ],
     explanation: 'Die Aktivitäten stehen in der Abbildung zum Produktlebenszyklus unter den Phasen.',
-    source: 'Kapitel 2.3, Abbildung PDF S. 9', conceptIds: ['mc-lebenszyklus', 'mc-einfuehrungsphase', 'mc-wachstumsphase', 'mc-reifephase', 'mc-saettigungsphase', 'mc-verfallsphase'],
+    source: 'Kapitel 2.3, Abbildung PDF S. 9', conceptIds: ['mc-lebenszyklus'],
   },
   {
     id: 'qm2-09', chapterId: 'm2', type: 'open', goal: 'understanding', difficulty: 3,
@@ -89,7 +89,7 @@ export const questions2: Question[] = [
     ],
     modelAnswer: 'Der Produktlebenszyklus erklärt den Verlauf hauptsächlich über die Variable Zeit und kann deshalb Technologiesprünge nicht erklären. Das S-Kurvenkonzept (Foster 1986) soll das Innovationsmanagement für technologische Diskontinuitäten sensibilisieren: Jede Technologie stößt zwangsläufig an eine Leistungsgrenze – bedingt durch Größe, Komplexität oder Materialeigenschaften – und wird durch eine neue Technologie ersetzt. Unternehmen müssen daher die Grenzen ihrer Technologien abschätzen; F&E sollte kontinuierlich neue Produkte entwickeln und vorbereiten.',
     explanation: 'Zeit (PLZ) vs. Leistungsgrenze/F&E-Aufwand (S-Kurve).',
-    source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-skurve', 'mc-lebenszyklus', 'mc-diskontinuitaet'],
+    source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-skurve', 'mc-lebenszyklus'],
   },
   {
     id: 'qm2-10', chapterId: 'm2', type: 'single_choice', goal: 'distinction', difficulty: 2,
@@ -106,7 +106,7 @@ export const questions2: Question[] = [
   },
   {
     id: 'qm2-11', chapterId: 'm2', type: 'transfer', goal: 'application', difficulty: 3,
-    prompt: 'Ein Tech-Unternehmen bringt eine neue Smartwatch heraus. Wie kann es den Diffusionsprozess gezielt beschleunigen? Beziehen Sie die Adopterkategorien ein.',
+    prompt: 'Ein Tech-Unternehmen bringt eine neue Smartwatch heraus. Wie kann es den Diffusionsprozess gezielt beschleunigen? Beziehen Sie die Adopter nach Adoptionszeit (Innovatoren, Frühadopter, frühe und späte Mehrheit, Nachzügler) ein.',
     rubric: [
       { point: 'Innovatoren und frühe Adopter zuerst gezielt ansprechen', keywords: ['innovatoren', 'frühe adopter', 'frühadopter', 'zuerst'] },
       { point: 'Sie sind hochinformiert und einflussreiche Multiplikatoren (Tech-Blogger, YouTuber, Fachexperten)', keywords: ['multiplikator', 'influencer', 'blogger', 'youtuber', 'experten'] },
@@ -114,7 +114,7 @@ export const questions2: Question[] = [
     ],
     modelAnswer: 'Das Unternehmen sollte zuerst Innovatoren und frühe Adopter gezielt ansprechen. Diese sind hochinformiert, haben großes Interesse am Produkt und sind heute oft als Tech-Blogger, YouTuber oder Fachexperten aktiv – also einflussreiche Multiplikatoren. Laut Skript ist ihre Ansprache äußerst wichtig, um den Diffusionsprozess voranzutreiben (Rogers 2003): Über soziale Empfehlungen wird das Produkt bekannter, die Unsicherheit sinkt, und die frühe und späte Mehrheit zieht nach.',
     explanation: 'Frühe Segmente als Hebel für die Verbreitung im Gesamtmarkt.',
-    source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-innovatoren', 'mc-diffusion', 'mc-adopterkategorien'],
+    source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-innovatoren', 'mc-diffusion'],
   },
 
   // ======================= neue offene Fragen =======================
@@ -128,7 +128,7 @@ export const questions2: Question[] = [
       { point: 'Materiell (Smartphone) und immateriell (Streaming, Ideen, digitale Güter)', keywords: ['materiell', 'immateriell', 'smartphone', 'stream', 'digitale güter'] },
     ],
     modelAnswer: 'Die Produktpolitik ist das Herz des Marketingmix, weil ein zu vermarktendes Produkt die Grundvoraussetzung für jede Marketingtätigkeit ist. Sie umfasst alle Entscheidungen, die die Gestaltung des Leistungsangebots betreffen (Bruhn 2016); zentrale Frage: Was soll vermarktet werden? Ein Produkt ist ein Bündel von Attributen (Ausstattung, Funktionen, Nutzen, Verwendung), das ausgetauscht oder verwendet werden kann – alles, was ein Konsument zur Bedürfnisbefriedigung erhalten kann. Es kann materiell (z. B. Smartphone) oder immateriell sein (z. B. Streamen eines Liedes, Ideen wie Liedtext oder Melodie, digitale Güter wie In-Game-Items oder Online-Coaching).',
-    explanation: 'Begründung + Definition + Beispiele.',
+    explanation: 'Kernpunkte laut Skript: Begründung, Definition, Beispiele.',
     source: 'Kapitel 2.1, PDF S. 6', conceptIds: ['mc-produktpolitik', 'mc-produkt'],
   },
   {
@@ -142,7 +142,7 @@ export const questions2: Question[] = [
     ],
     modelAnswer: 'Das Kernprodukt ist die Kernleistung – die Befriedigung eines Bedürfnisses: Das E-Bike ermöglicht Fortbewegung auf zwei Rädern, durch den Elektroantrieb wird das Fahren erleichtert. Das reale Produkt setzt dies in ein sichtbares, kaufbares Produkt mit Design, technischer Qualität, Funktionen, Verpackung und Marke um: Rahmen mit integriertem Akku und Motor, Unterstützungsstufen, Display. Das erweiterte Produkt umfasst alle Zusatzleistungen wie Lieferung, Finanzierung, Garantie, Beratung, Installation und Service – beim E-Bike z. B. regelmäßige Software-Updates und Wartung beim Fachhändler. In gesättigten Märkten unterscheiden sich Produkte oft nur geringfügig, deshalb werden Zusatzleistungen immer bedeutender, um sich aus Kundensicht vom Wettbewerb abzuheben.',
     explanation: 'Leistungs-Sicht der Produktebenen (Abbildung S. 7).',
-    source: 'Kapitel 2.1, PDF S. 6–7', conceptIds: ['mc-produktebenen-leistung', 'mc-kernprodukt', 'mc-reales-produkt', 'mc-erweitertes-produkt'],
+    source: 'Kapitel 2.1, PDF S. 6–7', conceptIds: ['mc-produktebenen-leistung'],
   },
   {
     id: 'qm2-14', chapterId: 'm2', type: 'open', goal: 'distinction', difficulty: 2,
@@ -168,7 +168,7 @@ export const questions2: Question[] = [
       { point: 'Emotionaler Nutzen: Marke, gutes Gefühl', keywords: ['emotional', 'gutes gefühl', 'marke'] },
     ],
     modelAnswer: 'Der Grundnutzen ist die Befriedigung des ursprünglichen Bedürfnisses – eine Hose bekleidet und wärmt. Ein Produkt, das nur den Grundnutzen erfüllt, ist meist nicht akzeptabel. Zusatznutzen sind: sozialer bzw. Geltungsnutzen (die Hose ist dem Anlass angemessen), Erbauungsnutzen (sie sitzt gut, schmeichelt der Figur) und emotionaler Nutzen (Marke, gutes Gefühl). Die Zusatznutzen sind nicht an eine Reihenfolge gebunden und müssen nicht zwangsläufig vorhanden sein.',
-    explanation: 'Grundnutzen + drei Zusatznutzen mit Hosen-Beispiel.',
+    explanation: 'Kernpunkte laut Skript: Grundnutzen, drei Zusatznutzen mit Hosen-Beispiel.',
     source: 'Kapitel 2.1, PDF S. 7', conceptIds: ['mc-grundnutzen', 'mc-zusatznutzen'],
   },
   {
@@ -183,7 +183,7 @@ export const questions2: Question[] = [
     ],
     modelAnswer: 'Je mehr Nutzenkomponenten, desto höher die Kategorie: 1) Grundnutzen – bekleiden und wärmen, z. B. ein ausreichend großes Stück Stoff. 2) Generisches Produkt – Hosenbeine geschneidert. 3) Erwartetes Produkt – bequemer Sitz und gefälliges Design. 4) Augmentiertes Produkt – Markenname, wasserabweisend, Thermo, modisch. 5) Potenzielles Produkt – Extrafunktionalitäten wie „smart clothing“.',
     explanation: 'Nutzen-Sicht der Produktebenen (Abbildung S. 7).',
-    source: 'Kapitel 2.1, Abbildung PDF S. 7', conceptIds: ['mc-nutzenkategorien', 'mc-generisches-produkt', 'mc-erwartetes-produkt', 'mc-augmentiertes-produkt', 'mc-potenzielles-produkt', 'mc-grundnutzen'],
+    source: 'Kapitel 2.1, Abbildung PDF S. 7', conceptIds: ['mc-nutzenkategorien', 'mc-grundnutzen'],
   },
   {
     id: 'qm2-17', chapterId: 'm2', type: 'open', goal: 'understanding', difficulty: 2,
@@ -195,7 +195,7 @@ export const questions2: Question[] = [
       { point: 'Ausstattung, Normgerechtigkeit, Ästhetik, Umwelt-/Sozialverträglichkeit', keywords: ['ausstattung', 'normgerecht', 'ästhetik', 'umwelt', 'sozialverträglich'] },
     ],
     modelAnswer: 'Qualität ist die „Gesamtheit der Bestandteile und Eigenschaften eines Produkts oder einer Dienstleistung, die sich auf seine Fähigkeit auswirken, Bedürfnisse zu befriedigen“ (Kotler/Keller/Opresnik 2015); sie kann objektiv (messbare Eigenschaften) oder subjektiv (gemessen an den Vorstellungen des Konsumenten) betrachtet werden. Dimensionen (Meffert/Burmann/Kirchgeorg 2015): Gebrauchsnutzen (funktioniert es wie erwartet?), Haltbarkeit (Lebensdauer), Zuverlässigkeit (Wahrscheinlichkeit des Versagens), Ausstattung (Zusatzvorzüge), Normgerechtigkeit (Gütenormen), Ästhetik (gefällt es?), Umwelt- und Sozialverträglichkeit (ist es nachhaltig?).',
-    explanation: 'Definition + objektiv/subjektiv + Dimensionen.',
+    explanation: 'Kernpunkte laut Skript: Definition, objektiv/subjektiv, Dimensionen.',
     source: 'Kapitel 2.1, PDF S. 7', conceptIds: ['mc-qualitaet', 'mc-qualitaetsdimensionen'],
   },
   {
@@ -210,8 +210,8 @@ export const questions2: Question[] = [
       { point: 'Nutzen: Begriffsverständnis + Auswahl passender Marketingstrategien', keywords: ['marketingstrategie', 'begriffsverständnis', 'handbücher'], weight: 0.5 },
     ],
     modelAnswer: 'Nach Walsh/Deseniss/Kilian (2013): Materialität – Sachgüter (physisch berührbar: Bleistift, Auto) vs. Dienstleistungen (Haarschnitt, Ölwechsel, Steuererklärung). Konsumentengruppe – Konsumgüter für Endkonsumenten (B2C) vs. Investitionsgüter für Unternehmen (B2B); manche Produkte wie Büromaterial gehören zu beiden. Nutzungsdauer – Verbrauchsgüter (Lebensmittel) vs. Gebrauchsgüter (Fahrrad). Nutzungshäufigkeit – Waren des täglichen (Zahnpasta) vs. aperiodischen Bedarfs (Weihnachtsbäume). Kaufgewohnheit – Convenience Goods (Shampoo, Brot), Shopping Goods (Kleidung, Möbel), Specialty Goods (Antiquitäten, hochpreisige Modemarken), Unsought Goods (Versicherungen). Die Kategorisierung hilft dem Begriffsverständnis und ist für die Auswahl passender Marketingstrategien bedeutsam (z. B. eigene Handbücher für Dienstleistungs-, B2B- oder Destinationsmarketing).',
-    explanation: 'Fünf Merkmale + Begründung.',
-    source: 'Kapitel 2.1, PDF S. 7–8', conceptIds: ['mc-guetertypen', 'mc-sachgueter-dl', 'mc-konsum-invest', 'mc-verbrauch-gebrauch', 'mc-bedarf', 'mc-kaufgewohnheit'],
+    explanation: 'Kernpunkte laut Skript: Fünf Merkmale, Begründung.',
+    source: 'Kapitel 2.1, PDF S. 7–8', conceptIds: ['mc-guetertypen'],
   },
   {
     id: 'qm2-19', chapterId: 'm2', type: 'transfer', goal: 'application', difficulty: 2,
@@ -235,8 +235,8 @@ export const questions2: Question[] = [
       { point: 'Gestaltungsfelder: erstmalige Produktgestaltung, Variation mit der Zeit, Kombination zu Produktprogrammen', keywords: ['erstmalig', 'grundsätzliche', 'variation', 'kombination', 'produktprogramm'] },
     ],
     modelAnswer: 'Produktmanager treffen die Entscheidungen; sie sind für Entwicklung und Führung der Produkte am Markt zuständig (Bruhn 2016). Die Ziele können ökonomisch (verkaufte Mengen, Ansprache bestimmter Segmente) oder psychologisch (Image, Konsumenteneinstellungen) sein. Drei Gestaltungsfelder: die grundsätzliche (erstmalige) Produktgestaltung, die Variation von Produkten mit der Zeit und die Kombination von Produkten zu Produktprogrammen (Portfolio/Sortiment).',
-    explanation: 'Akteur + Ziele + Gestaltungsfelder (Kapitel 2.2).',
-    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-produktmanager', 'mc-ziele-produktpolitik', 'mc-gestaltungsfelder', 'mc-produktprogramm'],
+    explanation: 'Kernpunkte laut Skript: Produktmanager treffen die Entscheidungen; ökonomische oder psychologische Ziele; drei Gestaltungsfelder (Kapitel 2.2).',
+    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-produktmanager', 'mc-produktpolitik', 'mc-gestaltungsfelder', 'mc-produktprogramm'],
   },
   {
     id: 'qm2-21', chapterId: 'm2', type: 'open', goal: 'understanding', difficulty: 3,
@@ -250,7 +250,7 @@ export const questions2: Question[] = [
     ],
     modelAnswer: 'Die Produktgestaltung entwickelt die Gesamtheit von Kern- und Zusatzleistungen. 1) Technisch-funktionale Eigenschaften: Wie wird der Kernnutzen bereitgestellt? – Pampers: Material, das saugstark und zugleich sanft ist. 2) Produktdesign: Wie ist das Produkt äußerlich durch Farbe, Form usw. gestaltet? – Schnitt, Farben, Muster. 3) Produktverpackung: Sie soll das Produkt schützen, werblich anpreisen, anwenderfreundlich sowie leicht und ökologisch sinnvoll zu entsorgen sein. 4) Qualitätsmanagement: Wie werden die funktional-technischen Eigenschaften dauerhaft gesichert? – dient der Optimierung von Arbeitsabläufen und Prozessen. 5) Servicepolitik: Sollen weitere Serviceleistungen (Garantien, Lieferung, Kundendienst, Value Added Services) angeboten werden? – Pampers-Onlinebabyratgeber und Schwangerschaftstipps.',
     explanation: 'Fünf Aspekte der Produktgestaltung (Kapitel 2.2).',
-    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-produktgestaltung', 'mc-technisch-funktional', 'mc-produktdesign', 'mc-verpackung', 'mc-qualitaetsmanagement', 'mc-servicepolitik'],
+    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-produktgestaltung'],
   },
   {
     id: 'qm2-22', chapterId: 'm2', type: 'open', goal: 'understanding', difficulty: 2,
@@ -261,8 +261,8 @@ export const questions2: Question[] = [
       { point: 'Servicepolitik: ob Garantien, Lieferung, Kundendienst, Value Added Services angeboten werden', keywords: ['garantie', 'lieferung', 'kundendienst', 'value added'] },
     ],
     modelAnswer: 'Serviceleistungen sind „immaterielle, die Primärleistung unterstützende oder eigenständige Leistungen, die den Kundennutzen steigern“ (Bruhn 2016). Die Servicepolitik klärt, ob weitere Serviceleistungen wie Garantien, Lieferung, Kundendienst oder Value Added Services angeboten werden sollen – bei Pampers z. B. ein Onlinebabyratgeber und Schwangerschaftstipps.',
-    explanation: 'Definition nach Bruhn + Aufgabe der Servicepolitik.',
-    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-serviceleistungen', 'mc-servicepolitik'],
+    explanation: 'Kernpunkte laut Skript: Definition nach Bruhn, Aufgabe der Servicepolitik.',
+    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-serviceleistungen', 'mc-produktgestaltung'],
   },
   {
     id: 'qm2-23', chapterId: 'm2', type: 'open', goal: 'distinction', difficulty: 2,
@@ -292,14 +292,14 @@ export const questions2: Question[] = [
   },
   {
     id: 'qm2-25', chapterId: 'm2', type: 'open', goal: 'understanding', difficulty: 2,
-    prompt: 'Erklären Sie Produktportfoliomanagement, Programmbreite, Programmtiefe und Produktlinie am Beispiel Procter & Gamble.',
+    prompt: 'Erklären Sie Produktportfoliomanagement, Programmbreite, Programmtiefe und Produktlinie am Beispiel der Abbildung im Skript (Produktlinien mit Marken wie Always, Pampers, Ariel, Lenor).',
     rubric: [
       { point: 'Portfoliomanagement: steuert Marketingziele aller Produkte/Marken, verteilt Ressourcen, Sortimentserweiterung/-bereinigung', keywords: ['ressourcen', 'steuert', 'sortimentserweiterung', 'bereinigung'] },
       { point: 'Produktlinie: Gruppe von Produkten mit gemeinsamen Kriterien', keywords: ['gruppe', 'gemeinsam', 'kriterien'] },
       { point: 'Breite = Anzahl Produktlinien (z. B. Hygiene, Schönheitspflege, Waschmittel, Gesundheit/Rasur)', keywords: ['breite', 'anzahl der produktlinien', 'linien'] },
       { point: 'Tiefe = Produkte je Linie (z. B. Always, Pampers in Baby-/Damenhygiene)', keywords: ['tiefe', 'pro produktlinie', 'always', 'pampers', 'je linie'] },
     ],
-    modelAnswer: 'Das Produktportfoliomanagement steuert die Marketingziele aller Produkte/Marken im Portfolio und verteilt die Ressourcen; dazu gehören auch Sortimentserweiterung und -bereinigung. Eine Produktlinie ist eine Gruppe von Produkten mit gemeinsamen Kriterien. Die Programmbreite ist die Anzahl der Produktlinien – bei P&G z. B. Baby- und Damenhygiene, Schönheitspflege, Wasch- und Reinigungsmittel sowie Gesundheit und Rasur. Die Programmtiefe ist die Zahl der Produkte pro Linie – z. B. Always und Pampers in der Hygiene-Linie oder Ariel und Lenor bei den Waschmitteln.',
+    modelAnswer: 'Das Produktportfoliomanagement steuert die Marketingziele aller Produkte/Marken im Portfolio und verteilt die Ressourcen; dazu gehören auch Sortimentserweiterung und -bereinigung. Eine Produktlinie ist eine Gruppe von Produkten mit gemeinsamen Kriterien. Die Programmbreite ist die Anzahl der Produktlinien – in der Abbildung z. B. Baby- und Damenhygiene, Schönheitspflege, Wasch- und Reinigungsmittel sowie Gesundheit und Rasur. Die Programmtiefe ist die Zahl der Produkte pro Linie – z. B. Always und Pampers in der Hygiene-Linie oder Ariel und Lenor bei den Waschmitteln.',
     explanation: 'Siehe Abbildung Programmbreite/-tiefe (S. 9).',
     source: 'Kapitel 2.2, PDF S. 9', conceptIds: ['mc-portfoliomanagement', 'mc-programmbreite', 'mc-programmtiefe', 'mc-produktlinie'],
   },
@@ -312,7 +312,7 @@ export const questions2: Question[] = [
       { point: 'Bedarfskreise – Procter & Gamble (Bedarfsfeld Hygiene)', keywords: ['bedarfskreis', 'bedarfsfeld', 'procter', 'p&g', 'hygiene'] },
     ],
     modelAnswer: 'Nach Walsh/Deseniss/Kilian (2013): Ausrichtung am Material oder der Herkunft der Güter (Kraft Heinz Company, Lebensmittel), an bestimmten Preislagen (LVMH, heterogenes Markenprogramm zu sehr hohen Preisen) oder an Bedarfskreisen (Procter & Gamble, Bedarfsfeld Hygiene).',
-    explanation: 'Drei Leitlinien der Programmstruktur.',
+    explanation: 'Drei Leitlinien für die Ausrichtung der Programmstruktur.',
     source: 'Kapitel 2.2, PDF S. 9', conceptIds: ['mc-programmstruktur'],
   },
   {
@@ -325,7 +325,7 @@ export const questions2: Question[] = [
       { point: '2012 Insolvenz; digitale Revolution bewusst vernachlässigt (nicht verschlafen)', keywords: ['2012', 'insolvenz', 'bewusst vernachlässigt'] },
     ],
     modelAnswer: 'Innovationsmanagement ist die bewusste Gestaltung eines Innovationssystems zur Entwicklung von Neuprodukten und der damit verbundenen Veränderungen im Unternehmen – heute Voraussetzung für wirtschaftlichen Erfolg. Kodak zeigt die Folgen: Ein Kodak-Mitarbeiter erfand 1975 die erste Digitalkamera, doch das Unternehmen verfolgte sie nicht als Strategie und ging 2012 in die Insolvenz. Kodak hat die digitale Revolution nicht verschlafen, sondern bewusst vernachlässigt.',
-    explanation: 'Definition + Kodak als Negativbeispiel.',
+    explanation: 'Kernpunkte laut Skript: Definition, Kodak als Negativbeispiel.',
     source: 'Kapitel 2.3, PDF S. 9', conceptIds: ['mc-innovationsmgmt'],
   },
   {
@@ -340,7 +340,7 @@ export const questions2: Question[] = [
     ],
     modelAnswer: 'Der Produktlebenszyklus ist die idealtypische Darstellung der Phasen von der Neueinführung bis zur Eliminierung: Einführungsphase (hohe Investitionen, geringe Umsätze), Wachstumsphase (überdurchschnittlicher Zuwachs, die Gewinnzone wird erreicht), Reifephase (der Markt dehnt sich weiter aus, die Wachstumsraten sinken; Erfahrungskurveneffekte und Economies of Scale sind am höchsten), Sättigungsphase (der Markt ist gesättigt, die Umsätze gehen zurück), Verfallsphase (kaum noch Bedarf, Umsatz stark rückläufig – Ende des Zyklus).',
     explanation: 'Fünf Phasen mit Merkmalen aus dem Skript.',
-    source: 'Kapitel 2.3, PDF S. 9', conceptIds: ['mc-lebenszyklus', 'mc-einfuehrungsphase', 'mc-wachstumsphase', 'mc-reifephase', 'mc-saettigungsphase', 'mc-verfallsphase'],
+    source: 'Kapitel 2.3, PDF S. 9', conceptIds: ['mc-lebenszyklus'],
   },
   {
     id: 'qm2-29', chapterId: 'm2', type: 'open', goal: 'distinction', difficulty: 2,
@@ -352,8 +352,8 @@ export const questions2: Question[] = [
       { point: 'Am höchsten in der Reifephase', keywords: ['reifephase', 'reife'] },
     ],
     modelAnswer: 'Erfahrungskurveneffekte sind Effizienzsteigerungen, weil bereits Erfahrung im Markt und mit dem Produkt gesammelt wurde und auf dieser Basis Verbesserungen möglich sind. Economies of Scale sind Betriebsgrößenvorteile, z. B. günstigere Einkaufskonditionen durch Mengenrabatte oder sinkende Stückkosten wegen besserer Verwaltungskostenumlage. Beide sind in der Reifephase des Produktlebenszyklus am höchsten.',
-    explanation: 'Zwei Effizienzeffekte + Phase.',
-    source: 'Kapitel 2.3, PDF S. 9–10', conceptIds: ['mc-erfahrungskurve', 'mc-economies-of-scale', 'mc-reifephase'],
+    explanation: 'Kernpunkte laut Skript: Erfahrungskurveneffekte und Economies of Scale – am höchsten in der Reifephase.',
+    source: 'Kapitel 2.3, PDF S. 9–10', conceptIds: ['mc-erfahrungskurve', 'mc-economies-of-scale', 'mc-lebenszyklus'],
   },
   {
     id: 'qm2-30', chapterId: 'm2', type: 'open', goal: 'understanding', difficulty: 3,
@@ -365,8 +365,8 @@ export const questions2: Question[] = [
       { point: 'Konsequenz: Grenzen abschätzen, F&E entwickelt kontinuierlich neue Produkte', keywords: ['abschätzen', 'kontinuierlich', 'vorbereit'] },
     ],
     modelAnswer: 'Das S-Kurvenkonzept (Foster 1986) soll das Innovationsmanagement für technologische Diskontinuitäten sensibilisieren. Grundidee: Jede Technologie stößt irgendwann zwangsläufig an eine Leistungsgrenze – bedingt durch Größe, Komplexität oder Materialeigenschaften – und wird durch eine neue Technologie ersetzt. In der Abbildung ist auf der x-Achse der kumulierte Aufwand für Forschung und Entwicklung, auf der y-Achse die Leistungsfähigkeit der Technologie abgetragen; alte und neue Technologie haben jeweils eine eigene Grenze, der Abstand zwischen heutigem Stand und Grenze zeigt die technologischen Entwicklungspotenziale. Konsequenz: Unternehmen müssen die Grenzen ihrer Technologien abschätzen, um auf Technologiesprünge vorbereitet zu sein; F&E sollte kontinuierlich neue Produkte entwickeln und vorbereiten.',
-    explanation: 'Ziel + Grundidee + Abbildung + Konsequenz.',
-    source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-skurve', 'mc-diskontinuitaet'],
+    explanation: 'Kernpunkte laut Skript: Ziel, Grundidee, Abbildung, Konsequenz.',
+    source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-skurve'],
   },
   {
     id: 'qm2-31', chapterId: 'm2', type: 'open', goal: 'understanding', difficulty: 2,
@@ -378,7 +378,7 @@ export const questions2: Question[] = [
       { point: 'Gezielte Ansprache treibt den Diffusionsprozess voran', keywords: ['diffusion', 'voranzutreiben', 'gezielte ansprache'] },
     ],
     modelAnswer: 'Der Adoptionsprozess wird generell in fünf Phasen unterteilt: Aufmerksamkeit, Interesse, Bewertung, Versuch und Annahme. Die Akzeptanz neuer Produkte braucht oft Zeit – Sony brachte 1981 die erste filmlose Kamera, doch es dauerte weitere 20 Jahre bis zum Massenmarkt. Innovatoren und frühe Adopter sind hochinformiert und haben großes Interesse am Produkt; heute sind sie oft als Tech-Blogger, YouTuber oder Fachexperten aktiv und damit einflussreiche Multiplikatoren. Ihre gezielte Ansprache ist äußerst wichtig, um den Diffusionsprozess von Produktinnovationen voranzutreiben (Rogers 2003).',
-    explanation: 'Phasen + Bedeutung früher Adopter.',
+    explanation: 'Kernpunkte laut Skript: Aufmerksamkeit, Interesse, Bewertung, Versuch, Annahme; Innovatoren und frühe Adopter als einflussreiche Multiplikatoren (Rogers 2003).',
     source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-adoption', 'mc-innovatoren', 'mc-diffusion'],
   },
   {
@@ -391,7 +391,7 @@ export const questions2: Question[] = [
       { point: 'Verlangsamung: Markt weitgehend gesättigt', keywords: ['gesättigt', 'sättigung'] },
     ],
     modelAnswer: 'Zunächst übernehmen nur wenige das Produkt, dann steigt die Zahl der Neukäufer stark an, gegen Ende nimmt sie wieder ab. Der Anstieg in der Mitte entsteht, weil das Produkt bekannter wird, Unsicherheit und Preise sinken, die Verfügbarkeit steigt und soziale Empfehlungen wirken. Am Schluss verlangsamt sich die Diffusion, weil der Markt weitgehend gesättigt ist.',
-    explanation: 'Kurvenverlauf + Gründe (S. 10).',
+    explanation: 'Kernpunkte laut Skript: Kurvenverlauf, Gründe (S. 10).',
     source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-diffusion'],
   },
   {
@@ -405,7 +405,7 @@ export const questions2: Question[] = [
     ],
     modelAnswer: 'Die Technologie des Herstellers befindet sich im oberen, flachen Teil ihrer S-Kurve: Sie nähert sich ihrer Leistungsgrenze, sodass zusätzliche F&E-Aufwendungen kaum noch Leistungszuwachs bringen. Laut S-Kurvenkonzept wird jede Technologie an dieser Grenze durch eine neue ersetzt – der Wettbewerber bereitet genau diesen Technologiesprung vor. Der Hersteller sollte die Grenzen seiner Technologie realistisch abschätzen und seine F&E kontinuierlich auf neue Produkte bzw. die neue Technologie ausrichten; sonst droht ein Schicksal wie bei Kodak.',
     explanation: 'Anwendung der S-Kurve auf eine Investitionsentscheidung.',
-    source: 'Kapitel 2.3, PDF S. 9–10', conceptIds: ['mc-skurve', 'mc-diskontinuitaet', 'mc-innovationsmgmt'],
+    source: 'Kapitel 2.3, PDF S. 9–10', conceptIds: ['mc-skurve', 'mc-innovationsmgmt'],
   },
 
   // ======================= neue geschlossene Fragen =======================
@@ -426,7 +426,7 @@ export const questions2: Question[] = [
       { left: 'Erweitertes Produkt', right: 'Regelmäßige Software-Updates, Wartungsservices beim Fachhändler' },
     ],
     explanation: 'Kern = Bedürfnisbefriedigung; real = sichtbares, kaufbares Produkt; erweitert = Zusatzleistungen.',
-    source: 'Kapitel 2.1, Abbildung PDF S. 7', conceptIds: ['mc-kernprodukt', 'mc-reales-produkt', 'mc-erweitertes-produkt'],
+    source: 'Kapitel 2.1, Abbildung PDF S. 7', conceptIds: ['mc-produktebenen-leistung'],
   },
   {
     id: 'qm2-36', chapterId: 'm2', type: 'true_false', goal: 'fact', difficulty: 2,
@@ -452,7 +452,7 @@ export const questions2: Question[] = [
     options: ['Augmentiertes Produkt', 'Generisches Produkt', 'Potenzielles Produkt', 'Grundnutzen'],
     correctOptions: [0],
     explanation: 'Reihenfolge: Grundnutzen → generisches → erwartetes → augmentiertes → potenzielles Produkt.',
-    source: 'Kapitel 2.1, Abbildung PDF S. 7', conceptIds: ['mc-nutzenkategorien', 'mc-augmentiertes-produkt', 'mc-erwartetes-produkt'],
+    source: 'Kapitel 2.1, Abbildung PDF S. 7', conceptIds: ['mc-nutzenkategorien'],
   },
   {
     id: 'qm2-39', chapterId: 'm2', type: 'assignment', goal: 'fact', difficulty: 2,
@@ -484,7 +484,7 @@ export const questions2: Question[] = [
       { left: 'Privatkunde vs. Unternehmen als Käufer', right: 'Konsumentengruppe' },
     ],
     explanation: 'Materialität (Dienstleistung vs. Sachgut), Nutzungsdauer (Verbrauchs- vs. Gebrauchsgut), Nutzungshäufigkeit (täglich vs. aperiodisch), Konsumentengruppe (B2C vs. B2B).',
-    source: 'Kapitel 2.1, PDF S. 8', conceptIds: ['mc-sachgueter-dl', 'mc-verbrauch-gebrauch', 'mc-bedarf', 'mc-konsum-invest'],
+    source: 'Kapitel 2.1, PDF S. 8', conceptIds: ['mc-guetertypen'],
   },
   {
     id: 'qm2-42', chapterId: 'm2', type: 'single_choice', goal: 'understanding', difficulty: 2,
@@ -497,7 +497,7 @@ export const questions2: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Manche Produkte fallen in beide Kategorien der Konsumentengruppe – z. B. Büromaterial (B2C und B2B).',
-    source: 'Kapitel 2.1, PDF S. 8', conceptIds: ['mc-konsum-invest'],
+    source: 'Kapitel 2.1, PDF S. 8', conceptIds: ['mc-guetertypen'],
   },
   {
     id: 'qm2-43', chapterId: 'm2', type: 'single_choice', goal: 'fact', difficulty: 1,
@@ -513,7 +513,7 @@ export const questions2: Question[] = [
     options: ['Image', 'Konsumenteneinstellungen', 'Verkaufte Mengen', 'Ansprache bestimmter Segmente'],
     correctOptions: [0, 1],
     explanation: 'Psychologisch: Image, Konsumenteneinstellungen. Ökonomisch: verkaufte Mengen, Ansprache bestimmter Segmente.',
-    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-ziele-produktpolitik'],
+    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-produktpolitik'],
   },
   {
     id: 'qm2-45', chapterId: 'm2', type: 'cloze', goal: 'fact', difficulty: 1,
@@ -531,7 +531,7 @@ export const questions2: Question[] = [
       { left: 'Onlinebabyratgeber, Schwangerschaftstipps', right: 'Servicepolitik' },
     ],
     explanation: 'Beispiel Pampers von Procter & Gamble (S. 8).',
-    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-technisch-funktional', 'mc-produktdesign', 'mc-servicepolitik'],
+    source: 'Kapitel 2.2, PDF S. 8', conceptIds: ['mc-produktgestaltung'],
   },
   {
     id: 'qm2-47', chapterId: 'm2', type: 'single_choice', goal: 'fact', difficulty: 2,
@@ -582,7 +582,7 @@ export const questions2: Question[] = [
     prompt: 'In der Einführungsphase gibt es hohe ______ und geringe Umsätze; in der Wachstumsphase wird die ______ erreicht.',
     clozeAnswers: [['Investitionen', 'Investition'], ['Gewinnzone']],
     explanation: 'Einführung: hohe Investitionen, geringe Umsätze. Wachstum: überdurchschnittlicher Zuwachs, Gewinnzone.',
-    source: 'Kapitel 2.3, PDF S. 9', conceptIds: ['mc-einfuehrungsphase', 'mc-wachstumsphase'],
+    source: 'Kapitel 2.3, PDF S. 9', conceptIds: ['mc-lebenszyklus'],
   },
   {
     id: 'qm2-52', chapterId: 'm2', type: 'single_choice', goal: 'fact', difficulty: 1,
@@ -590,7 +590,7 @@ export const questions2: Question[] = [
     options: ['Reifephase', 'Einführungsphase', 'Wachstumsphase', 'Verfallsphase'],
     correctOptions: [0],
     explanation: 'Reifephase: Der Markt dehnt sich weiter aus, die Wachstumsraten sinken, Effizienzeffekte sind am höchsten.',
-    source: 'Kapitel 2.3, PDF S. 9', conceptIds: ['mc-reifephase', 'mc-erfahrungskurve', 'mc-economies-of-scale'],
+    source: 'Kapitel 2.3, PDF S. 9', conceptIds: ['mc-lebenszyklus', 'mc-erfahrungskurve', 'mc-economies-of-scale'],
   },
   {
     id: 'qm2-53', chapterId: 'm2', type: 'multiple_choice', goal: 'fact', difficulty: 2,
@@ -598,7 +598,7 @@ export const questions2: Question[] = [
     options: ['Größe', 'Komplexität', 'Materialeigenschaften', 'Höhe des Werbebudgets', 'Zahlungsbereitschaft der Kunden'],
     correctOptions: [0, 1, 2],
     explanation: 'Die Leistungsgrenze ist bedingt durch Größe, Komplexität oder Materialeigenschaften.',
-    source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-skurve', 'mc-diskontinuitaet'],
+    source: 'Kapitel 2.3, PDF S. 10', conceptIds: ['mc-skurve'],
   },
   {
     id: 'qm2-54', chapterId: 'm2', type: 'cloze', goal: 'fact', difficulty: 1,
@@ -637,7 +637,7 @@ export const questions2: Question[] = [
   },
   {
     id: 'qm2-58', chapterId: 'm2', type: 'assignment', goal: 'fact', difficulty: 2,
-    prompt: 'Ordnen Sie der Adopterkategorie ihren Anteil laut Abbildung zu.',
+    prompt: 'Ordnen Sie den Adoptern laut Abbildung ihren Anteil zu.',
     pairs: [
       { left: 'Innovatoren', right: '2,5 %' },
       { left: 'Frühadopter', right: '13,5 %' },
@@ -645,6 +645,6 @@ export const questions2: Question[] = [
       { left: 'Frühe Mehrheit', right: '34 %' },
     ],
     explanation: 'Innovatoren 2,5 %, Frühadopter 13,5 %, frühe Mehrheit 34 %, späte Mehrheit 34 %, Nachzügler 16 %.',
-    source: 'Kapitel 2.3, Abbildung PDF S. 10', conceptIds: ['mc-adopterkategorien'],
+    source: 'Kapitel 2.3, Abbildung PDF S. 10', conceptIds: ['mc-diffusion'],
   },
 ];

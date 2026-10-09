@@ -413,7 +413,10 @@ export default function SkriptPage() {
       <div key={c.id} id={anchor} className={`lk-term${isOpen ? ' open' : ''}${details ? ' has-details' : ''}${flash === anchor ? ' flash' : ''}`}>
         <div className="lk-term-main" onClick={toggle}>
           <div className="lk-term-row">
-            <span className="lk-term-name">{c.term}</span>
+            <span className="lk-term-name">
+              {c.term}
+              {c.overview && <span className="lk-kind">Aufzählung</span>}
+            </span>
             {details && (
               <button
                 type="button" className="lk-more" aria-expanded={isOpen}
@@ -432,8 +435,8 @@ export default function SkriptPage() {
         {isOpen && (
           <div className="lk-details">
             {c.short && <div className="lk-detail"><span className="sk-label">Skript-Definition</span>{c.definition}</div>}
-            {c.context && <div className="lk-detail"><span className="sk-label">Einordnung</span>{c.context}</div>}
-            {c.example && <div className="lk-detail"><span className="sk-label">Beispiel</span>{c.example}</div>}
+            {c.context && <div className="lk-detail"><span className="sk-label">Mehr aus dem Skript</span>{c.context}</div>}
+            {c.example && <div className="lk-detail"><span className="sk-label">Beispiel aus dem Skript</span>{c.example}</div>}
             {c.mnemonic && <div className="lk-detail"><span className="sk-label">Merkhilfe</span>{c.mnemonic}</div>}
             {c.confusableWith?.length > 0 && (
               <div className="lk-detail">
@@ -717,14 +720,17 @@ export default function SkriptPage() {
               aria-label={revealed ? undefined : `Karte „${c.term}“ aufdecken`}
             >
               <div className="lk-card-meta">Kapitel {ch?.index} · noch {queue.length} in dieser Runde</div>
-              <div className="lk-card-term">{c.term}</div>
+              <div className="lk-card-term">
+                {c.term}
+                {c.overview && <span className="lk-kind">Aufzählung</span>}
+              </div>
               {!revealed ? (
                 <div className="lk-card-hint">Erst selbst erklären – dann tippen zum Aufdecken</div>
               ) : (
                 <div className="lk-card-back">
                   <div className="lk-term-def">{c.short ?? c.definition}</div>
                   {c.points?.length > 0 && <ul className="lk-points">{c.points.map((p: string, i: number) => <li key={i}>{p}</li>)}</ul>}
-                  {c.example && <div className="lk-detail"><span className="sk-label">Beispiel</span>{c.example}</div>}
+                  {c.example && <div className="lk-detail"><span className="sk-label">Beispiel aus dem Skript</span>{c.example}</div>}
                 </div>
               )}
             </div>

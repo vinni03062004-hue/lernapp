@@ -29,7 +29,7 @@ export const questions1: Question[] = [
     prompt: 'Das Gratifikationsprinzip besagt, dass die im Tausch gehandelten Ressourcen knapp sind.',
     correctBool: false,
     explanation: 'Falsch – das ist das Knappheitsprinzip. Das Gratifikationsprinzip besagt, dass der Austausch für beide Seiten vorteilhaft sein soll (Nachfrager- und Anbieternutzen maximieren).',
-    source: 'Kapitel 1.1, PDF S. 1', conceptIds: ['mc-gratifikation', 'mc-knappheit'],
+    source: 'Kapitel 1.1, PDF S. 1', conceptIds: ['mc-gratifikation'],
   },
   {
     id: 'qm1-04', chapterId: 'm1', type: 'multiple_choice', goal: 'fact', difficulty: 2,
@@ -37,14 +37,14 @@ export const questions1: Question[] = [
     options: ['Product', 'Price', 'People', 'Place', 'Promotion'],
     correctOptions: [0, 1, 3, 4],
     explanation: 'Die vier Ps: Product, Price, Place, Promotion. „People“ gehört zu den zusätzlichen Ps für Dienstleistungen (People, Processes, Physical Facilities).',
-    source: 'Kapitel 1.1 und 1.3, PDF S. 3 und 6', conceptIds: ['mc-marketingmix', 'mc-dienstleistungs-ps'],
+    source: 'Kapitel 1.1 und 1.3, PDF S. 3 und 6', conceptIds: ['mc-marketingmix', 'mc-6schritte'],
   },
   {
     id: 'qm1-05', chapterId: 'm1', type: 'cloze', goal: 'fact', difficulty: 2,
     prompt: 'Die drei Kernbausteine des Marketingbegriffs sind der ______ (systematischer Planungsprozess), der ______ (Leitphilosophie) und der aktivitätenorientierte Marketingbegriff (Sozialtechnologie).',
     clozeAnswers: [['funktionale', 'funktionaler', 'funktionale Marketingbegriff', 'funktional'], ['führungsorientierte', 'führungsorientierter', 'führungsorientierte Marketingbegriff', 'führungsorientiert']],
     explanation: 'Funktional = Grundfunktion/Abteilung (Planungsprozess); führungsorientiert = Leitphilosophie; aktivitätenorientiert = Sozialtechnologie/„Werkzeugkasten“ Marketingmix.',
-    source: 'Kapitel 1.1, PDF S. 2–3', conceptIds: ['mc-kernbausteine', 'mc-funktional', 'mc-fuehrung', 'mc-aktivitaet'],
+    source: 'Kapitel 1.1, PDF S. 2–3', conceptIds: ['mc-funktional', 'mc-fuehrung', 'mc-aktivitaet'],
   },
   {
     id: 'qm1-06', chapterId: 'm1', type: 'assignment', goal: 'distinction', difficulty: 2,
@@ -110,7 +110,7 @@ export const questions1: Question[] = [
     ],
     modelAnswer: 'Passend ist die Strategie der selektiven Qualitätsführerschaft: Das Start-up bietet in einer lukrativen Nische, die von größeren Unternehmen vernachlässigt wird, besondere Leistungen zu hohem Preis an – wie Voss oder Fiji. Auf einem Käufermarkt mit über 500 Anbietern muss es sich klar abheben; ein Point of Difference (Attribut, das besser ist als die Konkurrenz) könnte z. B. die Herkunft oder eine besondere Reinheit sein, die gezielt über die Promotionsstrategie kommuniziert wird.',
     explanation: 'Teilmarkt + Qualitätsvorteil = selektive Qualitätsführerschaft. Gesamtmarkt + Qualität wäre die (allgemeine) Qualitätsführerschaft wie Volvic/Evian.',
-    source: 'Kapitel 1.2, PDF S. 4–5', conceptIds: ['mc-selektive-qf', 'mc-strategiematrix', 'mc-pop-pod', 'mc-kaeufermarkt'],
+    source: 'Kapitel 1.2, PDF S. 4–5', conceptIds: ['mc-strategiematrix', 'mc-pop-pod', 'mc-kaeufermarkt'],
   },
 
   // ======================= neue offene Fragen (IU-Prüfungsstil) =======================
@@ -124,8 +124,8 @@ export const questions1: Question[] = [
       { point: 'Knappheitsprinzip: gehandelte Ressourcen sind knapp', keywords: ['knappheit', 'knapp', 'nicht unbegrenzt'] },
     ],
     modelAnswer: 'Der Markt ist Zielobjekt, weil Marketing Märkte schaffen und beeinflussen will, und Bezugsobjekt, weil Märkte die Rahmenbedingungen für das effiziente und effektive Gestalten von Austauschprozessen vorgeben. Ein Austausch kommt zustande, wenn zwei Parteien etwas besitzen, das für die jeweils andere so nützlich ist, dass sie sich dafür vom eigenen Eigentum trennt. Daraus folgen zwei Leitideen: Das Gratifikationsprinzip (der Austausch soll für beide Seiten vorteilhaft sein – Nachfrager- und Anbieternutzen maximieren) und das Knappheitsprinzip (die getauschten Ressourcen sind knapp, also nicht unbegrenzt vorhanden).',
-    explanation: 'Doppelrolle des Marktes + beide Leitideen sind ein klassischer Einstieg in die Grundlagen.',
-    source: 'Kapitel 1.1, PDF S. 1', conceptIds: ['mc-markt', 'mc-austausch', 'mc-gratifikation', 'mc-knappheit'],
+    explanation: 'Laut Skript (S. 1): Der Markt ist Ziel- und Bezugsobjekt des Marketings; aus dem Austausch ergeben sich die zwei Leitideen Gratifikations- und Knappheitsprinzip.',
+    source: 'Kapitel 1.1, PDF S. 1', conceptIds: ['mc-markt', 'mc-austausch', 'mc-gratifikation'],
   },
   {
     id: 'qm1-13', chapterId: 'm1', type: 'open', goal: 'understanding', difficulty: 3,
@@ -139,8 +139,8 @@ export const questions1: Question[] = [
       { point: '2010er/2020er: Netzwerk-/digitale Wertschöpfung und Nachhaltigkeitsorientierung', keywords: ['wertschöpfung', 'digital', 'nachhaltigkeitsorientierung', 'nachhaltigkeit'] },
     ],
     modelAnswer: 'Ab ca. 1900 werden Verkaufs- und Kommunikationstechniken systematisch erforscht (z. B. AIDA), in den 1950er/60ern entsteht der Marketingmix als „4 Ps“ – ein handwerkliches, auf ein absatzpolitisches Werkzeug verkürztes Verständnis (Verkaufsorientierung). In den 1970ern wird die Nachfragemacht des Handels berücksichtigt; Kundenbedürfnisse werden befriedigt, um ökonomische Ziele zu erreichen (Marktorientierung). In den 1980ern rückt durch globalen Wettbewerb die strategische Positionierung in den Vordergrund (Wettbewerbsorientierung). In den 1990ern werden soziale/ökologische Ansprüche wichtiger (Deepening) und auch Nonprofit-Organisationen nutzen Marketing (Broadening) – Umfeldorientierung. In den 2000ern beeinflussen digitale Netzwerke den Markt, die Kundenbeziehung steht im Mittelpunkt (Beziehungsorientierung). In den 2010ern entstehen digitale Wertschöpfungsmodelle wie Uber, Netflix, Spotify (Netzwerk- und digitale Wertschöpfungsorientierung), in den 2020ern werden Nachhaltigkeit und soziale Verantwortung zentral (Nachhaltigkeitsorientierung).',
-    explanation: 'Pro Phase: Zeitraum + Einfluss + Orientierung. Die Reihenfolge ist prüfungsrelevant.',
-    source: 'Kapitel 1.1, PDF S. 1–2', conceptIds: ['mc-evolution', 'mc-verkaufsorientierung', 'mc-marktorientierung', 'mc-wettbewerbsorientierung', 'mc-umfeldorientierung', 'mc-beziehungsorientierung', 'mc-digitale-wertschoepfung', 'mc-nachhaltigkeitsorientierung'],
+    explanation: 'Laut Tabelle im Skript (S. 1–2): Verkaufs-, Markt-, Wettbewerbs-, Umfeld-, Beziehungs-, Netzwerk- und digitale Wertschöpfungs- sowie Nachhaltigkeitsorientierung – jeweils mit Zeitraum und zeitlichen Einflüssen.',
+    source: 'Kapitel 1.1, PDF S. 1–2', conceptIds: ['mc-evolution'],
   },
   {
     id: 'qm1-14', chapterId: 'm1', type: 'open', goal: 'distinction', difficulty: 2,
@@ -152,8 +152,8 @@ export const questions1: Question[] = [
       { point: 'Umfeldorientierung (modernes, erweitertes Verständnis)', keywords: ['umfeldorientierung', 'erweitert', 'modern'] },
     ],
     modelAnswer: 'Beide prägen die 1990er-Jahre: Beim Deepening werden soziale und ökologische Ansprüche sowie Nachhaltigkeit wichtiger, Marketing wird also inhaltlich vertieft. Beim Broadening wird der Marketinggedanke zunehmend auch von nicht kommerziellen Organisationen angewendet, Marketing wird also auf neue Anwender ausgeweitet. Sie gehören zum modernen und erweiterten Verständnis (zwei Parteien befriedigen ihre Bedürfnisse durch Austauschprozesse) – der Umfeldorientierung.',
-    explanation: 'Deepening = tiefer (Werte), Broadening = breiter (neue Anwender).',
-    source: 'Kapitel 1.1, PDF S. 2', conceptIds: ['mc-deepening', 'mc-broadening', 'mc-umfeldorientierung'],
+    explanation: 'Beides gehört laut Skript in die 1990er: Deepening – soziale und ökologische Ansprüche sowie Nachhaltigkeit werden wichtiger; Broadening – der Marketinggedanke wird auch von nicht kommerziellen Organisationen angewendet.',
+    source: 'Kapitel 1.1, PDF S. 2', conceptIds: ['mc-evolution'],
   },
   {
     id: 'qm1-15', chapterId: 'm1', type: 'open', goal: 'understanding', difficulty: 3,
@@ -167,8 +167,8 @@ export const questions1: Question[] = [
       { point: 'benefit the organization / stakeholders: Wert- und Stakeholderorientierung', keywords: ['wertorientierung', 'stakeholder', 'anspruchsgruppen'] },
     ],
     modelAnswer: '„Organizational function“: Marketing ist eine Managementfunktion, die sich mit systematischer Planung befasst. „Set of processes“: Marktinformationen sind für fast alle Funktionen relevant, daher nutzt Marketing funktionsübergreifende Prozesse. „Creating, communicating, delivering“: Marketing ist analytisch und aktionsorientiert, schafft kreative Problemlösungen und umfasst zeitlich aufeinanderfolgende Tätigkeiten. „Value to customers“: Der Kundennutzen steht im Fokus. „Managing customer relationships“: Langfristige Beziehungen sind ein wichtiges Ziel (Beziehungsorientierung). „Benefit the organization“: Marketing unterstützt den Unternehmenszweck, meist finanzielle Ziele (Wertorientierung). „And its stakeholders“: Auch Auswirkungen auf externe Anspruchsgruppen wie Bürger oder Umweltgruppen werden berücksichtigt (Stakeholderorientierung).',
-    explanation: 'Sieben Bestandteile – für volle Punktzahl mindestens vier korrekt mit Bedeutung erläutern.',
-    source: 'Kapitel 1.1, PDF S. 2', conceptIds: ['mc-ama-merkmale', 'mc-marketing', 'mc-kundennutzen', 'mc-wertorientierung', 'mc-stakeholderorientierung', 'mc-beziehungsorientierung'],
+    explanation: 'Laut Skript-Tabelle (S. 2): organizational function, set of processes, creating/communicating/delivering, value to customers, managing customer relationships, benefit the organization, its stakeholders – jeweils mit ihrer Bedeutung.',
+    source: 'Kapitel 1.1, PDF S. 2', conceptIds: ['mc-ama-merkmale', 'mc-marketing', 'mc-kundennutzen', 'mc-evolution'],
   },
   {
     id: 'qm1-16', chapterId: 'm1', type: 'open', goal: 'understanding', difficulty: 2,
@@ -179,8 +179,8 @@ export const questions1: Question[] = [
       { point: 'Aktivitätenorientiert: Sozialtechnologie, Werkzeugkasten Marketingmix, Nachfrage gezielt beeinflussen', keywords: ['aktivitätenorientiert', 'sozialtechnologie', 'werkzeugkasten', 'marketingmix', 'nachfrage'] },
     ],
     modelAnswer: 'Der funktionale Marketingbegriff versteht Marketing als systematischen Planungsprozess: eine betriebswirtschaftliche Grundfunktion bzw. Abteilung, gleichrangig mit Produktion oder Finanzierung, die Kompetenzen wie Marktforschung, Marketing-Automation oder Kundenbindung aufbaut. Der führungsorientierte Marketingbegriff sieht Marketing als Leitphilosophie der Unternehmensführung: Alle betrieblichen Funktionen werden am Markt ausgerichtet und alle marktrelevanten Ressourcen koordiniert zur Schaffung von Kundennutzen eingesetzt – jeder Mitarbeiter soll Kundenbedürfnisse berücksichtigen. Der aktivitätenorientierte Marketingbegriff (Sozialtechnologie) fokussiert die Aktivitäten des Marketingmix als „Werkzeugkasten“, um die Nachfragesituation gezielt zu beeinflussen.',
-    explanation: 'Name + Klammerbegriff + Erklärung je Baustein.',
-    source: 'Kapitel 1.1, PDF S. 2–3', conceptIds: ['mc-kernbausteine', 'mc-funktional', 'mc-fuehrung', 'mc-aktivitaet'],
+    explanation: 'Kernpunkte laut Skript: funktionaler (systematischer Planungsprozess), führungsorientierter (Leitphilosophie) und aktivitätenorientierter Marketingbegriff (Sozialtechnologie).',
+    source: 'Kapitel 1.1, PDF S. 2–3', conceptIds: ['mc-funktional', 'mc-fuehrung', 'mc-aktivitaet'],
   },
   {
     id: 'qm1-17', chapterId: 'm1', type: 'open', goal: 'distinction', difficulty: 3,
@@ -206,7 +206,7 @@ export const questions1: Question[] = [
       { point: 'Bezug Beziehungsmarketing: vertrauensvolle Beziehung statt nur Preis/Qualität', keywords: ['beziehung', 'vertrau', 'langfristig'], weight: 0.5 },
     ],
     modelAnswer: 'Die Werkstatt sollte Beziehungsmarketing betreiben, denn Werkstätten werden laut Skript nicht nur nach Preis und Qualität, sondern wegen der über Jahre aufgebauten vertrauensvollen Beziehung gewählt. Recruitment: neue Kunden durch Dialog und Interaktion gewinnen. Retention: bestehende Kunden durch höhere Zufriedenheit binden. Recovery: abgewanderte Stammkunden durch gezielte Maßnahmen wie persönliche Gespräche zurückgewinnen.',
-    explanation: 'Die drei Rs strukturieren den Mix nach der Phase der Geschäftsbeziehung: Gewinnen – Halten – Zurückholen.',
+    explanation: 'Laut Skript (S. 3): Recruitment (Kundenakquise durch Dialog und Interaktion), Retention (Kundenbindung durch höhere Kundenzufriedenheit), Recovery (Rückgewinnung abgewanderter Kunden, z. B. durch persönliche Gespräche).',
     source: 'Kapitel 1.1, PDF S. 3', conceptIds: ['mc-drei-rs', 'mc-beziehung', 'mc-akquise'],
   },
   {
@@ -220,7 +220,7 @@ export const questions1: Question[] = [
     ],
     modelAnswer: 'Juristisch (AMA 2017) ist eine Marke ein Name, Begriff, Design, Symbol oder sonstiges Merkmal, das die Ware oder Dienstleistung eines Verkäufers von denen anderer unterscheidet – für Marketingmanager wenig hilfreich. Die Marketingsicht fokussiert die Wirkung von Marken: Vermittlung von Werten, Aufbau einer Beziehung mit dem Kunden und daraus resultierende erhöhte Zahlungsbereitschaft. Kapferer beschreibt die Marke als Namen, der ein langfristiges Engagement für einzigartige Werte symbolisiert, die Organisation, Person oder Produkt abheben.',
     explanation: 'Kennzeichnung (juristisch) vs. Wirkung (Marketing).',
-    source: 'Kapitel 1.2, PDF S. 3–4', conceptIds: ['mc-marke', 'mc-marke-marketing'],
+    source: 'Kapitel 1.2, PDF S. 3–4', conceptIds: ['mc-marke'],
   },
   {
     id: 'qm1-20', chapterId: 'm1', type: 'open', goal: 'understanding', difficulty: 2,
@@ -232,8 +232,8 @@ export const questions1: Question[] = [
       { point: 'Aaker: Marke (er)kennen, positive Assoziationen, Treue, als hochwertig wahrnehmen', keywords: ['kennen', 'assoziation', 'treu', 'hochwertig'] },
     ],
     modelAnswer: 'Brand Equity ist der Wert der Marke: In der Literatur herrscht Einigkeit, dass Marken Werte schaffen und damit selbst einen Wert darstellen. Gemessen wird sie indirekt durch qualitative und quantitative Marktforschung oder direkt durch Experimente und spezielle holistische Methoden. Voraussetzung für Marketingvorteile ist nach Aaker, dass Konsumenten die Marke (er)kennen, mit positiven Assoziationen verbinden, ihr treu sind und sie als hochwertig wahrnehmen.',
-    explanation: 'Definition + zwei Messansätze + vier Voraussetzungen.',
-    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-brandequity', 'mc-markenvoraussetzungen'],
+    explanation: 'Kernpunkte laut Skript: Definition, zwei Messansätze, vier Voraussetzungen.',
+    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-brandequity'],
   },
   {
     id: 'qm1-21', chapterId: 'm1', type: 'open', goal: 'fact', difficulty: 2,
@@ -246,7 +246,7 @@ export const questions1: Question[] = [
       { point: 'Handelskooperationen, effektivere Kommunikation, Lizenz-/Markenerweiterungschancen, Personalbeschaffung', keywords: ['handelskooperation', 'lizenz', 'markenerweiterung', 'personal', 'effektivität der marketingkommunikation', 'kommunikation'] },
     ],
     modelAnswer: 'Verbesserte Wahrnehmung der Produktleistung, stärkere Kundentreue, geringere Verwundbarkeit durch Marketingaktivitäten der Wettbewerber und durch Marketingkrisen, größere Margen, unelastischere Kundenreaktionen auf Preiserhöhungen, elastischere Reaktionen auf Preissenkungen, steigende Handelskooperationen und Unterstützungsleistungen, höhere Effektivität der Marketingkommunikation, Lizenzierungs- und Markenerweiterungschancen, leichtere Personalbeschaffung und -bindung sowie eine höhere Marktrendite.',
-    explanation: 'Das Skript nennt 13 Vorteile; Elastizitätsrichtung beachten (Erhöhung → unelastisch, Senkung → elastisch).',
+    explanation: 'Das Skript (S. 4) nennt 13 reale Marketingvorteile, u. a. unelastischere Kundenreaktionen auf Preiserhöhungen und elastischere auf Preissenkungen.',
     source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-markenvorteile', 'mc-brandequity'],
   },
   {
@@ -259,7 +259,7 @@ export const questions1: Question[] = [
     ],
     modelAnswer: 'Kritisch: Laut Skript werden starke Marken durch einen konsistenten Marketingmix aufgebaut – jede Taktik ist eine markenbildende Aktivität. Werden kurzfristige verkaufsfördernde Maßnahmen wie Preisreduktionen überbetont, kann die Marke an Wert verlieren. Damit gefährdet der Hersteller typische Markenvorteile wie größere Margen und die unelastische Reaktion der Kunden auf Preiserhöhungen; die Marke wird womöglich nicht mehr als hochwertig wahrgenommen.',
     explanation: 'Verknüpft Brand Equity mit der Warnung vor überbetonter Verkaufsförderung.',
-    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-konsistenter-mix', 'mc-markenvorteile', 'mc-brandequity'],
+    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-brandequity', 'mc-markenvorteile'],
   },
   {
     id: 'qm1-23', chapterId: 'm1', type: 'open', goal: 'understanding', difficulty: 3,
@@ -272,7 +272,7 @@ export const questions1: Question[] = [
     ],
     modelAnswer: 'Positionieren heißt zu bestimmen, wie die Marke von den Konsumenten im Vergleich zu Wettbewerbsangeboten wahrgenommen werden soll – der Kern jeder Marketingstrategie. Kapferer stellt vier Fragen: Wer ist unsere Zielgruppe? Wer sind unsere Wettbewerber? Was ist unser Wettbewerbsvorteil? Wodurch erzielen wir diesen konkret? Die Positionierung erfolgt in zwei Schritten: (1) relevante Wettbewerber ermitteln (gleiche Zielgruppe, vergleichbare Angebote; direkt und indirekt), (2) Wettbewerbsvorteil bestimmen. Innerhalb des Wettbewerbsrahmens legt man Points of Parity (Attribute, bei denen man gleichauf ist) und Points of Difference (Attribute, die besser sind als die Konkurrenz, z. B. Fiji Water: Herkunft, Reinheit) fest.',
     explanation: 'Umfassende Positionierungsfrage – alle vier Elemente abdecken.',
-    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-positionierung', 'mc-positionierungsfragen', 'mc-relevante-wettbewerber', 'mc-pop-pod'],
+    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-positionierung', 'mc-relevante-wettbewerber', 'mc-pop-pod'],
   },
   {
     id: 'qm1-24', chapterId: 'm1', type: 'open', goal: 'distinction', difficulty: 2,
@@ -285,11 +285,11 @@ export const questions1: Question[] = [
     ],
     modelAnswer: 'Relevante Wettbewerber sind Konkurrenten, die die gleiche Zielgruppe mit vergleichbaren Angeboten bedienen; dazu zählen direkte und indirekte Wettbewerber. Indirekter Wettbewerb besteht zwischen unterschiedlichen Produkten, die jedoch die gleichen Bedürfnisse erfüllen. Beispiel: Für Gerolsteiner Naturell (stilles Wasser) sind andere stille Wasser direkte Wettbewerber, sprudelnde Wasser und andere Getränke indirekte Wettbewerber.',
     explanation: 'Gleiches Bedürfnis, anderes Produkt = indirekt.',
-    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-relevante-wettbewerber', 'mc-indirekter-wettbewerb'],
+    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-relevante-wettbewerber'],
   },
   {
     id: 'qm1-25', chapterId: 'm1', type: 'open', goal: 'understanding', difficulty: 3,
-    prompt: 'Erläutern Sie die Matrix der vier Strategierichtungen und nennen Sie zu jeder Strategie ein Beispiel aus dem Skript.',
+    prompt: 'Erläutern Sie die Matrix von vier Strategierichtungen und nennen Sie zu jeder Strategie ein Beispiel aus dem Skript.',
     rubric: [
       { point: 'Achsen: Marktabdeckung (gesamt/teil) × zentraler Vorteil (Qualität/Preis)', keywords: ['marktabdeckung', 'gesamt', 'teil', 'vorteil'] },
       { point: 'Qualitätsführerschaft (Gesamtmarkt, Leistungsvorteile) – Volvic, Evian', keywords: ['volvic', 'evian'] },
@@ -298,8 +298,8 @@ export const questions1: Question[] = [
       { point: 'Selektive Kostenführerschaft (Teilmarkt günstig) – regionale Mineralwassermarken', keywords: ['selektive kosten', 'regional'] },
     ],
     modelAnswer: 'Weil es in gesättigten Märkten nur wenige Nischen gibt, wird die Nischenstrategie in die Dualität Kosten- vs. Qualitätsführerschaft einbezogen. Daraus entsteht eine Matrix aus Marktabdeckung (Gesamt- oder Teilmarkt) und zentralem Vorteil (Qualität oder Preis): Qualitätsführerschaft realisiert Leistungsvorteile (Qualität, Service) auf dem Gesamtmarkt (Volvic, Evian). Selektive Qualitätsführerschaft bietet in einer von Großen vernachlässigten, lukrativen Nische besondere Leistungen zu hohem Preis (Voss, Fiji). Aggressive Kostenführerschaft bietet niedrige Preise auf dem Gesamtmarkt (Frische Brise, Handelsmarken). Selektive Kostenführerschaft ist auf einem Teilmarkt besonders günstig (günstige regionale Mineralwassermarken).',
-    explanation: 'Achsen + vier Felder + Beispiele = volle Punktzahl.',
-    source: 'Kapitel 1.2, PDF S. 5', conceptIds: ['mc-strategiematrix', 'mc-qualitaetsfuehrer', 'mc-selektive-qf', 'mc-aggressive-kf', 'mc-selektive-kf', 'mc-nische'],
+    explanation: 'Laut Skript (S. 5): Marktabdeckung (Gesamt/Teil) × zentraler Vorteil (Qualität/Preis) ergibt vier Strategien – Qualitätsführerschaft (Volvic, Evian), selektive Qualitätsführerschaft (Voss, Fiji), aggressive Kostenführerschaft (Frische Brise, Handelsmarken), selektive Kostenführerschaft (günstige regionale Mineralwassermarken).',
+    source: 'Kapitel 1.2, PDF S. 5', conceptIds: ['mc-strategiematrix', 'mc-qualitaetsfuehrer', 'mc-nische'],
   },
   {
     id: 'qm1-26', chapterId: 'm1', type: 'transfer', goal: 'application', difficulty: 3,
@@ -311,7 +311,7 @@ export const questions1: Question[] = [
     ],
     modelAnswer: 'Beide haben den zentralen Vorteil Preis. Die Brauerei ist nur auf einem Teilmarkt (Region) besonders günstig – Strategie der selektiven Kostenführerschaft (wie günstige regionale Mineralwassermarken). Der Konzern bietet niedrige Preise auf dem Gesamtmarkt – Strategie der aggressiven Kostenführerschaft (wie Handelsmarken). Der Unterschied liegt also in der Marktabdeckung.',
     explanation: 'Gleicher Vorteil, unterschiedliche Marktabdeckung → unterschiedliche Felder der Matrix.',
-    source: 'Kapitel 1.2, PDF S. 5', conceptIds: ['mc-selektive-kf', 'mc-aggressive-kf', 'mc-strategiematrix'],
+    source: 'Kapitel 1.2, PDF S. 5', conceptIds: ['mc-strategiematrix'],
   },
   {
     id: 'qm1-27', chapterId: 'm1', type: 'open', goal: 'understanding', difficulty: 2,
@@ -323,7 +323,7 @@ export const questions1: Question[] = [
       { point: 'Ziel: trotz niedriger Preise zufriedenstellende Gewinne', keywords: ['gewinn'] },
     ],
     modelAnswer: 'Kostendegression bedeutet, dass die Stückkosten eines Guts mit jeder zusätzlich produzierten Einheit sinken. Die Kostenführerstrategie bietet vergleichbare Produkte zu einem geringeren Preis an und nutzt dafür Kostendegressionseffekte – etwa durch Standardisierung, Verfahrensinnovation und effiziente Vertriebswege –, damit trotz niedriger Preise zufriedenstellende Gewinne entstehen.',
-    explanation: 'Begriff + Verbindung zur Strategie.',
+    explanation: 'Kernpunkte laut Skript: Stückkosten sinken mit jeder zusätzlich produzierten Einheit; die Kostenführerstrategie nutzt das (Standardisierung, Verfahrensinnovation, effiziente Vertriebswege).',
     source: 'Kapitel 1.2, PDF S. 5', conceptIds: ['mc-kostendegression', 'mc-kostenfuehrer'],
   },
   {
@@ -335,7 +335,7 @@ export const questions1: Question[] = [
       { point: 'Ziel: Kundenbedürfnisse besser erfüllen als die Konkurrenz (aus Ressourcen + Umfeld)', keywords: ['besser', 'konkurrenz', 'ressourcen', 'bedürfnisse'] },
     ],
     modelAnswer: 'Marketingmanagement ist die Umsetzung und Durchführung des modernen, erweiterten Marketingverständnisses in einem konkreten Unternehmen (AMA: Ziele setzen, Aktivitäten planen und ausführen, Fortschritt messen). Es berücksichtigt vier Orientierungspunkte: das Unternehmen selbst, den Kunden, die Wettbewerber und das gesellschaftliche Umfeld. Ziel ist, aus Unternehmensressourcen und Umfeldgegebenheiten Aktivitäten abzuleiten, die die Kundenbedürfnisse besser erfüllen als die Konkurrenz.',
-    explanation: 'Definition + vier Orientierungspunkte + Ziel.',
+    explanation: 'Kernpunkte laut Skript: Definition, vier Orientierungspunkte, Ziel.',
     source: 'Kapitel 1.3, PDF S. 5', conceptIds: ['mc-marketingmanagement'],
   },
   {
@@ -350,7 +350,7 @@ export const questions1: Question[] = [
     ],
     modelAnswer: '1) Situationsanalyse: Getränkemarkt, Trends, Kundenverhalten und Wettbewerber analysieren – z. B. feststellen, dass es kaum Mineralwasser speziell für Teenager gibt. 2) Marketingziele: etwa 0,5 % Marktanteil, dazu psychografische Ziele wie Image. 3) Marketingstrategie: selektiv-differenzierte Marktbearbeitung, Zielgruppe Jugendliche 12–19 Jahre, Produkt soll als „cool“ gelten und etwas teurer sein. 4) Marketinginstrumente: Produkt (z. B. 0,75-l-Flasche, auffällige Farbe, Einzel- und 6er-Packung), Preis (z. B. 0,89 € / 4,99 €), Distribution (Supermärkte, Drogerien, Onlineshop, Schulen, Imbiss, Veranstaltungen), Promotion (Instagram/TikTok, Influencer). 5) Implementierung: Launch durch die zuständige Marketingabteilung mit Verantwortlichkeiten und Budgets. 6) Controlling: prüfen, ob das Marktanteilsziel erreicht wurde, und Maßnahmen ggf. anpassen.',
     explanation: 'Angelehnt an das Fallbeispiel „Sitt“/„isso“ im Skript.',
-    source: 'Kapitel 1.3, PDF S. 5–6', conceptIds: ['mc-6schritte', 'mc-situationsanalyse', 'mc-marketingziele', 'mc-marketingstrategie', 'mc-marketinginstrumente', 'mc-implementierung', 'mc-controlling'],
+    source: 'Kapitel 1.3, PDF S. 5–6', conceptIds: ['mc-6schritte'],
   },
   {
     id: 'qm1-30', chapterId: 'm1', type: 'open', goal: 'fact', difficulty: 2,
@@ -363,7 +363,7 @@ export const questions1: Question[] = [
     ],
     modelAnswer: 'Ökonomische Ziele (Rendite, Gewinn, Umsatz, Deckungsbeitrag), psychografische Ziele (Kundenzufriedenheit, Image), soziale Ziele und Umweltziele. Beispiel aus dem Skript: Für das Wasser „isso“ wird ein Marktanteil von 0,5 % angestrebt.',
     explanation: 'Vier Zielkategorien (Schritt 2 des Marketingmanagements).',
-    source: 'Kapitel 1.3, PDF S. 6', conceptIds: ['mc-marketingziele'],
+    source: 'Kapitel 1.3, PDF S. 6', conceptIds: ['mc-6schritte'],
   },
   {
     id: 'qm1-31', chapterId: 'm1', type: 'open', goal: 'fact', difficulty: 1,
@@ -375,7 +375,7 @@ export const questions1: Question[] = [
     ],
     modelAnswer: 'People (das Dienstleistungspersonal), Processes (der Dienstleistungserstellungsprozess) und Physical Facilities (physisch fassbare Leistungspotenziale wie Räumlichkeiten).',
     explanation: 'Ergänzen die vier Ps im Schritt „Marketinginstrumente“.',
-    source: 'Kapitel 1.3, PDF S. 6', conceptIds: ['mc-dienstleistungs-ps', 'mc-marketinginstrumente'],
+    source: 'Kapitel 1.3, PDF S. 6', conceptIds: ['mc-6schritte'],
   },
 
   // ======================= neue geschlossene Fragen =======================
@@ -385,7 +385,7 @@ export const questions1: Question[] = [
     options: ['Wettbewerbsorientierung', 'Marktorientierung', 'Umfeldorientierung', 'Beziehungsorientierung'],
     correctOptions: [0],
     explanation: '1980er: verstärkter, auch globaler Wettbewerb – strategische Positionierung (Strategisierung) – langfristiges strategisches Verständnis = Wettbewerbsorientierung.',
-    source: 'Kapitel 1.1, PDF S. 1', conceptIds: ['mc-wettbewerbsorientierung', 'mc-evolution'],
+    source: 'Kapitel 1.1, PDF S. 1', conceptIds: ['mc-evolution'],
   },
   {
     id: 'qm1-33', chapterId: 'm1', type: 'assignment', goal: 'fact', difficulty: 2,
@@ -413,7 +413,7 @@ export const questions1: Question[] = [
     prompt: 'Das AIDA-Modell steht für Attention – ______ – Desire – ______.',
     clozeAnswers: [['Interest'], ['Action']],
     explanation: 'AIDA = Attention, Interest, Desire, Action – Beispiel für die ab ca. 1900 systematisch erforschten Verkaufs- und Kommunikationstechniken.',
-    source: 'Kapitel 1.1, PDF S. 1', conceptIds: ['mc-aida', 'mc-verkaufsorientierung'],
+    source: 'Kapitel 1.1, PDF S. 1', conceptIds: ['mc-evolution'],
   },
   {
     id: 'qm1-36', chapterId: 'm1', type: 'single_choice', goal: 'understanding', difficulty: 2,
@@ -426,7 +426,7 @@ export const questions1: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Wertorientierung: meist finanzielle Ziele (Umsatz, Gewinn, Rendite), auch nicht kommerzielle Ziele (Mitgliederzahl, Aufmerksamkeit) sind möglich.',
-    source: 'Kapitel 1.1, PDF S. 2', conceptIds: ['mc-wertorientierung', 'mc-ama-merkmale'],
+    source: 'Kapitel 1.1, PDF S. 2', conceptIds: ['mc-ama-merkmale'],
   },
   {
     id: 'qm1-37', chapterId: 'm1', type: 'cloze', goal: 'fact', difficulty: 1,
@@ -502,7 +502,7 @@ export const questions1: Question[] = [
     prompt: 'Indirekter Wettbewerb liegt vor, wenn unterschiedliche Produkte die gleichen Bedürfnisse erfüllen.',
     correctBool: true,
     explanation: 'Richtig – z. B. sind für Gerolsteiner Naturell sprudelnde Wasser und andere Getränke indirekte Wettbewerber.',
-    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-indirekter-wettbewerb'],
+    source: 'Kapitel 1.2, PDF S. 4', conceptIds: ['mc-relevante-wettbewerber'],
   },
   {
     id: 'qm1-44', chapterId: 'm1', type: 'assignment', goal: 'distinction', difficulty: 2,
@@ -514,7 +514,7 @@ export const questions1: Question[] = [
       { left: 'Strategie der selektiven Kostenführerschaft', right: 'Günstige regionale Mineralwassermarken' },
     ],
     explanation: 'Gesamtmarkt/Qualität · Teilmarkt/Qualität · Gesamtmarkt/Preis · Teilmarkt/Preis.',
-    source: 'Kapitel 1.2, PDF S. 5', conceptIds: ['mc-strategiematrix', 'mc-qualitaetsfuehrer', 'mc-selektive-qf', 'mc-aggressive-kf', 'mc-selektive-kf'],
+    source: 'Kapitel 1.2, PDF S. 5', conceptIds: ['mc-strategiematrix', 'mc-qualitaetsfuehrer'],
   },
   {
     id: 'qm1-45', chapterId: 'm1', type: 'single_choice', goal: 'understanding', difficulty: 2,
@@ -548,7 +548,7 @@ export const questions1: Question[] = [
       { left: 'Prüfung, ob das Marktanteilsziel erreicht wurde', right: 'Marketingcontrolling' },
     ],
     explanation: 'Die Tabelle im Skript ordnet jedem Schritt Inhalt und Beispiel zu.',
-    source: 'Kapitel 1.3, PDF S. 5–6', conceptIds: ['mc-6schritte', 'mc-situationsanalyse', 'mc-marketingziele', 'mc-marketingstrategie', 'mc-marketinginstrumente', 'mc-implementierung', 'mc-controlling'],
+    source: 'Kapitel 1.3, PDF S. 5–6', conceptIds: ['mc-6schritte'],
   },
   {
     id: 'qm1-48', chapterId: 'm1', type: 'single_choice', goal: 'distinction', difficulty: 2,
@@ -556,7 +556,7 @@ export const questions1: Question[] = [
     options: ['Marketingstrategie', 'Marketinginstrumente', 'Situationsanalyse', 'Marketingimplementierung'],
     correctOptions: [0],
     explanation: 'Marketingstrategie = strategische Marketingplanung (langfristiger Verhaltensplan). Die Instrumente (4 Ps) sind die operative Planung.',
-    source: 'Kapitel 1.3, PDF S. 6', conceptIds: ['mc-marketingstrategie', 'mc-marketinginstrumente'],
+    source: 'Kapitel 1.3, PDF S. 6', conceptIds: ['mc-6schritte'],
   },
   {
     id: 'qm1-49', chapterId: 'm1', type: 'multiple_choice', goal: 'fact', difficulty: 2,
@@ -564,7 +564,7 @@ export const questions1: Question[] = [
     options: ['People', 'Processes', 'Physical Facilities', 'Promotion', 'Packaging'],
     correctOptions: [0, 1, 2],
     explanation: 'People, Processes, Physical Facilities. Promotion gehört zu den klassischen vier Ps; „Packaging“ ist kein P des Skripts.',
-    source: 'Kapitel 1.3, PDF S. 6', conceptIds: ['mc-dienstleistungs-ps'],
+    source: 'Kapitel 1.3, PDF S. 6', conceptIds: ['mc-6schritte'],
   },
   {
     id: 'qm1-50', chapterId: 'm1', type: 'true_false', goal: 'fact', difficulty: 1,
@@ -596,7 +596,7 @@ export const questions1: Question[] = [
       { point: 'Beispiel: Rock am Ring, Städtemarketing', keywords: ['rock am ring', 'städtemarketing'], weight: 0.5 },
     ],
     modelAnswer: 'Markenführung (Branding) wurzelt nicht in akademischer Theorie, sondern wurde pragmatisch und schrittweise in Werbeagenturen entwickelt; die großen Agenturen nutzen bis heute eigene Markenmodelle – deshalb gibt es keine einheitliche Definition. Marken dürfen nicht mit Produkten gleichgesetzt werden, weil sie ein „Eigenleben“ entwickelt haben und heute auch für Veranstaltungen, Dienstleistungen, Menschen und Orte verwendet werden, z. B. das Musikfestival „Rock am Ring“ oder Städtemarketing.',
-    explanation: 'Herkunft aus der Agenturpraxis + Marke ≠ Produkt.',
+    explanation: 'Kernpunkte laut Skript: Herkunft aus der Agenturpraxis, Marke ≠ Produkt.',
     source: 'Kapitel 1.2, PDF S. 3', conceptIds: ['mc-branding'],
   },
   {

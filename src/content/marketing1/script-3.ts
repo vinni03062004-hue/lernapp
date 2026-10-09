@@ -39,15 +39,15 @@ export const sections3: ScriptSection[] = [
         ['7. Kommunikationsergebnisse messen', 'Welche Wirkung hatten die Maßnahmen? Konsumentenbefragungen, CTR, Conversion Rate, Engagement Rate.', 'Duolingo „Duo is Dead“: +51 % täglich aktive Nutzer auf 40,5 Mio.'],
         ['8. Marketingkommunikationsprozess steuern', 'Instrumente kontinuierlich überwachen, koordinieren und bei Bedarf anpassen – zunehmend über Marketing-Automatisierungssysteme.', 'Merit Beauty verlagerte 2025 sein Budget kurzfristig von TikTok auf andere Plattformen'],
       ] },
-      { kind: 'definitions', conceptIds: ['mc-8schritte-komm', 'mc-zielgruppe', 'mc-botschaft', 'mc-kanaele', 'mc-budget', 'mc-ergebnismessung', 'mc-prozesssteuerung'] },
-      { kind: 'definitions', conceptIds: ['mc-retargeting', 'mc-programmatic', 'mc-kpis', 'mc-ctr', 'mc-conversion', 'mc-engagement'] },
-      { kind: 'exam', text: 'Beim Budget immer die empfohlene Methode benennen: auf Basis von Zielen und Aufgaben. Bei Kennzahlen hilft das Rechenbeispiel: 100 Besucher, 5 Käufe = 5 % Conversion Rate.' },
+      { kind: 'definitions', conceptIds: ['mc-8schritte-komm'] },
+      { kind: 'definitions', conceptIds: ['mc-retargeting', 'mc-programmatic', 'mc-kpis'] },
     ],
   },
   {
     id: 's3-medien', sub: '3.1', title: 'Medien kombinieren', pdfPages: '12',
     blocks: [
-      { kind: 'definitions', conceptIds: ['mc-medienkombination', 'mc-kaufentscheidung'] },
+      { kind: 'list', title: 'Jedes Kommunikationswerkzeug hat Vor- und Nachteile; Auswahl und Kombination hängen ab von:', items: ['Marktstellung des Unternehmens', 'Art des Produktmarkts (Konsum oder Industrie)', 'Charakteristiken der Zielgruppe', 'Kaufbereitschaft der Konsumenten und Art der Kaufentscheidung', 'Phase im Lebenszyklus', 'zur Verfügung stehendes Budget'], ordered: true },
+      { kind: 'definitions', conceptIds: ['mc-kaufentscheidung'] },
       { kind: 'table', title: 'Sechs Kriterien zur Einschätzung von Effektivität und Effizienz (Keller/Swaminathan 2019)', columns: ['Kriterium', 'Leitfrage'], rows: [
         ['Reichweite', 'Wird die angestrebte Zielgruppe erreicht?'],
         ['Mitwirkung', 'Welche Auswirkung hat die Kommunikation auf die Zielgruppe?'],
@@ -84,7 +84,7 @@ export const sections3: ScriptSection[] = [
         'digitale Medien (soziale Netzwerke, Suchmaschinen, Websites, mobile Apps)',
       ] },
       { kind: 'list', title: 'Gängige Maßnahmen', items: ['TV-Spots', 'Zeitungsanzeigen', 'Social Ads', 'Suchmaschinenwerbung (SEA)', 'Video Ads auf YouTube/TikTok'] },
-      { kind: 'definitions', conceptIds: ['mc-product-placement', 'mc-sea', 'mc-werbemuedigkeit'] },
+      { kind: 'definitions', conceptIds: ['mc-product-placement', 'mc-sea'] },
       { kind: 'proscons', pros: [
         'Erreichbarkeit einer großen Menge von Konsumenten',
         'starke Ausdruckskraft durch Bild, Ton, Farbe etc.',
@@ -206,7 +206,7 @@ export const sections3: ScriptSection[] = [
   {
     id: 's3-wom', sub: '3.2', title: 'Mund-zu-Mund-Kommunikation (persönlich)', pdfPages: '15',
     blocks: [
-      { kind: 'definitions', conceptIds: ['mc-wom', 'mc-buzz', 'mc-viral', 'mc-influencer'] },
+      { kind: 'definitions', conceptIds: ['mc-wom'] },
       { kind: 'example', text: 'Amazon nutzt Kundenbewertungen gezielt zur Verbesserung der Angebote.' },
       { kind: 'proscons', pros: [
         'sehr einflussreich aufgrund persönlicher Bindung', 'Dialog', 'zeitnahe Kommunikation',
@@ -226,7 +226,6 @@ export const sections3: ScriptSection[] = [
         'hohe Kosten (Verkäufer und Reisekosten)',
       ] },
       { kind: 'merke', text: 'Der Marketingkommunikationsmix besteht aus acht Werkzeugen: Werbung, Verkaufsförderung, Sponsoring & Events, Public Relations, Direktmarketing, interaktives Marketing, Mund-zu-Mund-Kommunikation sowie persönlicher Verkauf – so kombinieren, dass eine einheitliche und stimmige Markenbotschaft entsteht.' },
-      { kind: 'exam', text: 'Bei „Beurteilen Sie Instrument X“ immer Definition + zwei bis drei Vor- und Nachteile aus der jeweiligen Tabelle nennen und auf die Situation (Budget, Zielgruppe, Produktmarkt) beziehen.' },
     ],
   },
 ];

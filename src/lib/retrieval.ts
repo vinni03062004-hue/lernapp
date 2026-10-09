@@ -68,8 +68,9 @@ export function blockPlainText(
         .map((id) => conceptMap.get(id))
         .filter((c): c is Concept => !!c)
         .map((c) => {
+          const pts = c.points?.length ? ` (${c.points.join('; ')})` : '';
           const extra = [c.context, c.example ? `Beispiel: ${c.example}` : ''].filter(Boolean).join(' ');
-          return `${c.term}: ${c.definition}${extra ? ` ${extra}` : ''}`;
+          return `${c.term}: ${c.definition}${pts}${extra ? ` ${extra}` : ''}`;
         })
         .join('\n');
     case 'table':
@@ -129,7 +130,9 @@ export function buildKnowledgeBase(mod: LearningModule): KnowledgeUnit[] {
   const units: KnowledgeUnit[] = [];
   const secOf = sectionIndex(mod);
   for (const c of mod.concepts) {
-    const text = [c.term, c.definition, c.context ?? '', c.example ?? '', (c.synonyms ?? []).join(' ')].join('. ');
+    const text = [c.term, c.definition, ...(c.points ?? []), c.context ?? '', c.example ?? '', (c.synonyms ?? []).join(' ')]
+      .filter(Boolean)
+      .join('. ');
     const sec = secOf.get(c.id);
     units.push({
       id: `concept:${c.id}`,

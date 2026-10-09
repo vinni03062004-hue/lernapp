@@ -58,7 +58,7 @@ export async function submitAttempt(input: SubmitAttemptInput): Promise<SubmitAt
     const scriptDefinitions = (question.conceptIds ?? [])
       .map((cid) => mod.concepts.find((c) => c.id === cid))
       .filter((c): c is NonNullable<typeof c> => !!c)
-      .map((c) => `${c.term}: ${c.definition}`);
+      .map((c) => `${c.term}: ${c.definition}${c.points?.length ? ` (${c.points.join('; ')})` : ''}`);
     const aiResult = await aiGradeFreetext(question, input.answer, {
       moduleLabel: `"${mod.title}" (Studiengang ${mod.studyProgram})`,
       scriptDefinitions,

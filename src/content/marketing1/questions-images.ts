@@ -15,7 +15,7 @@ export const questionsImages: Question[] = [
       { left: 'Erweitertes Produkt', right: 'Regelmäßige Software-Updates, Wartungsservices beim Fachhändler' },
     ],
     explanation: 'Von innen nach außen: Kernleistung → sichtbares, kaufbares Produkt → Zusatzleistungen.',
-    source: 'Abbildung Produktebenen nach Leistung, PDF S. 7', conceptIds: ['mc-kernprodukt', 'mc-reales-produkt', 'mc-erweitertes-produkt'],
+    source: 'Abbildung Produktebenen nach Leistung, PDF S. 7', conceptIds: ['mc-produktebenen-leistung'],
   },
   {
     id: 'qmi-ebenen3-2', chapterId: 'm2', figureId: 'f-produktebenen3', type: 'image_choice', goal: 'distinction', difficulty: 2,
@@ -23,7 +23,7 @@ export const questionsImages: Question[] = [
     options: ['Erweitertes Produkt', 'Kernprodukt', 'Reales Produkt', 'Potenzielles Produkt'],
     correctOptions: [0],
     explanation: 'Zusatzleistungen bilden die äußerste Ebene, das erweiterte Produkt. „Potenzielles Produkt“ gehört zum anderen Modell (Nutzenkategorien).',
-    source: 'Abbildung Produktebenen nach Leistung, PDF S. 7', conceptIds: ['mc-erweitertes-produkt'],
+    source: 'Abbildung Produktebenen nach Leistung, PDF S. 7', conceptIds: ['mc-produktebenen-leistung'],
   },
   {
     id: 'qmi-ebenen3-3', chapterId: 'm2', figureId: 'f-produktebenen3', type: 'image_open', goal: 'application', difficulty: 2,
@@ -35,7 +35,7 @@ export const questionsImages: Question[] = [
     ],
     modelAnswer: 'Die äußere Ebene ist das erweiterte Produkt mit allen Zusatzleistungen (Lieferung, Finanzierung, Garantie, Beratung, Installation, Service; beim E-Bike Software-Updates und Wartung). In gesättigten Märkten unterscheiden sich die Produkte in Kern und realer Ausführung oft nur geringfügig. Deshalb werden die Zusatzleistungen immer bedeutender, um sich aus Kundensicht vom Wettbewerb abzuheben – übergeordnetes Ziel der Leistungspolitik ist, den Kundennutzen zu maximieren.',
     explanation: 'Verbindung von Abbildung und Skripttext (S. 6–7).',
-    source: 'Abbildung Produktebenen nach Leistung, PDF S. 6–7', conceptIds: ['mc-produktebenen-leistung', 'mc-erweitertes-produkt'],
+    source: 'Abbildung Produktebenen nach Leistung, PDF S. 6–7', conceptIds: ['mc-produktebenen-leistung'],
   },
   // ---------- Produktebenen nach Nutzen (S. 7) ----------
   {
@@ -50,7 +50,7 @@ export const questionsImages: Question[] = [
     ],
     modelAnswer: 'Von unten nach oben: (1) Grundnutzen – bekleiden und wärmen, z. B. ein ausreichend großes Stück Stoff. (2) Generisches Produkt – Hosenbeine geschneidert. (3) Erwartetes Produkt – bequemer Sitz und gefälliges Design. (4) Augmentiertes Produkt – Markenname, wasserabweisend, Thermo, modisch. (5) Potenzielles Produkt – Extrafunktionalitäten wie „smart clothing“. Je mehr Nutzenkomponenten, desto höher die Kategorie.',
     explanation: 'Fünf Kategorien vom Nutzenstandpunkt (S. 7).',
-    source: 'Abbildung Produktebenen nach Nutzen, PDF S. 7', conceptIds: ['mc-nutzenkategorien', 'mc-grundnutzen', 'mc-generisches-produkt', 'mc-erwartetes-produkt', 'mc-augmentiertes-produkt', 'mc-potenzielles-produkt'],
+    source: 'Abbildung Produktebenen nach Nutzen, PDF S. 7', conceptIds: ['mc-nutzenkategorien', 'mc-grundnutzen'],
   },
   {
     id: 'qmi-ebenen5-2', chapterId: 'm2', figureId: 'f-produktebenen5', type: 'image_choice', goal: 'distinction', difficulty: 2,
@@ -58,7 +58,7 @@ export const questionsImages: Question[] = [
     options: ['Augmentiertes Produkt', 'Erwartetes Produkt', 'Generisches Produkt', 'Potenzielles Produkt'],
     correctOptions: [0],
     explanation: 'Erwartet = bequemer Sitz, gefälliges Design; augmentiert = Extras darüber hinaus; potenziell = „smart clothing“.',
-    source: 'Abbildung Produktebenen nach Nutzen, PDF S. 7', conceptIds: ['mc-augmentiertes-produkt', 'mc-erwartetes-produkt'],
+    source: 'Abbildung Produktebenen nach Nutzen, PDF S. 7', conceptIds: ['mc-nutzenkategorien'],
   },
   // ---------- Programmbreite und -tiefe (S. 9) ----------
   {
@@ -71,7 +71,7 @@ export const questionsImages: Question[] = [
   },
   {
     id: 'qmi-programm-2', chapterId: 'm2', figureId: 'f-programmbreite', type: 'image_open', goal: 'application', difficulty: 2,
-    prompt: 'Beschreiben Sie anhand der Abbildung Breite und Tiefe des P&G-Programms. Wie verändern sich Breite bzw. Tiefe, wenn P&G (a) eine neue Produktlinie „Tiernahrung“ aufnimmt und (b) eine weitere Waschmittelmarke einführt?',
+    prompt: 'Beschreiben Sie anhand der Abbildung Breite und Tiefe des abgebildeten Produktprogramms. Wie verändern sich Breite bzw. Tiefe, wenn das Unternehmen (a) eine neue Produktlinie „Tiernahrung“ aufnimmt und (b) eine weitere Waschmittelmarke einführt?',
     rubric: [
       { point: 'Breite: vier Produktlinien (Hygiene, Schönheitspflege, Waschmittel, Gesundheit/Rasur)', keywords: ['vier', '4', 'produktlinien', 'breite'] },
       { point: 'Tiefe: mehrere Marken je Linie (z. B. Always, Pampers)', keywords: ['tiefe', 'je linie', 'pro produktlinie', 'always', 'pampers', 'ariel', 'lenor'] },
@@ -94,7 +94,7 @@ export const questionsImages: Question[] = [
       { left: 'Verfall', right: 'Produkt nicht mehr unterstützt' },
     ],
     explanation: 'Die Aktivitäten stehen in der unteren Zeile der Abbildung.',
-    source: 'Abbildung Produktlebenszyklus, PDF S. 9', conceptIds: ['mc-lebenszyklus', 'mc-einfuehrungsphase', 'mc-wachstumsphase', 'mc-reifephase', 'mc-saettigungsphase', 'mc-verfallsphase'],
+    source: 'Abbildung Produktlebenszyklus, PDF S. 9', conceptIds: ['mc-lebenszyklus'],
   },
   {
     id: 'qmi-plz-2', chapterId: 'm2', figureId: 'f-lebenszyklus', type: 'image_open', goal: 'application', difficulty: 3,
@@ -106,8 +106,8 @@ export const questionsImages: Question[] = [
       { point: 'Danach: Sättigung (Umsätze gehen zurück) und Verfall (stark rückläufig)', keywords: ['sättigung', 'zurück', 'rückläufig', 'verfall'] },
     ],
     modelAnswer: 'Am höchsten sind beide Effekte in der Reifephase, in der sich der Markt weiter ausdehnt, die Wachstumsraten aber sinken. Erfahrungskurveneffekte sind Effizienzsteigerungen, weil bereits Erfahrung im Markt und mit dem Produkt gesammelt wurde; Economies of Scale sind Betriebsgrößenvorteile, etwa günstigere Einkaufskonditionen durch Mengenrabatte oder sinkende Stückkosten durch bessere Verwaltungskostenumlage. Danach folgt die Sättigungsphase, in der der Markt gesättigt ist und die Umsätze zurückgehen, und schließlich die Verfallsphase mit stark rückläufigem Umsatz.',
-    explanation: 'Abbildung + Skripttext (S. 9–10).',
-    source: 'Abbildung Produktlebenszyklus, PDF S. 9–10', conceptIds: ['mc-reifephase', 'mc-erfahrungskurve', 'mc-economies-of-scale', 'mc-saettigungsphase'],
+    explanation: 'Kernpunkte laut Skript: Reifephase; Erfahrungskurveneffekte und Economies of Scale erklärt; danach Sättigung (Umsätze gehen zurück) und Verfall (stark rückläufig).',
+    source: 'Abbildung Produktlebenszyklus, PDF S. 9–10', conceptIds: ['mc-lebenszyklus', 'mc-erfahrungskurve', 'mc-economies-of-scale'],
   },
   {
     id: 'qmi-plz-3', chapterId: 'm2', figureId: 'f-lebenszyklus', type: 'image_choice', goal: 'understanding', difficulty: 2,
@@ -142,7 +142,7 @@ export const questionsImages: Question[] = [
     ],
     modelAnswer: 'Nähert sich der heutige Stand der Grenze, flacht die S-Kurve ab: Das verbleibende technologische Entwicklungspotenzial ist gering, zusätzlicher F&E-Aufwand bringt kaum noch Leistungszuwachs. Die Grenze ist durch Größe, Komplexität oder Materialeigenschaften bedingt. Strategisch muss das Unternehmen die Grenzen seiner Technologie abschätzen und rechtzeitig auf die neue Technologie setzen, deren Grenze höher liegt – F&E sollte kontinuierlich neue Produkte entwickeln und vorbereiten, um auf den Technologiesprung vorbereitet zu sein.',
     explanation: 'Strategische Konsequenz aus der Abbildung.',
-    source: 'Abbildung S-Kurvenkonzept, PDF S. 10', conceptIds: ['mc-skurve', 'mc-diskontinuitaet'],
+    source: 'Abbildung S-Kurvenkonzept, PDF S. 10', conceptIds: ['mc-skurve'],
   },
   {
     id: 'qmi-skurve-3', chapterId: 'm2', figureId: 'f-skurve', type: 'image_assignment', goal: 'understanding', difficulty: 2,
@@ -156,10 +156,10 @@ export const questionsImages: Question[] = [
     explanation: 'Elemente des S-Kurvenkonzepts (Foster 1986).',
     source: 'Abbildung S-Kurvenkonzept, PDF S. 10', conceptIds: ['mc-skurve'],
   },
-  // ---------- Diffusion / Adopterkategorien (S. 10) ----------
+  // ---------- Diffusionsprozess: Adopter nach Adoptionszeit (S. 10) ----------
   {
     id: 'qmi-diff-1', chapterId: 'm2', figureId: 'f-diffusion', type: 'image_assignment', goal: 'fact', difficulty: 2,
-    prompt: 'Ordnen Sie der Adopterkategorie ihren Anteil laut Abbildung zu.',
+    prompt: 'Ordnen Sie den Adoptern laut Abbildung ihren Anteil zu.',
     pairs: [
       { left: 'Innovatoren', right: '2,5 %' },
       { left: 'Frühadopter', right: '13,5 %' },
@@ -167,7 +167,7 @@ export const questionsImages: Question[] = [
       { left: 'Nachzügler', right: '16 %' },
     ],
     explanation: 'Innovatoren 2,5 %, Frühadopter 13,5 %, frühe Mehrheit 34 %, späte Mehrheit 34 %, Nachzügler 16 %.',
-    source: 'Abbildung Adopterkategorien, PDF S. 10', conceptIds: ['mc-adopterkategorien'],
+    source: 'Abbildung Diffusionsprozess (Adopter nach Adoptionszeit), PDF S. 10', conceptIds: ['mc-diffusion'],
   },
   {
     id: 'qmi-diff-2', chapterId: 'm2', figureId: 'f-diffusion', type: 'image_choice', goal: 'understanding', difficulty: 2,
@@ -180,7 +180,7 @@ export const questionsImages: Question[] = [
     ],
     correctOptions: [0],
     explanation: 'Gründe für den Anstieg: bekannteres Produkt, sinkende Unsicherheit und Preise, höhere Verfügbarkeit, soziale Empfehlungen; Verlangsamung durch weitgehende Sättigung.',
-    source: 'Abbildung Adopterkategorien, PDF S. 10', conceptIds: ['mc-diffusion'],
+    source: 'Abbildung Diffusionsprozess (Adopter nach Adoptionszeit), PDF S. 10', conceptIds: ['mc-diffusion'],
   },
   {
     id: 'qmi-diff-3', chapterId: 'm2', figureId: 'f-diffusion', type: 'image_open', goal: 'application', difficulty: 2,
@@ -193,7 +193,7 @@ export const questionsImages: Question[] = [
     ],
     modelAnswer: 'Die beiden linken Gruppen sind die Innovatoren (2,5 %) und die Frühadopter (13,5 %). Laut Skript sind sie hochinformiert und haben großes Interesse am Produkt; heute sind sie oft als Tech-Blogger, YouTuber oder Fachexperten aktiv und damit einflussreiche Multiplikatoren (Influencer). Ihre gezielte Ansprache ist äußerst wichtig, um den Diffusionsprozess voranzutreiben (Rogers 2003) – über ihre Empfehlungen folgen die frühe und die späte Mehrheit.',
     explanation: 'Verknüpfung von Abbildung und Skripttext.',
-    source: 'Abbildung Adopterkategorien, PDF S. 10', conceptIds: ['mc-innovatoren', 'mc-adopterkategorien', 'mc-diffusion'],
+    source: 'Abbildung Diffusionsprozess (Adopter nach Adoptionszeit), PDF S. 10', conceptIds: ['mc-innovatoren', 'mc-diffusion'],
   },
   // ---------- Preis-Absatz-Funktionen (S. 17) ----------
   {
@@ -294,7 +294,7 @@ export const questionsImages: Question[] = [
     ],
     modelAnswer: 'Je weiter oben in der Pyramide, desto weniger Vertriebspartner und desto teurer die Produkte. An der Basis steht der intensive Vertrieb mit sehr vielen Partnern für günstige Convenience Goods (z. B. „Deutsche Markenbutter“). In der Mitte der selektive Vertrieb mit mehreren Partnern für Shopping Goods (Andechser Bio-Almbutter). An der Spitze der exklusive Vertrieb mit wenigen Partnern für teure Specialty Goods (Tarbiana-Trüffelbutter).',
     explanation: 'Basis → Spitze: weniger Partner, höherwertige Güter.',
-    source: 'Abbildung Distributionsgrad, PDF S. 24', conceptIds: ['mc-distributionsgrad', 'mc-intensiv', 'mc-selektiv', 'mc-exklusiv'],
+    source: 'Abbildung Distributionsgrad, PDF S. 24', conceptIds: ['mc-distributionsgrad'],
   },
   {
     id: 'qmi-distgrad-2', chapterId: 'm5', figureId: 'f-distributionsgrad', type: 'image_assignment', goal: 'distinction', difficulty: 2,
@@ -305,7 +305,7 @@ export const questionsImages: Question[] = [
       { left: 'Exklusiver Vertrieb', right: 'Specialty Goods' },
     ],
     explanation: 'Verbindung zur Typologisierung nach Kaufgewohnheit (Kapitel 2).',
-    source: 'Abbildung Distributionsgrad, PDF S. 24', conceptIds: ['mc-intensiv', 'mc-selektiv', 'mc-exklusiv', 'mc-kaufgewohnheit'],
+    source: 'Abbildung Distributionsgrad, PDF S. 24', conceptIds: ['mc-distributionsgrad', 'mc-guetertypen'],
   },
   {
     id: 'qmi-distgrad-3', chapterId: 'm5', figureId: 'f-distributionsgrad', type: 'image_choice', goal: 'application', difficulty: 1,
@@ -313,6 +313,6 @@ export const questionsImages: Question[] = [
     options: ['Exklusiver Vertrieb (Spitze)', 'Selektiver Vertrieb (Mitte)', 'Intensiver Vertrieb (Basis)', 'Sie ist nicht eingeordnet'],
     correctOptions: [0],
     explanation: 'Wenige Partner, teures Produkt, wenige sachkundig bediente Gourmetkunden = exklusiver Vertrieb.',
-    source: 'Abbildung Distributionsgrad, PDF S. 23–24', conceptIds: ['mc-exklusiv'],
+    source: 'Abbildung Distributionsgrad, PDF S. 23–24', conceptIds: ['mc-distributionsgrad'],
   },
 ];

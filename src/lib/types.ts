@@ -98,6 +98,8 @@ export interface Concept {
   short?: string;
   /** Lernkarten-Fassung: Stichpunkte bei Aufzählungen (Elemente, Schritte, Arten) */
   points?: string[];
+  /** true = kein Einzelbegriff, sondern eine Aufzählung/Übersicht aus dem Skript (z. B. „Sechs Kriterien …“) */
+  overview?: boolean;
 }
 
 /** Vierstufige Bildprüfkette gemäß Erweiterungs-Spezifikation. */
