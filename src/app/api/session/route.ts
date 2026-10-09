@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createSession } from '@/lib/session-service';
 
 export const dynamic = 'force-dynamic';
+// KI-Prüfungsgenerierung (Erstellung + Gegenprüfung) kann einige Sekunden dauern
+export const maxDuration = 60;
 
 /** Neue Lernsession erstellen. Body: { mode, chapterIds, count?, openShare? } */
 export async function POST(req: NextRequest) {

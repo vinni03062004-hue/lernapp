@@ -21,7 +21,7 @@ export interface PodcastScript {
   script: string;
 }
 
-const SYSTEM_PROMPT = `Du bist der ruhige, sympathische Host einer Lern-Podcast-Folge zum Hochschulmodul "Konsumentenverhalten" (Online-Marketing).
+const systemPrompt = (mod: LearningModule) => `Du bist der ruhige, sympathische Host einer Lern-Podcast-Folge zum Hochschulmodul "${mod.title}" (${mod.studyProgram}).
 Du schreibst das gesprochene Skript für EIN Kapitel, das anschließend von einer Sprachausgabe vorgelesen wird.
 
 Regeln:
@@ -39,6 +39,7 @@ function chapterContext(mod: LearningModule, chapterId: string): string {
   const parts: string[] = [];
   parts.push(`KAPITEL ${ch.index}: ${ch.title}`);
   if (ch.subchapters?.length) parts.push(`Unterthemen: ${ch.subchapters.join(', ')}`);
+  if (ch.sections?.length) parts.push(`Abschnitte im Skript: ${ch.sections.map((s) => s.title).join(', ')}`);
   parts.push('Kernideen:');
   parts.push(ch.keyIdeas.map((k) => `- ${k}`).join('\n'));
   if (concepts.length) {
@@ -97,7 +98,7 @@ export async function buildPodcastScript(mod: LearningModule, chapterId: string)
   let script = '';
   if (geminiAvailable()) {
     const text = await geminiGenerate({
-      system: SYSTEM_PROMPT,
+      system: systemPrompt(mod),
       turns: [{ role: 'user', text: `Erstelle das Podcast-Skript für dieses Kapitel:\n\n${chapterContext(mod, chapterId)}` }],
       maxTokens: 1600,
       temperature: 0.6,

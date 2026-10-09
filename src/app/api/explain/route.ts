@@ -3,13 +3,22 @@ import { getModule } from '@/content';
 import { aiExplain, ChatTurn } from '@/lib/ai-explain';
 import { answerFromKnowledge, buildKnowledgeBase } from '@/lib/retrieval';
 import { loadState, saveState } from '@/lib/store';
+import { LearningModule } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
+// KI-Aufruf (Gemini) – etwas mehr Laufzeit als der Plattform-Standard erlauben
+export const maxDuration = 30;
 
-// Wissensbasis einmal pro Prozess aufbauen (Inhalte sind statisch)
-let kb: ReturnType<typeof buildKnowledgeBase> | null = null;
-function getKb() {
-  if (!kb) kb = buildKnowledgeBase(getModule());
+// Wissensbasis einmal pro Prozess UND Modul aufbauen (Inhalte sind statisch).
+// Wichtig: pro Modul getrennt cachen – sonst antwortet der Chat nach einem
+// Modulwechsel mit dem Wissen des zuerst geladenen Moduls.
+const kbCache = new Map<string, ReturnType<typeof buildKnowledgeBase>>();
+function getKb(mod: LearningModule) {
+  let kb = kbCache.get(mod.id);
+  if (!kb) {
+    kb = buildKnowledgeBase(mod);
+    kbCache.set(mod.id, kb);
+  }
   return kb;
 }
 
@@ -36,7 +45,9 @@ export async function POST(req: NextRequest) {
       : [];
 
     // KI-Antwort (Gemini, mit Verlauf), Fallback: Offline-Retrieval
-    const answer = (await aiExplain(q, getKb(), history)) ?? answerFromKnowledge(mod, getKb(), q);
+    const kb = getKb(mod);
+    const moduleLabel = `"${mod.title}" (Studiengang ${mod.studyProgram})`;
+    const answer = (await aiExplain(q, kb, history, moduleLabel)) ?? answerFromKnowledge(mod, kb, q);
 
     if (chat && state) {
       const now = Date.now();

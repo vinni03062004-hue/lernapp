@@ -3,6 +3,8 @@ import { submitAttempt } from '@/lib/attempt-service';
 import { questionSolution } from '@/lib/session-service';
 
 export const dynamic = 'force-dynamic';
+// KI-Aufruf (Gemini) – etwas mehr Laufzeit als der Plattform-Standard erlauben
+export const maxDuration = 30;
 
 /**
  * Antwort einreichen. Bewertung, Fehlerklassifikation und Mastery-Update

@@ -87,13 +87,22 @@ export async function createSession(input: CreateSessionInput): Promise<{ sessio
     // Freitext-Anteil; der Rest kommt geschlossen (MC etc.) aus dem rotierenden
     // Katalog. Fällt die KI aus, normale Katalog-Auswahl.
     const nGen = Math.max(1, Math.round(count * openShare));
-    generated = await generateExamQuestions(mod, input.chapterIds, nGen);
+    // Begriffe der letzten KI-Prüfungen seltener ziehen → wechselnde Themen
+    const recentlyAsked = state.sessions
+      .filter((s) => s.mode === 'exam' && s.generatedQuestions?.length)
+      .slice(-3)
+      .flatMap((s) => s.generatedQuestions!.flatMap((q) => q.conceptIds ?? []));
+    generated = await generateExamQuestions(mod, input.chapterIds, nGen, { avoidConceptIds: recentlyAsked });
     if (generated.length > 0) {
-      const nClosed = Math.max(0, count - generated.length);
-      const closed = selectQuestions(mod.questions, state, {
-        mode: 'exam', chapterIds: input.chapterIds, count: nClosed, openShare: 0, imageOnly: false,
+      // Rest aus dem Katalog: fehlende offene Fragen (falls die KI weniger
+      // geliefert hat) + geschlossene Fragen
+      const nRest = Math.max(0, count - generated.length);
+      const openShortfall = Math.max(0, nGen - generated.length);
+      const rest = selectQuestions(mod.questions, state, {
+        mode: 'exam', chapterIds: input.chapterIds, count: nRest,
+        openShare: nRest > 0 ? Math.min(1, openShortfall / nRest) : 0, imageOnly: false,
       });
-      questions = shuffle([...generated, ...closed]);
+      questions = shuffle([...generated, ...rest]);
     } else {
       questions = selectQuestions(mod.questions, state, {
         mode: input.mode, chapterIds: input.chapterIds, count, openShare, imageOnly,
@@ -134,7 +143,7 @@ export async function finishSession(sessionId: string): Promise<{ session: Study
     const attempts = state.attempts.filter((a) => a.sessionId === sessionId);
     const perQuestion = session.questionIds.map((qid) => {
       const att = attempts.filter((a) => a.questionId === qid).pop();
-      const q = mod.questions.find((x) => x.id === qid);
+      const q = mod.questions.find((x) => x.id === qid) ?? session.generatedQuestions?.find((x) => x.id === qid);
       // "nur auswendig": Faktenfrage korrekt, aber zugehörige Verständnis-/
       // Transferfragen desselben Konzepts historisch < Schwelle
       let memorizedOnly = false;

@@ -25,23 +25,36 @@ export function aiGradingAvailable(): boolean {
   return geminiAvailable();
 }
 
-const SYSTEM_PROMPT = `Du bist ein fairer, fachkundiger Prüfer für das Hochschulmodul "Konsumentenverhalten" (Online-Marketing).
+/** Kontext für die Bewertung: aktives Modul + Skript-Definitionen der abgefragten Begriffe. */
+export interface GradingContext {
+  /** z. B. "Marketing 1" (Studiengang Online-Marketing) */
+  moduleLabel?: string;
+  /** Skript-Definitionen der Begriffe, auf die sich die Frage bezieht */
+  scriptDefinitions?: string[];
+}
+
+function systemPrompt(moduleLabel: string): string {
+  return `Du bist ein fairer, fachkundiger Prüfer für das Hochschulmodul ${moduleLabel}.
 Bewerte die Antwort eines Studierenden auf eine offene Frage.
 
 Bewertungsregeln:
 1. Bewerte die FACHLICHE SUBSTANZ, nicht den Wortlaut. Paraphrasen, Synonyme und eigene Formulierungen sind vollwertig.
 2. Auch korrekte Aussagen, die NICHT in den erwarteten Kernpunkten oder der Musterantwort stehen, zählen positiv, wenn sie die Frage fachlich richtig beantworten.
-3. Vergib Teilpunkte: score ist eine Zahl von 0 bis 1 (0 = fachlich falsch/kein Bezug, 0.5 = teilweise richtig, 1 = vollständig richtig).
-4. Falsche Aussagen in der Antwort senken den Score und werden im Feedback benannt.
-5. Sei wohlwollend bei knappen, aber korrekten Antworten; sei streng bei fachlichen Fehlern.
-6. Feedback: 1–3 Sätze auf Deutsch, konstruktiv, direkt an den Studierenden gerichtet.
+3. Maßstab für fachliche Richtigkeit sind die mitgelieferten Skript-Definitionen und Kernpunkte. Widerspricht die Antwort dem Skript, ist das ein fachlicher Fehler.
+4. Vergib Teilpunkte: score ist eine Zahl von 0 bis 1 (0 = fachlich falsch/kein Bezug, 0.5 = teilweise richtig, 1 = vollständig richtig). Fordert die Frage mehrere Teile (z. B. "nennen und erläutern", "abgrenzen"), gibt es volle Punktzahl nur, wenn alle Teile beantwortet sind.
+5. Falsche Aussagen in der Antwort senken den Score und werden im Feedback benannt.
+6. Sei wohlwollend bei knappen, aber korrekten Antworten; sei streng bei fachlichen Fehlern.
+7. Feedback: 1–3 Sätze auf Deutsch, konstruktiv, direkt an den Studierenden gerichtet.
 
 Antworte AUSSCHLIESSLICH mit einem JSON-Objekt in exakt diesem Format, ohne Markdown:
 {"score": 0.0, "feedback": "...", "erfuellte_punkte": ["..."], "fehlende_punkte": ["..."]}`;
+}
 
-function buildUserPrompt(q: Question, answer: string): string {
+function buildUserPrompt(q: Question, answer: string, ctx: GradingContext): string {
+  const defs = (ctx.scriptDefinitions ?? []).filter(Boolean).slice(0, 8);
   const parts = [
     `FRAGE: ${q.prompt}`,
+    defs.length ? `SKRIPT-DEFINITIONEN (fachliche Grundlage):\n${defs.map((d) => `- ${d}`).join('\n')}` : '',
     q.rubric?.length ? `ERWARTETE KERNPUNKTE (Orientierung, nicht abschließend):\n${q.rubric.map((r) => `- ${r.point}`).join('\n')}` : '',
     q.modelAnswer ? `MUSTERANTWORT (eine mögliche korrekte Antwort):\n${q.modelAnswer}` : '',
     q.explanation ? `FACHLICHER KONTEXT:\n${q.explanation}` : '',
@@ -75,13 +88,17 @@ function toStringArray(v: unknown): string[] {
  * Gibt null zurück, wenn kein API-Key gesetzt ist oder ein Fehler auftritt
  * (dann greift die regelbasierte Bewertung).
  */
-export async function aiGradeFreetext(question: Question, answer: string): Promise<ScoreResult | null> {
+export async function aiGradeFreetext(
+  question: Question,
+  answer: string,
+  ctx: GradingContext = {}
+): Promise<ScoreResult | null> {
   if (!geminiAvailable()) return null;
   if (answer.trim().length < LearningConfig.freetext.minLength) return null; // zu kurz → regelbasiert
 
   const text = await geminiGenerate({
-    system: SYSTEM_PROMPT,
-    turns: [{ role: 'user', text: buildUserPrompt(question, answer) }],
+    system: systemPrompt(ctx.moduleLabel ?? 'deines Studiengangs'),
+    turns: [{ role: 'user', text: buildUserPrompt(question, answer, ctx) }],
     json: true,
     maxTokens: 1024,
     temperature: 0.1,

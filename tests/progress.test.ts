@@ -48,6 +48,12 @@ describe('Lernfortschritt & Prüfungsbereitschaft', () => {
     const stateA = defaultState();
     const stateB = defaultState();
     const now = Date.now();
+    // Beide Profile haben IDENTISCHE Beherrschung (Basis-Bereitschaft > 0),
+    // damit sich allein die MC-vs-Freitext-Dämpfung auswirkt.
+    for (const qq of questions) {
+      stateA.mastery[qq.id] = updateMastery(emptyMastery(qq, now), true, 1, 'high', now);
+      stateB.mastery[qq.id] = updateMastery(emptyMastery(qq, now), true, 1, 'high', now);
+    }
     // Beide: gute MC-Leistung, Kapitel abgedeckt
     for (let i = 0; i < 6; i++) {
       stateA.attempts.push(attempt(`m${i}`, `q${(i % 4) + 1}`, i % 2 ? 'k1' : 'k2', 1));

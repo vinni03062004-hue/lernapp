@@ -29,13 +29,11 @@ describe('Adaptive Engine (Spacing & Mastery)', () => {
     expect(m.intervalH).toBeLessThan(1);
   });
 
-  it('rehabilitiert Fehler erst nach 2 korrekten Antworten in Folge', () => {
+  it('rehabilitiert einen Fehler nach der ersten korrekten Antwort', () => {
     const now = Date.now();
     let m = emptyMastery(q('x', 'k1'), now);
     m = updateMastery(m, false, 0, 'medium', now);
-    m = updateMastery(m, true, 1, 'medium', now);
     expect(m.openError).toBe(true);
-    expect(m.errorResolved).toBe(false);
     m = updateMastery(m, true, 1, 'medium', now);
     expect(m.openError).toBe(false);
     expect(m.errorResolved).toBe(true);

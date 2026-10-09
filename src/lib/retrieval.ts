@@ -2,24 +2,25 @@
  * Offline-Retrieval für Erklärmodus und Fach-Chatbot.
  *
  * Die Wissensbasis besteht aus dem strukturierten Wissensmodell des Moduls
- * (Konzepte, Kapitel-Kernaussagen, Bildbeschreibungen). Anfragen werden über
- * ein TF-IDF-ähnliches Stichwort-Scoring gegen diese Einheiten gematcht.
+ * (Konzepte, Kapitel-Kernaussagen, Lernskript-Abschnitte, Bildbeschreibungen).
+ * Anfragen werden über ein TF-IDF-ähnliches Stichwort-Scoring gegen diese
+ * Einheiten gematcht.
  *
  * Quellenprüflogik (Erweiterungs-Spezifikation, "doppelte Prüfung"):
- * 1. Prüfung: Treffer im PDF-Wissensmodell (Konzepte/Kapitel).
+ * 1. Prüfung: Treffer im PDF-Wissensmodell (Konzepte/Kapitel/Abschnitte).
  * 2. Prüfung: Konsistenz-Gegencheck – stützen mindestens zwei unabhängige
- *    Wissenseinheiten (z. B. Konzept + Kapitel-Kernaussage oder zweites
- *    Konzept) die Antwort? Wenn nicht → Unsicherheitsmarker im UI.
+ *    Wissenseinheiten (z. B. Konzept + Abschnitt oder zweites Konzept) die
+ *    Antwort? Wenn nicht → Unsicherheitsmarker im UI.
  * Antworten unterhalb der Ähnlichkeitsschwelle werden als unsicher markiert.
  */
 
 import { LearningConfig } from '@/config/learning';
-import { LearningModule } from './types';
+import { Concept, LearningModule, ScriptBlock, ScriptSection } from './types';
 import { stems } from './normalize';
 
 export interface KnowledgeUnit {
   id: string;
-  kind: 'concept' | 'chapter' | 'figure';
+  kind: 'concept' | 'chapter' | 'figure' | 'section';
   title: string;
   text: string;
   chapterId: string;
@@ -48,17 +49,97 @@ export interface ExplainAnswer {
   noEvidence: boolean;
 }
 
+/** Abschnitte werden leicht abgewertet, damit bei Gleichstand die präzisere Begriffseinheit gewinnt. */
+const SECTION_SCORE_FACTOR = 0.9;
+
+/** Ein Skript-Block als Klartext. Prüfungstipps (didaktisch, kein Skriptinhalt) nur auf Wunsch. */
+export function blockPlainText(
+  b: ScriptBlock,
+  conceptMap: Map<string, Concept>,
+  opts: { includeExamTips?: boolean } = {}
+): string {
+  switch (b.kind) {
+    case 'text':
+      return b.text;
+    case 'list':
+      return [b.title ? `${b.title}:` : '', ...b.items.map((i) => `- ${i}`)].filter(Boolean).join('\n');
+    case 'definitions':
+      return b.conceptIds
+        .map((id) => conceptMap.get(id))
+        .filter((c): c is Concept => !!c)
+        .map((c) => {
+          const extra = [c.context, c.example ? `Beispiel: ${c.example}` : ''].filter(Boolean).join(' ');
+          return `${c.term}: ${c.definition}${extra ? ` ${extra}` : ''}`;
+        })
+        .join('\n');
+    case 'table':
+      return [
+        b.title ? `${b.title}:` : '',
+        ...b.rows.map((r) => r.map((cell, j) => `${b.columns[j] ?? ''}: ${cell}`).join(' | ')),
+      ]
+        .filter(Boolean)
+        .join('\n');
+    case 'proscons':
+      return [
+        b.title ? `${b.title}:` : '',
+        `Vorteile: ${b.pros.join('; ')}`,
+        `Nachteile: ${b.cons.join('; ')}`,
+      ]
+        .filter(Boolean)
+        .join('\n');
+    case 'example':
+      return `Beispiel${b.title ? ` (${b.title})` : ''}: ${b.text}`;
+    case 'merke':
+      return `Merke: ${b.text}`;
+    case 'exam':
+      return opts.includeExamTips ? `Prüfungshinweis: ${b.text}` : '';
+    case 'figure':
+      return '';
+    default:
+      return '';
+  }
+}
+
+/** Ein Lernskript-Abschnitt als Klartext (für Retrieval, KI-Kontext, Podcast). */
+export function sectionPlainText(
+  mod: LearningModule,
+  section: ScriptSection,
+  opts: { includeExamTips?: boolean } = {}
+): string {
+  const conceptMap = new Map(mod.concepts.map((c) => [c.id, c]));
+  const body = section.blocks.map((b) => blockPlainText(b, conceptMap, opts)).filter(Boolean).join('\n');
+  return `${section.sub ? `${section.sub} ` : ''}${section.title}\n${body}`;
+}
+
+/** Abschnitt (falls vorhanden), in dem ein Begriff im Lernskript definiert wird. */
+function sectionIndex(mod: LearningModule): Map<string, { section: ScriptSection; chapterIndex: number; chapterTitle: string }> {
+  const m = new Map<string, { section: ScriptSection; chapterIndex: number; chapterTitle: string }>();
+  for (const ch of mod.chapters) {
+    for (const s of ch.sections ?? []) {
+      for (const b of s.blocks) {
+        if (b.kind !== 'definitions') continue;
+        for (const id of b.conceptIds) if (!m.has(id)) m.set(id, { section: s, chapterIndex: ch.index, chapterTitle: ch.title });
+      }
+    }
+  }
+  return m;
+}
+
 export function buildKnowledgeBase(mod: LearningModule): KnowledgeUnit[] {
   const units: KnowledgeUnit[] = [];
+  const secOf = sectionIndex(mod);
   for (const c of mod.concepts) {
     const text = [c.term, c.definition, c.context ?? '', c.example ?? '', (c.synonyms ?? []).join(' ')].join('. ');
+    const sec = secOf.get(c.id);
     units.push({
       id: `concept:${c.id}`,
       kind: 'concept',
       title: c.term,
       text,
       chapterId: c.chapterId,
-      source: sourceForChapter(mod, c.chapterId),
+      source: sec
+        ? `Kapitel ${sec.chapterIndex} (${sec.chapterTitle}) – ${sec.section.title}, PDF S. ${sec.section.pdfPages}`
+        : sourceForChapter(mod, c.chapterId),
       terms: new Set(stems(text)),
     });
   }
@@ -73,6 +154,20 @@ export function buildKnowledgeBase(mod: LearningModule): KnowledgeUnit[] {
       source: `Kapitel ${ch.index} (${ch.title}), PDF S. ${ch.pdfPages}`,
       terms: new Set(stems(text)),
     });
+  }
+  for (const ch of mod.chapters) {
+    for (const s of ch.sections ?? []) {
+      const text = sectionPlainText(mod, s);
+      units.push({
+        id: `section:${s.id}`,
+        kind: 'section',
+        title: s.title,
+        text,
+        chapterId: ch.id,
+        source: `Kapitel ${ch.index} (${ch.title}) – ${s.title}, PDF S. ${s.pdfPages}`,
+        terms: new Set(stems(text)),
+      });
+    }
   }
   for (const f of mod.figures) {
     const text = [f.title, f.caption, f.explanationSimple, f.explanationExpert, ...f.elements.map((e) => `${e.label}: ${e.meaning}`)].join('. ');
@@ -93,9 +188,10 @@ export function buildKnowledgeBase(mod: LearningModule): KnowledgeUnit[] {
 export function retrieve(query: string, units: KnowledgeUnit[], topK: number = LearningConfig.retrieval.topK): RetrievalHit[] {
   const qTerms = stems(query);
   if (qTerms.length === 0) return [];
+  const uniq = [...new Set(qTerms)];
   // Dokumentfrequenz je Term
   const df: Record<string, number> = {};
-  for (const t of new Set(qTerms)) {
+  for (const t of uniq) {
     df[t] = units.filter((u) => u.terms.has(t)).length;
   }
   const n = units.length;
@@ -103,7 +199,7 @@ export function retrieve(query: string, units: KnowledgeUnit[], topK: number = L
   for (const u of units) {
     let score = 0;
     let matched = 0;
-    for (const t of new Set(qTerms)) {
+    for (const t of uniq) {
       if (u.terms.has(t)) {
         matched++;
         const idf = Math.log(1 + n / (1 + (df[t] ?? 0)));
@@ -116,11 +212,23 @@ export function retrieve(query: string, units: KnowledgeUnit[], topK: number = L
     const titleMatches = qTerms.filter((t) => titleStems.has(t)).length;
     score += titleMatches * 1.5;
     // normieren auf Query-Länge
-    score = score / Math.sqrt(new Set(qTerms).size);
+    score = score / Math.sqrt(uniq.length);
+    if (u.kind === 'section') score *= SECTION_SCORE_FACTOR;
     hits.push({ unit: u, score });
   }
   hits.sort((a, b) => b.score - a.score);
   return hits.slice(0, topK);
+}
+
+/** Beispielbegriffe für den Hinweis bei fehlender Evidenz (aus dem aktiven Modul). */
+function exampleTerms(mod: LearningModule): string[] {
+  const out: string[] = [];
+  for (const ch of mod.chapters) {
+    const c = mod.concepts.find((x) => x.chapterId === ch.id && x.term.length <= 22 && !out.includes(x.term));
+    if (c) out.push(c.term);
+    if (out.length >= 3) break;
+  }
+  return out;
 }
 
 /**
@@ -131,9 +239,12 @@ export function retrieve(query: string, units: KnowledgeUnit[], topK: number = L
 export function answerFromKnowledge(mod: LearningModule, units: KnowledgeUnit[], query: string): ExplainAnswer {
   const hits = retrieve(query, units);
   if (hits.length === 0) {
+    const ex = exampleTerms(mod);
     return {
-      core: 'Dazu habe ich im Modul Konsumentenverhalten keine belastbare Textstelle gefunden.',
-      simple: 'Formuliere die Frage anders oder nutze einen Fachbegriff aus dem Skript (z. B. „Aktivierung“, „Involvement“, „Evoked Set“).',
+      core: `Dazu habe ich im Modul ${mod.title} keine belastbare Textstelle gefunden.`,
+      simple: `Formuliere die Frage anders oder nutze einen Fachbegriff aus dem Skript${
+        ex.length ? ` (z. B. ${ex.map((t) => `„${t}“`).join(', ')})` : ''
+      }.`,
       sources: [],
       uncertain: true,
       noEvidence: true,
@@ -144,6 +255,7 @@ export function answerFromKnowledge(mod: LearningModule, units: KnowledgeUnit[],
   // Doppelte Quellenprüfung: stützt eine zweite, unabhängige Einheit die Antwort?
   const secondSupport = hits.length > 1 && hits[1].score >= maxScore * 0.4;
   const uncertain = maxScore < LearningConfig.retrieval.uncertainBelow * 3 || !secondSupport;
+  const sources = dedupe(hits.map((h) => h.unit.source));
 
   if (best.unit.kind === 'concept') {
     const c = mod.concepts.find((x) => `concept:${x.id}` === best.unit.id)!;
@@ -154,7 +266,7 @@ export function answerFromKnowledge(mod: LearningModule, units: KnowledgeUnit[],
       detailed: c.examRelevance ? `Prüfungsrelevanz: ${c.examRelevance}` : undefined,
       example: c.example,
       mnemonic: c.mnemonic,
-      sources: dedupe(hits.map((h) => h.unit.source)),
+      sources,
       uncertain,
       noEvidence: false,
     };
@@ -165,7 +277,20 @@ export function answerFromKnowledge(mod: LearningModule, units: KnowledgeUnit[],
       core: `${f.title}: ${f.caption}`,
       simple: f.explanationSimple,
       detailed: f.explanationExpert,
-      sources: dedupe(hits.map((h) => h.unit.source)),
+      sources,
+      uncertain,
+      noEvidence: false,
+    };
+  }
+  if (best.unit.kind === 'section') {
+    const lines = best.unit.text.split('\n').slice(1).filter(Boolean);
+    const simple = lines.slice(0, 3).join('\n');
+    const rest = lines.slice(3).join('\n');
+    return {
+      core: best.unit.title,
+      simple,
+      detailed: rest ? (rest.length > 1400 ? `${rest.slice(0, 1400)} …` : rest) : undefined,
+      sources,
       uncertain,
       noEvidence: false,
     };
@@ -175,7 +300,7 @@ export function answerFromKnowledge(mod: LearningModule, units: KnowledgeUnit[],
     core: `Kapitel ${ch.index} – ${ch.title}`,
     simple: ch.keyIdeas.slice(0, 3).join(' '),
     detailed: ch.keyIdeas.join(' '),
-    sources: dedupe(hits.map((h) => h.unit.source)),
+    sources,
     uncertain,
     noEvidence: false,
   };

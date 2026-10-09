@@ -130,8 +130,11 @@ function scoreAssignment(q: Question, answer: string): ScoreResult {
   const chosen: number[] = safeParseArray(answer).map((v: any) => parseInt(String(v), 10));
   const pairs = q.pairs ?? [];
   let hits = 0;
-  pairs.forEach((_, i) => {
-    if (chosen[i] === i) hits++;
+  pairs.forEach((pair, i) => {
+    const c = chosen[i];
+    // richtig, wenn exakt das Paar gewählt wurde ODER ein Ziel mit identischem
+    // Text (Kategorie-Zuordnungen wie „massenmedial“ dürfen mehrfach vorkommen)
+    if (c === i || (Number.isInteger(c) && pairs[c]?.right === pair.right)) hits++;
   });
   const score = pairs.length > 0 ? hits / pairs.length : 0;
   return {

@@ -519,14 +519,23 @@ export function SessionPlayer(props: {
                 <select value={assignChoices[i] === null ? '' : String(assignChoices[i])} disabled={!!feedback}
                   onChange={(e) => setAssignChoices((arr) => arr.map((v, j) => (j === i ? (e.target.value === '' ? null : parseInt(e.target.value, 10)) : v)))}>
                   <option value="">– bitte zuordnen –</option>
-                  {question.assignmentRight?.map((r) => (
-                    <option key={r.origIndex} value={r.origIndex}>{r.text}</option>
-                  ))}
+                  {(question.assignmentRight ?? [])
+                    .filter((r, k, all) => all.findIndex((x) => x.text === r.text) === k)
+                    .map((r) => (
+                      <option key={r.origIndex} value={r.origIndex}>{r.text}</option>
+                    ))}
                 </select>
                 {feedback?.solution?.pairs && (
-                  <div className="small" style={{ marginTop: 3, color: assignChoices[i] === i ? 'var(--success)' : 'var(--danger)' }}>
-                    {assignChoices[i] === i ? '✓ richtig' : `✗ Richtig wäre: ${feedback.solution.pairs[i]?.right}`}
-                  </div>
+                  (() => {
+                    const sp = feedback.solution.pairs;
+                    const c = assignChoices[i];
+                    const ok = c === i || (c !== null && sp[c]?.right === sp[i]?.right);
+                    return (
+                      <div className="small" style={{ marginTop: 3, color: ok ? 'var(--success)' : 'var(--danger)' }}>
+                        {ok ? '✓ richtig' : `✗ Richtig wäre: ${sp[i]?.right}`}
+                      </div>
+                    );
+                  })()
                 )}
               </div>
             ))}

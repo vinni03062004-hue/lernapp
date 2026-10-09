@@ -3,8 +3,8 @@ import './globals.css';
 import { Nav } from '@/components/Nav';
 
 export const metadata: Metadata = {
-  title: 'Lernapp – Konsumentenverhalten',
-  description: 'KI-Lernapp für das Modul Konsumentenverhalten (Online-Marketing)',
+  title: 'Lernapp – Online-Marketing',
+  description: 'KI-Lernapp für die Module des Studiengangs Online-Marketing (Konsumentenverhalten, Marketing 1)',
   manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,

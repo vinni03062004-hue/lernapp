@@ -27,6 +27,8 @@ export interface GeminiRequest {
   temperature?: number;
   /** Denk-Budget (Tokens). 0 = "Thinking" aus (schneller, kein abgeschnittenes JSON). */
   thinkingBudget?: number;
+  /** optionaler Timeout (ms) für lange Antworten, z. B. Prüfungsgenerierung */
+  timeoutMs?: number;
 }
 
 export function geminiAvailable(): boolean {
@@ -65,7 +67,7 @@ export async function geminiGenerate(reqData: GeminiRequest): Promise<string | n
 
   try {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), LearningConfig.ai.timeoutMs);
+    const timer = setTimeout(() => controller.abort(), reqData.timeoutMs ?? LearningConfig.ai.timeoutMs);
     const res = await fetch(url, {
       method: 'POST',
       headers: {

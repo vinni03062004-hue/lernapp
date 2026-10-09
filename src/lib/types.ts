@@ -28,6 +28,42 @@ export type Difficulty = 1 | 2 | 3; // 1 = leicht, 2 = mittel, 3 = schwer/transf
 /** Lernziel-Kategorie – steuert die Wahl der Lerntechnik (siehe config/learning.ts). */
 export type LearningGoal = 'fact' | 'distinction' | 'understanding' | 'application';
 
+/**
+ * Strukturiertes Lernskript (optional): bildet die Gliederung des Original-PDFs
+ * Abschnitt für Abschnitt ab. Inhalte stammen ausschließlich aus dem Skript;
+ * die Blocktypen bestimmen nur die didaktische Darstellung.
+ */
+export type ScriptBlock =
+  /** Fließtext / Einleitung */
+  | { kind: 'text'; text: string }
+  /** Aufzählung (optional nummeriert, mit Überschrift) */
+  | { kind: 'list'; title?: string; items: string[]; ordered?: boolean }
+  /** Begriffskarten – verweisen auf Konzepte (Term + Definition kommen aus concepts) */
+  | { kind: 'definitions'; conceptIds: string[] }
+  /** Tabelle (z. B. Vergleich, Schritte mit Beispiel) */
+  | { kind: 'table'; title?: string; columns: string[]; rows: string[][] }
+  /** Vor- und Nachteile gegenübergestellt */
+  | { kind: 'proscons'; title?: string; pros: string[]; cons: string[] }
+  /** Praxisbeispiel aus dem Skript */
+  | { kind: 'example'; title?: string; text: string }
+  /** Merksatz / zentrale Aussage (aus dem Skript) */
+  | { kind: 'merke'; text: string }
+  /** Prüfungshinweis: worauf in Freitextantworten zu achten ist (didaktisch, kein neuer Inhalt) */
+  | { kind: 'exam'; text: string }
+  /** eingebettete Abbildung */
+  | { kind: 'figure'; figureId: string };
+
+export interface ScriptSection {
+  id: string;
+  /** Unterkapitel-Nummer wie im Skript, z. B. "1.1" */
+  sub?: string;
+  /** Überschrift wie im Skript */
+  title: string;
+  /** PDF-Seiten, z. B. "1–2" */
+  pdfPages: string;
+  blocks: ScriptBlock[];
+}
+
 export interface Chapter {
   id: string;
   index: number;
@@ -37,6 +73,8 @@ export interface Chapter {
   keyIdeas: string[];
   /** Seitenbereich im Original-PDF (ungefähr) */
   pdfPages: string;
+  /** optional: vollständiges, strukturiertes Lernskript des Kapitels */
+  sections?: ScriptSection[];
 }
 
 export interface Concept {
@@ -56,6 +94,10 @@ export interface Concept {
   mnemonic?: string;
   /** Prüfungsrelevanz-Hinweis */
   examRelevance?: string;
+  /** Lernkarten-Fassung: Kurzdefinition (1–2 Zeilen); fehlt sie, gilt `definition` */
+  short?: string;
+  /** Lernkarten-Fassung: Stichpunkte bei Aufzählungen (Elemente, Schritte, Arten) */
+  points?: string[];
 }
 
 /** Vierstufige Bildprüfkette gemäß Erweiterungs-Spezifikation. */
@@ -72,7 +114,7 @@ export interface FigureValidation {
 export interface Figure {
   id: string;
   chapterId: string;
-  /** Dateiname unter /public/images/kv/ */
+  /** Dateiname unter /public/images/<imageDir des Moduls>/ */
   file: string;
   title: string;
   pdfPage: number;

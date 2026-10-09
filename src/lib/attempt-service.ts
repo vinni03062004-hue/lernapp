@@ -55,7 +55,14 @@ export async function submitAttempt(input: SubmitAttemptInput): Promise<SubmitAt
   // PDF-Stichwörter. Fällt Gemini aus (kein Key/Fehler), bleibt die
   // regelbasierte Rubrik als Fallback.
   if (['open', 'transfer', 'image_open'].includes(question.type)) {
-    const aiResult = await aiGradeFreetext(question, input.answer);
+    const scriptDefinitions = (question.conceptIds ?? [])
+      .map((cid) => mod.concepts.find((c) => c.id === cid))
+      .filter((c): c is NonNullable<typeof c> => !!c)
+      .map((c) => `${c.term}: ${c.definition}`);
+    const aiResult = await aiGradeFreetext(question, input.answer, {
+      moduleLabel: `"${mod.title}" (Studiengang ${mod.studyProgram})`,
+      scriptDefinitions,
+    });
     if (aiResult) result = aiResult;
   }
 

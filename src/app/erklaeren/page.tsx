@@ -76,6 +76,18 @@ function ErklaerenInner() {
     }
   }
 
+  // Beispielfrage aus dem aktiven Modul: erstes Begriffspaar mit Verwechslungsgefahr
+  const examplePair = (() => {
+    const concepts: any[] = content?.concepts ?? [];
+    const terms = new Set(concepts.map((c) => String(c.term).toLowerCase()));
+    for (const c of concepts) {
+      const other = (c.confusableWith ?? []).find((t: string) => terms.has(String(t).toLowerCase()));
+      if (other && c.term.length <= 30 && other.length <= 30) return [c.term, other] as const;
+    }
+    return null;
+  })();
+  const moduleTitle: string = content?.moduleTitle ?? 'deinem Modul';
+
   const chapterConcepts = content?.concepts?.filter((c: any) => !selectedChapter || c.chapterId === selectedChapter) ?? [];
   const chapterFigures = content?.figures?.filter((f: any) => !selectedChapter || f.chapterId === selectedChapter) ?? [];
   // Nachschlagewerk: Titel (kleingeschrieben) -> Abbildung, damit auch aus dem
@@ -103,7 +115,7 @@ function ErklaerenInner() {
           <div className="chat-log" ref={logRef}>
             {messages.length === 0 && (
               <div className="empty-state small">
-                Stelle eine Frage zum Modul, z. B. „Was ist der Unterschied zwischen Evoked Set und Consideration Set?“
+                Stelle eine Frage zum Modul{examplePair ? <>, z. B. „Was ist der Unterschied zwischen {examplePair[0]} und {examplePair[1]}?“</> : '.'}
               </div>
             )}
             {messages.map((m, i) => {
@@ -136,7 +148,7 @@ function ErklaerenInner() {
           </div>
           <form style={{ display: 'flex', gap: 8, marginTop: 12 }}
             onSubmit={(e) => { e.preventDefault(); ask(); }}>
-            <input type="text" value={query} placeholder="Frage zum Konsumentenverhalten …"
+            <input type="text" value={query} placeholder={`Frage zu ${moduleTitle} …`}
               onChange={(e) => setQuery(e.target.value)} aria-label="Frage eingeben" />
             <button className="btn primary" type="submit" disabled={busy || !query.trim()}>Fragen</button>
           </form>

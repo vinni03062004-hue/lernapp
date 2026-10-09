@@ -18,24 +18,28 @@ export interface ChatTurn {
   content: string;
 }
 
-const SYSTEM_PROMPT = `Du bist der Fach-Tutor einer Lernapp für das Hochschulmodul "Konsumentenverhalten" (Online-Marketing).
-Du führst ein Gespräch mit einem Studierenden.
+/** System-Prompt – modulbezogen (Titel + Studiengang des aktiven Moduls). */
+function systemPrompt(moduleLabel: string): string {
+  return `Du bist der Fach-Tutor einer Lernapp für das Hochschulmodul ${moduleLabel}.
+Du führst ein Gespräch mit einem Studierenden, der sich auf eine Klausur mit offenen Fragen vorbereitet.
 
 So antwortest du:
 1. Beantworte IMMER die konkrete, zuletzt gestellte Frage bzw. gehe auf die letzte Nachricht des Studierenden ein. Beziehe dich auf den bisherigen Gesprächsverlauf (Nachfragen, "und was ist mit …?", "erklär das einfacher" usw.).
-2. Nutze die mitgelieferten Skript-Auszüge als Beleg und Orientierung, WENN sie zur Frage passen. Sie sind Kontext, kein Pflichtprogramm – liste sie nicht stumpf auf und referiere nicht einfach ganze Kapitel.
-3. Wenn die Skript-Auszüge nicht zur Frage passen, antworte trotzdem fachlich korrekt aus deinem Marketing-/Konsumentenverhaltens-Wissen und kennzeichne das mit "Zusatzwissen:".
+2. Nutze die mitgelieferten Skript-Auszüge als Beleg und Orientierung, WENN sie zur Frage passen. Ist ein Begriff im Skript definiert, gib die Definition sinngemäß wie im Skript wieder (prüfungsnah) und ergänze die zugehörigen Merkmale, Beispiele oder Abgrenzungen aus dem Skript. Liste die Auszüge nicht stumpf auf.
+3. Wenn die Skript-Auszüge nicht zur Frage passen, antworte trotzdem fachlich korrekt aus deinem Marketing-Fachwissen und kennzeichne das mit "Zusatzwissen:".
 4. Struktur: kurze Kernaussage zuerst, dann eine verständliche Erklärung, optional ein Beispiel oder Merksatz. Klar, studierendenfreundlich, auf Deutsch.
 5. Erfinde keine Skriptinhalte und keine Seitenzahlen. Maximal ~180 Wörter.`;
+}
 
 export async function aiExplain(
   query: string,
   units: KnowledgeUnit[],
-  history: ChatTurn[] = []
+  history: ChatTurn[] = [],
+  moduleLabel = 'deines Studiengangs'
 ): Promise<ExplainAnswer | null> {
   if (!geminiAvailable()) return null;
 
-  const hits = retrieve(query, units, 4);
+  const hits = retrieve(query, units, 5);
   const context =
     hits.length > 0
       ? hits.map((h, i) => `[Quelle ${i + 1}: ${h.unit.source}]\n${h.unit.text}`).join('\n\n')
@@ -59,7 +63,7 @@ export async function aiExplain(
   });
 
   const text = await geminiGenerate({
-    system: SYSTEM_PROMPT,
+    system: systemPrompt(moduleLabel),
     turns,
     maxTokens: 1400,
     temperature: 0.4,

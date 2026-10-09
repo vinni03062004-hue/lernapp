@@ -47,7 +47,7 @@ export async function GET() {
     return new NextResponse(lines.join('\n'), {
       headers: {
         'Content-Type': 'text/markdown; charset=utf-8',
-        'Content-Disposition': 'attachment; filename="lernbericht-konsumentenverhalten.md"',
+        'Content-Disposition': `attachment; filename="lernbericht-${mod.id}.md"`,
       },
     });
   } catch (err) {
